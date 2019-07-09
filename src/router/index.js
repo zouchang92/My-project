@@ -34,7 +34,7 @@ import Faq from '@/pages/faq'
 import download from '@/pages/download'
 import comingsoon from '@/pages/coming_soon'
 import Emailtemplate from '@/pages/email_template'
-import color from '@/components/color'
+// import color from '@/components/color'
 
 import HomePage from '@/components/main_pages/Home.vue'
 import Header from '@/components/Header.vue'
@@ -79,7 +79,7 @@ Vue.component('comingsoon', comingsoon)
 Vue.component('Emailtemplate', Emailtemplate)
 Vue.component('js', js)
 Vue.component('Tile', Tile)
-Vue.component('color', color)
+// Vue.component('color', color)
 
 export default new Router({
   mode: 'history',

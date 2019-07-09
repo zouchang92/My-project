@@ -97,6 +97,6 @@ export default {
 }
 </script>
 <!--remove comment below line to set color -->
-<!--<style lang="css">-->
-  <!--@import '../public/assets/css/color/color-2.css';-->
-<!--</style>-->
+<style lang="css">
+  @import '../../assets/css/color/color-4.css';
+</style>
