@@ -6,6 +6,7 @@ import router from './router'
 import BootstrapVue from 'bootstrap-vue'
 import vueVimeoPlayer from 'vue-vimeo-player'
 import carousel from 'v-owl-carousel'
+import VueScroller from 'vue-scroller'
 
 // css and scss files include
 import 'bootstrap/dist/css/bootstrap.css'
@@ -20,6 +21,7 @@ import './assets/plus.css'
 
 Vue.use(BootstrapVue)
 Vue.use(vueVimeoPlayer)
+Vue.use(VueScroller)
 Vue.component('carousel', carousel)
 Vue.config.productionTip = false
 
