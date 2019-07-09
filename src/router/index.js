@@ -36,7 +36,20 @@ import comingsoon from '@/pages/coming_soon'
 import Emailtemplate from '@/pages/email_template'
 import color from '@/components/color'
 
+import HomePage from '@/components/main_pages/Home.vue'
+import Header from '@/components/Header.vue'
+import Record from '@/components/main_pages/Record.vue'
+import Timeline from '@/components/main_pages/Timeline.vue'
+import Calendar from '@/components/main_pages/Calendar.vue'
+import Alert from '@/components/main_pages/Alert.vue'
+
 Vue.use(Router)
+Vue.component('Header', Header)
+Vue.component('Record', Record)
+Vue.component('Timeline', Timeline)
+Vue.component('Calendar', Calendar)
+Vue.component('Alert', Alert)
+
 Vue.component('Navbar', Navbar)
 Vue.component('About', About)
 Vue.component('Feature', Feature)
@@ -71,7 +84,12 @@ Vue.component('color', color)
 export default new Router({
   mode: 'history',
   routes: [
-    { path: '/', redirect: '/tovo' },
+    { path: '/', redirect: '/home' },
+    {
+      path: '/home',
+      name: 'Home_page',
+      component: HomePage
+    },
     {
       path: '/tovo',
       name: 'Main_page',

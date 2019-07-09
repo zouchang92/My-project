@@ -2,7 +2,7 @@
   <div>
     <!-- Footer Section start -->
     <div class="copyright-section index-footer bg-light">
-      <p>2018-19 copyright by themeforest   powered by pixel strap</p>
+      <p>2018-19 copyright by Vince</p>
     </div>
     <!-- Footer Section End -->
     <!-- Tap on Top -->
