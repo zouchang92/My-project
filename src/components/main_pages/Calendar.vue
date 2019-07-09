@@ -3,19 +3,7 @@
     <section id="calendar" class="calendar padding-top-bottom">
       <div class="container">
         <div class="row">
-          <h1>事件日历</h1>
-          <h1>事件日历</h1>
-          <h1>事件日历</h1>
-          <h1>事件日历</h1>
-          <h1>事件日历</h1>
-          <h1>事件日历</h1>
-          <h1>事件日历</h1>
-          <h1>事件日历</h1>
-          <h1>事件日历</h1>
-          <h1>事件日历</h1>
-          <h1>事件日历</h1>
-          <h1>事件日历</h1>
-          <h1>事件日历</h1>
+          <timeflow/>
         </div>
       </div>
     </section>
@@ -23,8 +11,12 @@
 </template>
 <script>
 import carousel from 'v-owl-carousel'
+import timeflow from '../../plugins/Timeflow.vue'
 export default {
   name:'Calendar',
-  components: {'carousel': carousel},
+  components: {
+      'carousel': carousel,
+      'timeflow': timeflow,
+    },
 }
 </script>
