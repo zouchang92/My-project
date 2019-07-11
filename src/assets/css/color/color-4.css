@@ -180,7 +180,7 @@ h1 {
   color: #212222; }
 
 .btn-custom.theme-color {
-  background-image: linear-gradient(to right, #838383, #9C9C9C, #838383, #838383); }
+  background-image: linear-gradient(to right, #C19B73, #f0f0f0, #C19B73, #C19B73); }
   .btn-custom.theme-color:hover {
     background-position: 100% 0; }
 
