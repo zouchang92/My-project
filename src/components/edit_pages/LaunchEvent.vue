@@ -8,12 +8,12 @@
       <div>
         <h2 class="title text-center">发布<span>事件</span></h2>
         <div class="card">
-          <form class="theme-form">
+          <form class="theme-form" @submit.prevent="eventSubmit">
             <div class="form-group mt-2">
               <h6 class="mt-0 mb-3">请输入标题 :</h6>
               <div class="form-row">
                 <div class="col-12">
-                  <input type="text" class="form-control" >
+                  <input type="text" class="form-control" v-model="eventData.eventTitle" required>
                 </div>
                 <!-- <div class="col-12 mt-4">
                   <button type="submit" class="btn btn-custom btn-block theme-color">Send</button>
@@ -22,19 +22,19 @@
               <h6>开始日期 :</h6>
               <div class="form-row">
                 <div class="col-12">
-                  <input type="date" class="form-control text-center">
+                  <input type="date" class="form-control text-center" v-model="eventData.startDate" required>
                 </div>
               </div>
-              <h6>结束日期 :</h6>
+              <!-- <h6>结束日期 :</h6>
               <div class="form-row">
                 <div class="col-12">
-                  <input type="date" class="form-control text-center">
+                  <input type="date" class="form-control text-center" v-model="eventData.endDate">
                 </div>
-              </div>
+              </div> -->
               <h6>显示日期 :</h6>
               <div class="form-row">
                 <div class="col-12">
-                  <input type="text" class="form-control" placeholder="例: '6月中旬', '年底'">
+                  <input type="text" class="form-control" placeholder="例: '6月中旬', '年底'" v-model="eventData.strDate">
                 </div>
               </div>
             </div>
@@ -44,24 +44,24 @@
               <div class="form-row">
                 <h6>更新日期 :</h6>
                 <div class="col-12">
-                  <input type="date" class="form-control text-center">
+                  <input type="date" class="form-control text-center" v-model="eventDetail.update_date" >
                 </div>
               </div>
               <div class="form-row">
                 <h6>事件内容 :</h6>
                 <div class="col-12">
-                  <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                  <textarea name="" id="" cols="30" rows="10" class="form-control" v-model="eventDetail.content" />
                 </div>
               </div>
               <div class="form-row">
                 <h6>标的 :</h6>
                 <div class="col-12">
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" v-model="eventDetail.targets">
                 </div>
               </div>
               <div class="form-row">
-                <button class="btn btn-custom theme-color mt-4">保存</button>
-                <button class="btn btn-custom theme-color ml-4 mt-4">保存并新增一条</button>
+                <!-- <button class="btn btn-custom theme-color mt-4">保存</button> -->
+                <button class="btn btn-custom theme-color ml-4 mt-4" type="button" @click="detailConfirm()">保存并新增一条</button>
               </div>
 
             </div>
@@ -82,6 +82,66 @@ export default {
   components: {
 
   },
+  data: () => ({
+    eventData: {
+      eventTitle: '',
+      startDate: '',
+      // endDate: '',
+      strDate: '',
+      detail: []
+    },
+    eventDetail: {
+      detail_id: 1,
+      update_date: '',
+      content: '',
+      targets: '',
+    }
+  }),
+  methods: {
+    detailConfirm () {
+      this.eventData.detail.push(this.eventDetail)
+      console.log(this.eventData)
+      let detailId = this.eventDetail.detailId + 1
+      this.eventDetail = {
+        detailId: detailId,
+        updateDate: '',
+        content: '',
+        targets: '',
+      }
+      window.alert('ok.')
+    },
+
+    eventSubmit () {
+      let url = this.$host + '/calendar/'
+      let username = 'admin'
+      let param = new URLSearchParams()
+      param.append('author', 'admin')
+      param.append('event_title', this.eventData.eventTitle)
+      param.append('start_date', this.eventData.startDate)
+      param.append('str_date', this.eventData.strDate)
+      let postData = {
+        author: 'admin',
+        event_title: this.eventData.eventTitle,
+        start_date: this.eventData.startDate,
+        str_date: this.eventData.strDate,
+        detail: this.eventData.detail
+      }
+      console.log(postData)
+      this.$ajax.post(url, postData, {
+        responseType: 'json'
+      }).then(response => {
+        window.alert('发布成功')
+        window.location.reload()
+      }).catch(error => {
+        if (error.response.status == 400) {
+          console.log(error.response.data)
+        } else {
+          console.log(error.response.status)
+        }
+      })
+    }
+  }
+
 };
 </script>
 

@@ -15,6 +15,7 @@
   "dependencies": {
     "@xkeshi/vue-countdown": "^1.0.1",
     "add": "^2.0.6",
+    "axios": "^0.19.0",
     "better-scroll": "^2.0.0-alpha.19",
     "bootstrap-vue": "^2.0.0-rc.11",
     "or": "^0.2.0",
