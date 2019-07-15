@@ -26,5 +26,6 @@ npm run e2e
 # run all tests
 npm test
 ```
+#每日记录的日期圆色号用金色和灰色
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

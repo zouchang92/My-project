@@ -14,7 +14,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './assets/css/font-awesome.min.css'
 import './assets/index.scss'
 import './assets/plus.css'
-
+import './assets/iconfont/iconfont.css'
 
 // remove below file for change color
 // import './assets/css/color/color-2.css'
