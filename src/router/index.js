@@ -42,6 +42,7 @@ import Record from '@/components/main_pages/Record.vue'
 import Timeline from '@/components/main_pages/Timeline.vue'
 import Calendar from '@/components/main_pages/Calendar.vue'
 import Alert from '@/components/main_pages/Alert.vue'
+import LaunchEvent from '@/components/edit_pages/LaunchEvent.vue'
 
 Vue.use(Router)
 Vue.component('Header', Header)
@@ -49,6 +50,8 @@ Vue.component('Record', Record)
 Vue.component('Timeline', Timeline)
 Vue.component('Calendar', Calendar)
 Vue.component('Alert', Alert)
+Vue.component('LaunchEvent', LaunchEvent)
+
 
 Vue.component('Navbar', Navbar)
 Vue.component('About', About)
@@ -89,6 +92,11 @@ export default new Router({
       path: '/home',
       name: 'Home_page',
       component: HomePage
+    },
+    {
+      path: '/editors/launch-event',
+      name: 'LaunchEvent',
+      component: LaunchEvent
     },
     {
       path: '/tovo',

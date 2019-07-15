@@ -6,7 +6,7 @@ import router from './router'
 import BootstrapVue from 'bootstrap-vue'
 import vueVimeoPlayer from 'vue-vimeo-player'
 import carousel from 'v-owl-carousel'
-import VueScroller from 'vue-scroller'
+import axios from 'axios'
 
 // css and scss files include
 import 'bootstrap/dist/css/bootstrap.css'
@@ -16,12 +16,25 @@ import './assets/index.scss'
 import './assets/plus.css'
 import './assets/iconfont/iconfont.css'
 
+// Global axios
+axios.defaults.withCredentials = true
+axios.interceptors.request.use((config) => {
+  config.headers['X-Requested-With'] = 'XMLHttpRequest'
+  let regex = /.*csrftoken=([^;.]*).*$/
+  config.headers['X-CSRFToken'] = document.cookie.match(regex) === null ? null : document.cookie.match(regex)[1]
+  return config
+})
+
+Vue.prototype.$ajax = axios
+
+// Global hosts
+Vue.prototype.$host = 'http://127.0.0.1:8000'
+
 // remove below file for change color
 // import './assets/css/color/color-2.css'
 
 Vue.use(BootstrapVue)
 Vue.use(vueVimeoPlayer)
-Vue.use(VueScroller)
 Vue.component('carousel', carousel)
 Vue.config.productionTip = false
 
