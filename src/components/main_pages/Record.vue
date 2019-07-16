@@ -8,10 +8,12 @@
           <div class="record-date" v-for="(item,i) in list" :key="i">
             <div class="record-cicle">
               <b-button v-b-toggle="'record'+item.id" :id="item.fid">
-                <p>{{item.data}}</p>
+                <p>07/01</p>
               </b-button>
               <div class="record-title-top">
-                <div class="record-top-line"></div>
+                <div class="record-top-content">
+                  <p style="color:#000">标题</p>
+                </div>
               </div>
             </div>
           </div>
@@ -24,10 +26,11 @@
             <div class="record-title">
               <div style="float:left">
                 <i class="iconfont icon-iconfont15 record-top"></i>
-                <span class="record-time-a">{{item.time}}</span>
+                <span class="record-time-a">8:00</span>
                 <div class="record-line"></div>
                 <div class="record-cicle-a"></div>
                 <div class="record-content left" id="popover-3">
+                  <img class="admin-img" src="../../assets/images/background/admin.jpeg" alt="">
                   <p>标题</p>
                   <p>内容</p>
                   <b-popover
@@ -87,7 +90,7 @@ export default {
   text-align: center; */
   position: relative;
   display: inline;
-  margin-left: 160px;
+  margin-left: 191px;
 }
 .record-date p {
   position: absolute;
@@ -96,23 +99,24 @@ export default {
   color: #fff;
 }
 .record-line {
-  width: 1px;
-  height: 38px;
-  border: 1px solid #bbb;
-  position: absolute;
-  top: 72px;
-  left: 184px;
+    width: 1px;
+    height: 64px;
+    border: 1px solid #bbb;
+    position: absolute;
+    top: 72px;
+    left: 64px;
 }
 .record-cicle {
-  width: 50px;
-  height: 50px;
-  /* border: 1px solid #212222; */
-  position: absolute;
-  left: 0px;
-  top: 37px;
-  border-radius: 50%;
-  background-color: #ccc;
-  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
+    width: 50px;
+    height: 50px;
+    /* border: 1px solid #212222; */
+    position: absolute;
+    left: -151px;
+    top: 37px;
+    border-radius: 50%;
+    background-color: #ccc;
+    -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
 }
 .record-cicle::after,
 .record-cicle::before {
@@ -138,8 +142,8 @@ export default {
 }
 .record-time-a {
   position: absolute;
-  top: 146px;
-  left: 142px;
+  top: 174px;
+  left: 27px;
   color: #aaa;
   font-size: 11px;
   font-weight: 100;
@@ -150,8 +154,8 @@ export default {
   height: 10px;
   border: 2px solid #212222;
   position: absolute;
-  left: 180px;
-  top: 150px;
+  left: 60px;
+  top: 178px;
   border-radius: 50%;
   -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
@@ -181,11 +185,10 @@ export default {
   margin: 20px auto;
   width: 246px;
   height: 53px;
-  color: white;
   border-radius: 10px;
   font-family: sans-serif;
-  left: 212px;
-  top: 109px;
+  left: 97px;
+  top: 135px;
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
 }
 .record-content::after {
@@ -205,7 +208,7 @@ export default {
 .record-content p {
   margin: 0px;
   color: #000;
-  margin-left: 14px;
+  margin-left: 66px;
 }
 .record-content record-popover {
   width: 520px !important;
@@ -216,9 +219,9 @@ export default {
   height: 50px;
 }
 .record-top {
-  position: absolute;
-  top: 105px;
-  left: 178px;
+    position: absolute;
+    top: 132px;
+    left: 57px;
 }
 .btn {
   background: #c19b73;
@@ -226,16 +229,19 @@ export default {
 .record-arrow {
   position: relative;
 }
+.btn-secondary {
+    color: #fff;
+}
 .record-right {
   position: absolute;
   top: 28px;
-  left: 1115px;
+  left: 1133px;
   opacity: 0.2;
 }
 .record-left {
   position: absolute;
   top: 28px;
-  left: 61px;
+  left: -48px;
   opacity: 0.2;
 }
 .record-right:hover,.record-left:hover{
@@ -244,9 +250,37 @@ export default {
 .record-date:nth-child(2n+1) .record-cicle .btn{
   background:#ccc
 }
-.record-top-line{
-    position: absolute;
-    top: -64px;
-    left: 24px;
+.record-title-top{
+    position: relative;
+    opacity:0.5;
+    margin: 20px auto;
+    width: 117px;
+    height: 42px;
+    border-radius: 10px;
+    font-family: sans-serif;
+    left: 47px;
+    top: -108px;
+    -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
+}
+.record-title-top::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+.record-date:nth-child(2n) .record-cicle .record-title-top{
+  background:transparent;
+  left: 47px;
+  top: -21px;
+}
+.admin-img{
+  width: 55px;
+  height:53px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  position: absolute;
+  left: 7px;
+  top: 0px;
 }
 </style>
