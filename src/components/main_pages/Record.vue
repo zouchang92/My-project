@@ -8,11 +8,12 @@
           <div class="record-date" v-for="(item, index) in chats" :key="index">
             <div class="record-cicle">
               <b-button v-b-toggle="'record'+item.agg_date" :id="item.agg_date">
-                <p>{{ item.agg_date | formatDate}}</p>
+                <p class="record-date-time">{{ item.agg_date | formatDate}}</p>
               </b-button>
               <div class="record-title-top">
                 <div class="record-top-content">
-                  <p style="color:#000">标题</p>
+                  <p style="margin:0px:color:#000">标题</p>
+                  <span>内容内容</span>
                 </div>
               </div>
               <div class="pules"></div>
@@ -118,7 +119,7 @@ export default {
   display: inline;
   margin-left: 167px;
 }
-.record-date p {
+.record-date-time{
   position: absolute;
   top: 10px;
   left: 5px;
@@ -278,15 +279,15 @@ top: 119px;
   background: #ccc;
 }
 .record-title-top {
-  position: relative;
-  opacity: 0.5;
-  margin: 20px auto;
-  width: 117px;
-  height: 42px;
-  border-radius: 10px;
-  font-family: sans-serif;
-  left: 47px;
-  top: -108px;
+position: relative;
+    opacity: 0.5;
+    margin: 20px auto;
+    width: 117px;
+    height: 70px;
+    border-radius: 10px;
+    font-family: sans-serif;
+    left: 47px;
+    top: -134px;
   -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
 }
