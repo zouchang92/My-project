@@ -15,46 +15,47 @@
                   <p style="color:#000">标题</p>
                 </div>
               </div>
+              <div class="pules"></div>
             </div>
           </div>
           <div class="record-arrow">
             <i class="iconfont icon-icon-test record-right"></i>
             <i class="iconfont icon-icon-test-copy record-left"></i>
           </div>
-          <div v-for="(item,i) in option" :key="i">
+          <div v-for="(item,a) in option" :key="a">
             <b-collapse :id="'record'+item.id" accordion="my-accordion">
-            <div class="record-title">
-              <div style="float:left">
-                <i class="iconfont icon-iconfont15 record-top"></i>
-                <span class="record-time-a">8:00</span>
-                <div class="record-line"></div>
-                <div class="record-cicle-a"></div>
-                <div class="record-content left" id="popover-3">
-                  <img class="admin-img" src="../../assets/images/background/admin.jpeg" alt="">
-                  <p>标题</p>
-                  <p>内容</p>
-                  <b-popover
-                    class="record-popover"
-                    target="popover-3"
-                    triggers="click"
-                    placement="rightbottom"
-                  >
-                    <template slot="title">标题</template>
-                    Embedding content using slots affords you greatercontrol.
-                    and basic HTML support.Embedding content using slots affords you greatercontrol.
-                    and basic HTML support.
-                    Embedding content using slots affords you greatercontrol.
-                    and basic HTML support.
-                    Embedding content using slots affords you greatercontrol.
-                    and basic HTML support.
-                  </b-popover>
+              <div class="record-title">
+                <div style="float:left">
+                  <i class="iconfont icon-iconfont15 record-top"></i>
+                  <span class="record-time-a">8:00</span>
+                  <div class="record-line"></div>
+                  <div class="record-cicle-a"></div>
+                  <div class="record-content left" id="popover-3">
+                    <img class="admin-img" src="../../assets/images/background/admin.jpeg" alt />
+                    <p>标题</p>
+                    <p>内容</p>
+                    <b-popover
+                      class="record-popover"
+                      target="popover-3"
+                      triggers="click"
+                      placement="rightbottom"
+                    >
+                      <template slot="title">标题</template>
+                      Embedding content using slots affords you greatercontrol.
+                      and basic HTML support.Embedding content using slots affords you greatercontrol.
+                      and basic HTML support.
+                      Embedding content using slots affords you greatercontrol.
+                      and basic HTML support.
+                      Embedding content using slots affords you greatercontrol.
+                      and basic HTML support.
+                    </b-popover>
+                  </div>
+                </div>
+                <div class="record-text">
+                  <div class="record-text-header"></div>
                 </div>
               </div>
-              <div class="record-text">
-                <div class="record-text-header"></div>
-              </div>
-            </div>
-          </b-collapse>
+            </b-collapse>
           </div>
         </div>
       </div>
@@ -65,22 +66,36 @@
 <script>
 export default {
   name: "record",
-  data () {
+  data() {
     return {
-      list:[{id:1,data:7},{id:2,data:8},{id:3,data:9},{id:4,data:1},{id:5,data:2},{id:6,data:7}],
-      option:[
-        {id:1,time:8},{id:2,time:9},{id:3,time:10},{id:4,time:11},{id:5,time:12},{id:6,time:13},{id:7,time:14},{id:8,time:15}
+      list: [
+        { id: 1, data: 7 },
+        { id: 2, data: 8 },
+        { id: 3, data: 9 },
+        { id: 4, data: 1 },
+        { id: 5, data: 2 },
+        { id: 6, data: 7 }
+      ],
+      option: [
+        { id: 1, time: 8 },
+        { id: 2, time: 9 },
+        { id: 3, time: 10 },
+        { id: 4, time: 11 },
+        { id: 5, time: 12 },
+        { id: 6, time: 13 },
+        { id: 7, time: 14 },
+        { id: 8, time: 15 }
       ]
-    }
+    };
   }
 };
 </script>
 <style scoped>
 #record {
-  background: url(../../assets/images/background/1351562913172_.pic_hd.jpg);
+  background: url(../../assets/images/background/bg_02.jpg);
 }
 .record-time {
-  height: 800px;
+  height: 940px;
 }
 .record-date {
   /* border: 1px solid #212222;
@@ -99,24 +114,24 @@ export default {
   color: #fff;
 }
 .record-line {
-    width: 1px;
-    height: 64px;
-    border: 1px solid #bbb;
-    position: absolute;
-    top: 72px;
-    left: 64px;
+  width: 1px;
+  height: 64px;
+  border: 1px solid #bbb;
+  position: absolute;
+  top: 72px;
+  left: 64px;
 }
 .record-cicle {
-    width: 50px;
-    height: 50px;
-    /* border: 1px solid #212222; */
-    position: absolute;
-    left: -151px;
-    top: 37px;
-    border-radius: 50%;
-    background-color: #ccc;
-    -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
-    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
+  width: 50px;
+  height: 50px;
+  /* border: 1px solid #212222; */
+  position: absolute;
+  left: -151px;
+  top: 37px;
+  border-radius: 50%;
+  background-color: #ccc;
+  -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
 }
 .record-cicle::after,
 .record-cicle::before {
@@ -147,7 +162,7 @@ export default {
   color: #aaa;
   font-size: 11px;
   font-weight: 100;
-  display: block
+  display: block;
 }
 .record-cicle-a {
   width: 10px;
@@ -219,9 +234,9 @@ export default {
   height: 50px;
 }
 .record-top {
-    position: absolute;
-    top: 132px;
-    left: 57px;
+  position: absolute;
+  top: 132px;
+  left: 57px;
 }
 .btn {
   background: #c19b73;
@@ -230,7 +245,7 @@ export default {
   position: relative;
 }
 .btn-secondary {
-    color: #fff;
+  color: #fff;
 }
 .record-right {
   position: absolute;
@@ -244,24 +259,25 @@ export default {
   left: -48px;
   opacity: 0.2;
 }
-.record-right:hover,.record-left:hover{
-  opacity:1;
+.record-right:hover,
+.record-left:hover {
+  opacity: 1;
 }
-.record-date:nth-child(2n+1) .record-cicle .btn{
-  background:#ccc
+.record-date:nth-child(2n + 1) .record-cicle .btn {
+  background: #ccc;
 }
-.record-title-top{
-    position: relative;
-    opacity:0.5;
-    margin: 20px auto;
-    width: 117px;
-    height: 42px;
-    border-radius: 10px;
-    font-family: sans-serif;
-    left: 47px;
-    top: -108px;
-    -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
-    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
+.record-title-top {
+  position: relative;
+  opacity: 0.5;
+  margin: 20px auto;
+  width: 117px;
+  height: 42px;
+  border-radius: 10px;
+  font-family: sans-serif;
+  left: 47px;
+  top: -108px;
+  -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
 }
 .record-title-top::after {
   content: "";
@@ -269,18 +285,61 @@ export default {
   width: 0;
   height: 0;
 }
-.record-date:nth-child(2n) .record-cicle .record-title-top{
-  background:transparent;
+.record-date:nth-child(2n) .record-cicle .record-title-top {
+  background: transparent;
   left: 47px;
   top: -21px;
 }
-.admin-img{
+.admin-img {
   width: 55px;
-  height:53px;
+  height: 53px;
   border: 1px solid #000;
   border-radius: 50%;
   position: absolute;
   left: 7px;
   top: 0px;
+}
+@keyframes warn {
+   0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  25% {
+    transform: scale(0);
+    opacity: 0.1;
+  }
+
+  50% {
+    transform: scale(0.1);
+    opacity: 0.3;
+  } 
+
+  75% {
+    transform: scale(0.5);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+.pules {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  left: -10px;
+  top: -10px;
+  border: 10px solid #fff;
+  border-radius: 50%;
+  z-index: 1;
+  opacity: 0;
+  -webkit-animation: warn 3s ease-out;
+  -moz-animation: warn 3s ease-out;
+  animation: warn 3s ease-out;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
 }
 </style>

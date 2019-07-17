@@ -56,7 +56,6 @@ Vue.component('Spare1', Spare1)
 Vue.component('Spare2', Spare2)
 Vue.component('LaunchEvent', LaunchEvent)
 
-
 Vue.component('Navbar', Navbar)
 Vue.component('About', About)
 Vue.component('Feature', Feature)
