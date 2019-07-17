@@ -42,6 +42,8 @@ import Record from '@/components/main_pages/Record.vue'
 import Timeline from '@/components/main_pages/Timeline.vue'
 import Calendar from '@/components/main_pages/Calendar.vue'
 import Alert from '@/components/main_pages/Alert.vue'
+import Spare1 from '@/components/main_pages/Spare1.vue'
+import Spare2 from '@/components/main_pages/Spare2.vue'
 import LaunchEvent from '@/components/edit_pages/LaunchEvent.vue'
 
 Vue.use(Router)
@@ -50,6 +52,8 @@ Vue.component('Record', Record)
 Vue.component('Timeline', Timeline)
 Vue.component('Calendar', Calendar)
 Vue.component('Alert', Alert)
+Vue.component('Spare1', Spare1)
+Vue.component('Spare2', Spare2)
 Vue.component('LaunchEvent', LaunchEvent)
 
 

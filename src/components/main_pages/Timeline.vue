@@ -1,8 +1,7 @@
 <template>
     <!-- Feature Section start -->
-    <section id="timeline" class="feature">
+    <section id="timeline" class="timeline">
       <div class="feature-decor">
-        <div class="feature-circle1"><img :src='"../../assets/images/feature2.png"' alt=""></div>
       </div>
       <div class="container">
         <div class="row">
@@ -30,3 +29,14 @@ export default {
   name: 'timeline'
 }
 </script>
+
+<style lang='css'>
+.timeline {
+  background: url(../../assets/images/background/bg_01.jpg);
+  margin-top: 0;
+  align-items: center;
+  position: relative;
+  height: 940px;
+}
+</style>
+

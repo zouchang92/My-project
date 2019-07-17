@@ -141,7 +141,7 @@ export default {
   margin-top: 0;
   align-items: center;
   position: relative;
-  height: 840px;
+  height: 940px;
 }
 .calendar-contain {
   align-items: center;

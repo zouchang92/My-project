@@ -7,11 +7,11 @@
       <b-navbar-nav class="navbar-nav ml-auto" id="mymenu">
           <b-nav-item href="#home">首页</b-nav-item>
           <b-nav-item href="#record">每日记录</b-nav-item>
-          <b-nav-item href="#timeline">事件轴</b-nav-item>
           <b-nav-item href="#calendar">事件日历</b-nav-item>
-          <b-nav-item href="#alert">备用1</b-nav-item>
-          <b-nav-item href="#price">备用2</b-nav-item>
-          <b-nav-item href="#contact">备用3</b-nav-item>
+          <b-nav-item href="#timeline">事件轴</b-nav-item>
+          <b-nav-item href="#alert">板块预警</b-nav-item>
+          <b-nav-item href="#price">备用1</b-nav-item>
+          <b-nav-item href="#contact">备用2</b-nav-item>
 
           <b-nav-item-dropdown right-alignment href="#Other_page" text="其他页面" class="nav-link ">
             <b-dropdown-item class="nav-link" target="_blank" :href='"/editors/launch-event"'>发布事件</b-dropdown-item>
