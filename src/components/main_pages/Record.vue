@@ -8,7 +8,7 @@
           <div class="record-date" v-for="(item, index) in chats" :key="index">
             <div class="record-cicle">
               <b-button v-b-toggle="'record'+item.agg_date" :id="item.agg_date">
-                <p>{{ item.agg_date }}</p>
+                <p>{{ item.agg_date | formatDate}}</p>
               </b-button>
               <div class="record-title-top">
                 <div class="record-top-content">
@@ -16,7 +16,6 @@
                 </div>
               </div>
               <div class="pules"></div>
-            </div>
 
           <div v-for="(itm, idx) in item.chats_list" :key="idx">
             <b-collapse :id="'record'+item.agg_date" accordion="my-accordion">
@@ -47,42 +46,12 @@
               </div>
             </b-collapse>
           </div>
-
-
+            </div>
           </div>
           <div class="record-arrow">
             <i class="iconfont icon-icon-test record-right"></i>
             <i class="iconfont icon-icon-test-copy record-left"></i>
           </div>
-          <!-- <div v-for="(item,a) in option" :key="a">
-            <b-collapse :id="'record'+item.id" accordion="my-accordion">
-              <div class="record-title">
-                <div style="float:left">
-                  <i class="iconfont icon-iconfont15 record-top"></i>
-                  <span class="record-time-a">8:00</span>
-                  <div class="record-line"></div>
-                  <div class="record-cicle-a"></div>
-                  <div class="record-content left" id="popover-3">
-                    <img class="admin-img" src="../../assets/images/background/admin.jpeg" alt />
-                    <p>标题</p>
-                    <p>内容</p>
-                    <b-popover
-                      class="record-popover"
-                      target="popover-3"
-                      triggers="click"
-                      placement="rightbottom"
-                    >
-                      <template slot="title">标题</template>
-                      Embedding content using slots affords you greatercontrol.
-                    </b-popover>
-                  </div>
-                </div>
-                <div class="record-text">
-                  <div class="record-text-header"></div>
-                </div>
-              </div>
-            </b-collapse>
-          </div> -->
         </div>
       </div>
     </div>
@@ -90,6 +59,7 @@
   <!-- Record End -->
 </template>
 <script>
+import { formatDate } from "@/common/date.js";
 export default {
   name: "record",
   data() {
@@ -122,6 +92,12 @@ export default {
         { id: 8, time: 15 }
       ]
     };
+  },
+    filters: {
+    formatDate(time) {
+      var date = new Date(time);
+      return formatDate(date, "MM/dd");
+    }
   }
 };
 </script>
@@ -140,7 +116,7 @@ export default {
   text-align: center; */
   position: relative;
   display: inline;
-  margin-left: 191px;
+  margin-left: 167px;
 }
 .record-date p {
   position: absolute;
@@ -153,8 +129,8 @@ export default {
   height: 64px;
   border: 1px solid #bbb;
   position: absolute;
-  top: 72px;
-  left: 64px;
+top: 59px;
+    left: 24px;
 }
 .record-cicle {
   width: 50px;
@@ -187,13 +163,13 @@ export default {
   left: -57px;
   top: 24px;
 }
-.record-title {
+/* .record-title {
   position: relative;
-}
+} */
 .record-time-a {
   position: absolute;
-  top: 174px;
-  left: 27px;
+    top: 159px;
+    left: -11px;
   color: #aaa;
   font-size: 11px;
   font-weight: 100;
@@ -204,8 +180,8 @@ export default {
   height: 10px;
   border: 2px solid #212222;
   position: absolute;
-  left: 60px;
-  top: 178px;
+  left: 20px;
+  top: 162px;
   border-radius: 50%;
   -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
@@ -219,8 +195,8 @@ export default {
   width: 2px;
   height: 25px;
   border: 1px solid #bbb;
-  left: 2px;
-  top: -27px;
+left: 2px;
+    top: -27px;
 }
 .record-cicle-a::before {
   width: 2px;
@@ -237,8 +213,8 @@ export default {
   height: 53px;
   border-radius: 10px;
   font-family: sans-serif;
-  left: 97px;
-  top: 135px;
+left: 55px;
+  top: -14px;
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
 }
 .record-content::after {
@@ -270,8 +246,8 @@ export default {
 }
 .record-top {
   position: absolute;
-  top: 132px;
-  left: 57px;
+top: 119px;
+    left: 17px;
 }
 .btn {
   background: #c19b73;
@@ -285,13 +261,13 @@ export default {
 .record-right {
   position: absolute;
   top: 28px;
-  left: 1133px;
+  left: 1154px;
   opacity: 0.2;
 }
 .record-left {
   position: absolute;
   top: 28px;
-  left: -48px;
+  left: -68px;
   opacity: 0.2;
 }
 .record-right:hover,
@@ -334,7 +310,7 @@ export default {
   left: 7px;
   top: 0px;
 }
-@keyframes warn {
+/* @keyframes warn {
    0% {
     transform: scale(0);
     opacity: 0;
@@ -376,5 +352,5 @@ export default {
   -webkit-animation-iteration-count: infinite;
   -moz-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
-}
+} */
 </style>
