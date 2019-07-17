@@ -52,7 +52,6 @@ Vue.component('Calendar', Calendar)
 Vue.component('Alert', Alert)
 Vue.component('LaunchEvent', LaunchEvent)
 
-
 Vue.component('Navbar', Navbar)
 Vue.component('About', About)
 Vue.component('Feature', Feature)
