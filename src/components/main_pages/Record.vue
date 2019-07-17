@@ -5,10 +5,10 @@
     <div class="container">
       <div class="row">
         <div class="record-time">
-          <div class="record-date" v-for="(item,i) in list" :key="i">
+          <div class="record-date" v-for="(item, index) in chats" :key="index">
             <div class="record-cicle">
-              <b-button v-b-toggle="'record'+item.id" :id="item.fid">
-                <p>07/01</p>
+              <b-button v-b-toggle="'record'+item.agg_date" :id="item.agg_date">
+                <p>{{ item.agg_date }}</p>
               </b-button>
               <div class="record-title-top">
                 <div class="record-top-content">
@@ -17,12 +17,44 @@
               </div>
               <div class="pules"></div>
             </div>
+
+          <div v-for="(itm, idx) in item.chats_list" :key="idx">
+            <b-collapse :id="'record'+item.agg_date" accordion="my-accordion">
+              <div class="record-title">
+                <div style="float:left">
+                  <i class="iconfont icon-iconfont15 record-top"></i>
+                  <span class="record-time-a">8:00</span>
+                  <div class="record-line"></div>
+                  <div class="record-cicle-a"></div>
+                  <div class="record-content left" id="popover-3">
+                    <img class="admin-img" src="../../assets/images/background/admin.jpeg" alt />
+                    <p>标题</p>
+                    <p>内容</p>
+                    <b-popover
+                      class="record-popover"
+                      target="popover-3"
+                      triggers="click"
+                      placement="rightbottom"
+                    >
+                      <template slot="title">标题</template>
+                      Embedding content using slots affords you greatercontrol.
+                    </b-popover>
+                  </div>
+                </div>
+                <div class="record-text">
+                  <div class="record-text-header"></div>
+                </div>
+              </div>
+            </b-collapse>
+          </div>
+
+
           </div>
           <div class="record-arrow">
             <i class="iconfont icon-icon-test record-right"></i>
             <i class="iconfont icon-icon-test-copy record-left"></i>
           </div>
-          <div v-for="(item,a) in option" :key="a">
+          <!-- <div v-for="(item,a) in option" :key="a">
             <b-collapse :id="'record'+item.id" accordion="my-accordion">
               <div class="record-title">
                 <div style="float:left">
@@ -42,12 +74,6 @@
                     >
                       <template slot="title">标题</template>
                       Embedding content using slots affords you greatercontrol.
-                      and basic HTML support.Embedding content using slots affords you greatercontrol.
-                      and basic HTML support.
-                      Embedding content using slots affords you greatercontrol.
-                      and basic HTML support.
-                      Embedding content using slots affords you greatercontrol.
-                      and basic HTML support.
                     </b-popover>
                   </div>
                 </div>
@@ -56,7 +82,7 @@
                 </div>
               </div>
             </b-collapse>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -68,6 +94,15 @@ export default {
   name: "record",
   data() {
     return {
+      chats: [
+        {'agg_date': '2019-7-17', 'chats_list': [{'author': 'admin', 'content': '内容内容内容111'}, {'author': 'admin', 'content': '内容内容内容222'}, {'author': 'admin', 'content': '内容内容内容333'},]},
+        {'agg_date': '2019-7-18', 'chats_list': [{'author': 'admin', 'content': '内容内容内容111'}, {'author': 'admin', 'content': '内容内容内容222'}, {'author': 'admin', 'content': '内容内容内容333'},]},
+        {'agg_date': '2019-7-19', 'chats_list': [{'author': 'admin', 'content': '内容内容内容111'}, {'author': 'admin', 'content': '内容内容内容222'}, {'author': 'admin', 'content': '内容内容内容333'},]},
+        {'agg_date': '2019-7-20', 'chats_list': [{'author': 'admin', 'content': '内容内容内容111'}, {'author': 'admin', 'content': '内容内容内容222'}, {'author': 'admin', 'content': '内容内容内容333'},]},
+        {'agg_date': '2019-7-21', 'chats_list': [{'author': 'admin', 'content': '内容内容内容111'}, {'author': 'admin', 'content': '内容内容内容222'}, {'author': 'admin', 'content': '内容内容内容333'},]},
+        {'agg_date': '2019-7-22', 'chats_list': [{'author': 'admin', 'content': '内容内容内容111'}, {'author': 'admin', 'content': '内容内容内容222'}, {'author': 'admin', 'content': '内容内容内容333'},]},
+        {'agg_date': '2019-7-23', 'chats_list': [{'author': 'admin', 'content': '内容内容内容111'}, {'author': 'admin', 'content': '内容内容内容222'}, {'author': 'admin', 'content': '内容内容内容333'},]},
+      ],
       list: [
         { id: 1, data: 7 },
         { id: 2, data: 8 },
