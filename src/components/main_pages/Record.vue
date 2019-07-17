@@ -16,37 +16,38 @@
                   <span>内容内容</span>
                 </div>
               </div>
-              <div class="pules"></div>
+              <!-- <div class="pules"></div> -->
 
-          <div v-for="(itm, idx) in item.chats_list" :key="idx">
-            <b-collapse :id="'record'+item.agg_date" accordion="my-accordion">
-              <div class="record-title">
-                <div style="float:left">
+              <!-- 聊天框下拉 -->
+              <div>
+                <b-collapse :id="'record'+item.agg_date" accordion="my-accordion">
                   <i class="iconfont icon-iconfont15 record-top"></i>
-                  <span class="record-time-a">8:00</span>
                   <div class="record-line"></div>
-                  <div class="record-cicle-a"></div>
-                  <div class="record-content left" id="popover-3">
-                    <img class="admin-img" src="../../assets/images/background/avatar_01.jpg" alt />
-                    <p>标题</p>
-                    <p>内容</p>
-                    <b-popover
-                      class="record-popover"
-                      target="popover-3"
-                      triggers="click"
-                      placement="rightbottom"
-                    >
-                      <template slot="title">标题</template>
-                      Embedding content using slots affords you greatercontrol.
-                    </b-popover>
+
+                  <div class="record-title" v-for="(itm, idx) in item.chats_list" :key="idx">
+                    <span class="record-time-a">{{ itm.author }}</span>
+                    <div class="record-cicle-a"></div>
+                    <!-- 聊天框内容 -->
+                    <div class="record-content left" :id="`recordpop-${index}-${idx}`">
+                      <img class="admin-img" src="../../assets/images/background/avatar_01.jpg" alt />
+                      <p>{{ itm.author }}</p>
+                      <p>{{ itm.content }}</p>
+                      <b-popover
+                        class="record-popover"
+                        :target="`recordpop-${index}-${idx}`"
+                        triggers="hover focus"
+                        placement="rightbottom"
+                      >
+                        <template slot="title">标题</template>
+                        {{ itm.content }}
+                      </b-popover>
+                    </div>
+                    <div class="record-text">
+                      <div class="record-text-header"></div>
+                    </div>
                   </div>
-                </div>
-                <div class="record-text">
-                  <div class="record-text-header"></div>
-                </div>
+                </b-collapse>
               </div>
-            </b-collapse>
-          </div>
             </div>
           </div>
           <div class="record-arrow">
@@ -66,13 +67,62 @@ export default {
   data() {
     return {
       chats: [
-        {'agg_date': '2019-7-17', 'chats_list': [{'author': 'admin', 'content': '内容内容内容111'}, {'author': 'admin', 'content': '内容内容内容222'}, {'author': 'admin', 'content': '内容内容内容333'},]},
-        {'agg_date': '2019-7-18', 'chats_list': [{'author': 'admin', 'content': '内容内容内容111'}, {'author': 'admin', 'content': '内容内容内容222'}, {'author': 'admin', 'content': '内容内容内容333'},]},
-        {'agg_date': '2019-7-19', 'chats_list': [{'author': 'admin', 'content': '内容内容内容111'}, {'author': 'admin', 'content': '内容内容内容222'}, {'author': 'admin', 'content': '内容内容内容333'},]},
-        {'agg_date': '2019-7-20', 'chats_list': [{'author': 'admin', 'content': '内容内容内容111'}, {'author': 'admin', 'content': '内容内容内容222'}, {'author': 'admin', 'content': '内容内容内容333'},]},
-        {'agg_date': '2019-7-21', 'chats_list': [{'author': 'admin', 'content': '内容内容内容111'}, {'author': 'admin', 'content': '内容内容内容222'}, {'author': 'admin', 'content': '内容内容内容333'},]},
-        {'agg_date': '2019-7-22', 'chats_list': [{'author': 'admin', 'content': '内容内容内容111'}, {'author': 'admin', 'content': '内容内容内容222'}, {'author': 'admin', 'content': '内容内容内容333'},]},
-        {'agg_date': '2019-7-23', 'chats_list': [{'author': 'admin', 'content': '内容内容内容111'}, {'author': 'admin', 'content': '内容内容内容222'}, {'author': 'admin', 'content': '内容内容内容333'},]},
+        {
+          agg_date: "2019-7-17",
+          chats_list: [
+            { author: "admin", content: "内容内容内容111" },
+            { author: "admin", content: "内容内容内容222" },
+            { author: "admin", content: "内容内容内容333" }
+          ]
+        },
+        {
+          agg_date: "2019-7-18",
+          chats_list: [
+            { author: "admin", content: "内容内容内容111" },
+            { author: "admin", content: "内容内容内容222" },
+            { author: "admin", content: "内容内容内容333" }
+          ]
+        },
+        {
+          agg_date: "2019-7-19",
+          chats_list: [
+            { author: "admin", content: "内容内容内容111" },
+            { author: "admin", content: "内容内容内容222" },
+            { author: "admin", content: "内容内容内容333" }
+          ]
+        },
+        {
+          agg_date: "2019-7-20",
+          chats_list: [
+            { author: "admin", content: "内容内容内容111" },
+            { author: "admin", content: "内容内容内容222" },
+            { author: "admin", content: "内容内容内容333" }
+          ]
+        },
+        {
+          agg_date: "2019-7-21",
+          chats_list: [
+            { author: "admin", content: "内容内容内容111" },
+            { author: "admin", content: "内容内容内容222" },
+            { author: "admin", content: "内容内容内容333" }
+          ]
+        },
+        {
+          agg_date: "2019-7-22",
+          chats_list: [
+            { author: "admin", content: "内容内容内容111" },
+            { author: "admin", content: "内容内容内容222" },
+            { author: "admin", content: "内容内容内容333" }
+          ]
+        },
+        {
+          agg_date: "2019-7-23",
+          chats_list: [
+            { author: "admin", content: "内容内容内容111" },
+            { author: "admin", content: "内容内容内容222" },
+            { author: "admin", content: "内容内容内容333" }
+          ]
+        }
       ],
       list: [
         { id: 1, data: 7 },
@@ -94,7 +144,7 @@ export default {
       ]
     };
   },
-    filters: {
+  filters: {
     formatDate(time) {
       var date = new Date(time);
       return formatDate(date, "MM/dd");
@@ -119,7 +169,7 @@ export default {
   display: inline;
   margin-left: 167px;
 }
-.record-date-time{
+.record-date-time {
   position: absolute;
   top: 10px;
   left: 5px;
@@ -130,8 +180,8 @@ export default {
   height: 64px;
   border: 1px solid #bbb;
   position: absolute;
-top: 59px;
-    left: 24px;
+  top: 59px;
+  left: 24px;
 }
 .record-cicle {
   width: 50px;
@@ -169,8 +219,8 @@ top: 59px;
 } */
 .record-time-a {
   position: absolute;
-    top: 159px;
-    left: -11px;
+  top: 159px;
+  left: -11px;
   color: #aaa;
   font-size: 11px;
   font-weight: 100;
@@ -196,8 +246,8 @@ top: 59px;
   width: 2px;
   height: 25px;
   border: 1px solid #bbb;
-left: 2px;
-    top: -27px;
+  left: 2px;
+  top: -27px;
 }
 .record-cicle-a::before {
   width: 2px;
@@ -214,7 +264,7 @@ left: 2px;
   height: 53px;
   border-radius: 10px;
   font-family: sans-serif;
-left: 55px;
+  left: 55px;
   top: -39px;
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
 }
@@ -247,8 +297,8 @@ left: 55px;
 }
 .record-top {
   position: absolute;
-top: 119px;
-    left: 17px;
+  top: 119px;
+  left: 17px;
 }
 .btn {
   background: #c19b73;
@@ -279,15 +329,15 @@ top: 119px;
   background: #ccc;
 }
 .record-title-top {
-position: relative;
-    opacity: 0.5;
-    margin: 20px auto;
-    width: 117px;
-    height: 70px;
-    border-radius: 10px;
-    font-family: sans-serif;
-    left: 47px;
-    top: -134px;
+  position: relative;
+  opacity: 0.5;
+  margin: 20px auto;
+  width: 117px;
+  height: 70px;
+  border-radius: 10px;
+  font-family: sans-serif;
+  left: 47px;
+  top: -134px;
   -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
 }
