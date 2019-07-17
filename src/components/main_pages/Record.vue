@@ -27,7 +27,7 @@
                   <div class="record-line"></div>
                   <div class="record-cicle-a"></div>
                   <div class="record-content left" id="popover-3">
-                    <img class="admin-img" src="../../assets/images/background/admin.jpeg" alt />
+                    <img class="admin-img" src="../../assets/images/background/avatar_01.jpg" alt />
                     <p>标题</p>
                     <p>内容</p>
                     <b-popover
@@ -215,7 +215,7 @@ left: 2px;
   border-radius: 10px;
   font-family: sans-serif;
 left: 55px;
-  top: -14px;
+  top: -39px;
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
 }
 .record-content::after {

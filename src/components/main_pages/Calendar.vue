@@ -161,7 +161,7 @@ export default {
 
 <style lang='css'>
 .calendar {
-  background: url(../../assets/images/background/bg_3.jpg);
+  background: url(../../assets/images/background/bg_03.jpg);
   margin-top: 0;
   align-items: center;
   position: relative;

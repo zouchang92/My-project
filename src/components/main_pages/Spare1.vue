@@ -20,7 +20,7 @@ export default {
 
 <style lang="css">
 .spare1 {
-  background: url(../../assets/images/background/bg_3.jpg);
+  background: url(../../assets/images/background/bg_05.jpg);
   margin-top: 0;
   align-items: center;
   position: relative;
