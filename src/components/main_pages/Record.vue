@@ -23,7 +23,6 @@
                 <b-collapse :id="'record'+item.agg_date" accordion="my-accordion">
                   <i class="iconfont icon-iconfont15 record-top"></i>
                   <div class="record-line"></div>
-
                   <div class="record-title" v-for="(itm, idx) in item.chats_list" :key="idx">
                     <span class="record-time-a">{{ itm.author }}</span>
                     <div class="record-cicle-a"></div>
@@ -179,8 +178,8 @@ export default {
   width: 1px;
   height: 64px;
   border: 1px solid #bbb;
-  position: absolute;
-  top: 59px;
+  position: relative;
+  top: -104px;
   left: 24px;
 }
 .record-cicle {
@@ -214,25 +213,25 @@ export default {
   left: -57px;
   top: 24px;
 }
-/* .record-title {
-  position: relative;
-} */
+.record-title {
+  height:76px;
+}
 .record-time-a {
-  position: absolute;
-  top: 159px;
-  left: -11px;
+  top: -63px;
+  left: -32px;
   color: #aaa;
   font-size: 11px;
   font-weight: 100;
   display: block;
+  position: relative;
 }
 .record-cicle-a {
   width: 10px;
   height: 10px;
-  border: 2px solid #212222;
-  position: absolute;
+  border: 2px solid #ccc;
+  position: relative;
   left: 20px;
-  top: 162px;
+  top: -76px;
   border-radius: 50%;
   -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
@@ -250,11 +249,11 @@ export default {
   top: -27px;
 }
 .record-cicle-a::before {
-  width: 2px;
-  height: 20px;
-  border: 1px solid #bbb;
-  left: 2px;
-  top: 8px;
+width: 2px;
+    height: 41px;
+    border: 1px solid #bbb;
+    left: 2px;
+    top: 8px;
 }
 .record-content {
   position: relative;
@@ -265,7 +264,7 @@ export default {
   border-radius: 10px;
   font-family: sans-serif;
   left: 55px;
-  top: -39px;
+  top: -131px;
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
 }
 .record-content::after {
