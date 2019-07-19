@@ -7,8 +7,8 @@
         <div class="record-time">
           <div class="record-date" v-for="(item, index) in chats" :key="index">
             <div class="record-cicle">
-              <b-button v-b-toggle="'record'+item.agg_date" :id="item.agg_date">
-                <p class="record-date-time">{{ item.agg_date | formatDate}}</p>
+              <b-button v-b-toggle="`recordpop-${index}`" :id="item.pub_date">
+                <p class="record-date-time">{{ item.pub_date | formatPubDate }}</p>
               </b-button>
               <div class="record-title-top">
                 <div class="record-top-content">
@@ -19,39 +19,38 @@
               <!-- <div class="pules"></div> -->
 
               <!-- 聊天框下拉 -->
-              <div>
-                <b-collapse :id="'record'+item.agg_date" accordion="my-accordion">
-                  <i class="iconfont icon-iconfont15 record-top"></i>
-                  <div class="record-line"></div>
-                  <div class="record-title" v-for="(itm, idx) in item.chats_list" :key="idx">
-                    <span class="record-time-a">{{ itm.author }}</span>
-                    <div class="record-cicle-a"></div>
-                    <!-- 聊天框内容 -->
-                    <div class="record-content left" :id="`recordpop-${index}-${idx}`">
-                      <img class="admin-img" src="../../assets/images/background/avatar_01.jpg" alt />
-                      <p>{{ itm.author }}</p>
-                      <p>{{ itm.content }}</p>
-                      <b-popover
-                        class="record-popover"
-                        :target="`recordpop-${index}-${idx}`"
-                        triggers="hover focus"
-                        placement="rightbottom"
-                      >
-                        <template slot="title">标题</template>
-                        {{ itm.content }}
-                      </b-popover>
-                    </div>
-                    <div class="record-text">
-                      <div class="record-text-header"></div>
-                    </div>
+
+              <b-collapse :id="`recordpop-${index}`" accordion="my-accordion">
+                <!-- <i class="iconfont icon-iconfont15 record-top"></i>
+                <div class="record-line"></div> -->
+                <div class="record-title" v-for="(itm, idx) in item.idea_list" :key="idx">
+                  <span class="record-time-a">{{ itm.timestamp | formatClock }}</span>
+                  <div class="record-cicle-a"></div>
+                  <!-- 聊天框内容 -->
+                  <div class="record-content left" :id="`recordpop-${index}-${idx}`">
+                    <img class="admin-img" src="../../assets/images/background/avatar_01.jpg" alt />
+                    <p>{{ itm.nickname }}</p>
+                    <p>{{ itm.content }}</p>
+                    <b-popover
+                      class="record-popover"
+                      :target="`recordpop-${index}-${idx}`"
+                      triggers="hover focus"
+                      placement="rightbottom"
+                    >
+                      <template slot="title">{{ itm.nickname }}</template>
+                      {{ itm.content }}
+                    </b-popover>
                   </div>
-                </b-collapse>
-              </div>
+                  <div class="record-text">
+                    <div class="record-text-header"></div>
+                  </div>
+                </div>
+              </b-collapse>
             </div>
           </div>
           <div class="record-arrow">
-            <i class="iconfont icon-icon-test record-right"></i>
-            <i class="iconfont icon-icon-test-copy record-left"></i>
+            <i class="iconfont icon-icon-test record-right" @click="nextPage()"></i>
+            <i class="iconfont icon-icon-test-copy record-left" @click="prePage()"></i>
           </div>
         </div>
       </div>
@@ -65,6 +64,8 @@ export default {
   name: "record",
   data() {
     return {
+      polling: null,
+      startDate: "",
       chats: [
         {
           agg_date: "2019-7-17",
@@ -122,31 +123,74 @@ export default {
             { author: "admin", content: "内容内容内容333" }
           ]
         }
-      ],
-      list: [
-        { id: 1, data: 7 },
-        { id: 2, data: 8 },
-        { id: 3, data: 9 },
-        { id: 4, data: 1 },
-        { id: 5, data: 2 },
-        { id: 6, data: 7 }
-      ],
-      option: [
-        { id: 1, time: 8 },
-        { id: 2, time: 9 },
-        { id: 3, time: 10 },
-        { id: 4, time: 11 },
-        { id: 5, time: 12 },
-        { id: 6, time: 13 },
-        { id: 7, time: 14 },
-        { id: 8, time: 15 }
       ]
     };
   },
+  created() {
+    this.renderIdeas();
+    this.pollData();
+  },
+  beforeDestroy() {
+    clearInterval(this.polling);
+  },
+  methods: {
+    pollData() {
+      this.polling = setInterval(() => {
+        this.renderIdeas();
+      }, 5000);
+    },
+    renderIdeas() {
+      let startDate = this.startDate;
+      if (!startDate) {
+        // 初次加载没有startDate, 加载当前日期及前七天
+        startDate = new Date();
+        console.log("第一次加载页面");
+      }
+
+      let endDate = new Date(startDate);
+      endDate.setDate(endDate.getDate() - 6);
+      let start = formatDate(startDate, "yyyy-MM-dd");
+      let end = formatDate(endDate, "yyyy-MM-dd");
+      console.log(start, end);
+      // 重新声明以便翻页时调用
+      this.startDate = startDate;
+      console.log(this.startDate);
+
+      // 发起请求, 渲染页面数据
+      let url = this.$host + "/idea/";
+      this.$ajax
+        .get(url, {
+          params: {
+            start_date: start,
+            end_date: end
+          }
+        })
+        .then(res => {
+          this.chats = res.data.data;
+          console.log(this.chats);
+        });
+    },
+    nextPage() {
+      let startDate = this.startDate;
+      startDate.setDate(startDate.getDate() - 7);
+      this.startDate = startDate;
+      this.renderIdeas();
+    },
+    prePage() {
+      let startDate = this.startDate;
+      startDate.setDate(startDate.getDate() + 7);
+      this.startDate = startDate;
+      this.renderIdeas();
+    }
+  },
   filters: {
-    formatDate(time) {
+    formatPubDate(time) {
       var date = new Date(time);
       return formatDate(date, "MM/dd");
+    },
+    formatClock(timestamp) {
+      var date = new Date(timestamp);
+      return formatDate(date, "hh:mm");
     }
   }
 };
@@ -214,7 +258,7 @@ export default {
   top: 24px;
 }
 .record-title {
-  height:76px;
+  height: 76px;
 }
 .record-time-a {
   top: -63px;
@@ -249,11 +293,11 @@ export default {
   top: -27px;
 }
 .record-cicle-a::before {
-width: 2px;
-    height: 41px;
-    border: 1px solid #bbb;
-    left: 2px;
-    top: 8px;
+  width: 2px;
+  height: 41px;
+  border: 1px solid #bbb;
+  left: 2px;
+  top: 8px;
 }
 .record-content {
   position: relative;
