@@ -122,24 +122,6 @@ export default {
             { author: "admin", content: "内容内容内容333" }
           ]
         }
-      ],
-      list: [
-        { id: 1, data: 7 },
-        { id: 2, data: 8 },
-        { id: 3, data: 9 },
-        { id: 4, data: 1 },
-        { id: 5, data: 2 },
-        { id: 6, data: 7 }
-      ],
-      option: [
-        { id: 1, time: 8 },
-        { id: 2, time: 9 },
-        { id: 3, time: 10 },
-        { id: 4, time: 11 },
-        { id: 5, time: 12 },
-        { id: 6, time: 13 },
-        { id: 7, time: 14 },
-        { id: 8, time: 15 }
       ]
     };
   },
