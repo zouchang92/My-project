@@ -95,7 +95,6 @@ export default {
     loadData() {
       let startDate = this.startDate;
       let now = new Date();
-      console.log(startDate.toDateString(), now.toDateString())
       if (startDate.toDateString() == now.toDateString()) {
         startDate = this.getMonday(startDate)
       }
@@ -104,14 +103,13 @@ export default {
       endDate.setDate(endDate.getDate() + 7);
       let end = this.timeFormat(endDate);
       let start = this.timeFormat(startDate);
-      console.log(start, end);
       this.startDate = endDate;
       // 下一次请求的起始日期
       let nextDate = new Date(endDate.valueOf());
       nextDate.setDate(nextDate.getDate() + 1);
       this.startDate = nextDate;
 
-      let url = this.$host + "/calendar/";
+      let url = this.$host + "/calendar/"
       this.$ajax
         .get(url, {
           params: {
@@ -120,7 +118,6 @@ export default {
           }
         })
         .then(res => {
-          console.log(res.data);
           this.calData = this.calData.concat(res.data.data);
           this.$nextTick(() => {
             if (!this.scroll) {
@@ -144,15 +141,11 @@ export default {
       if (!date) return ''
       let arrWeek = new Array("星期日","星期一","星期二","星期三","星期四","星期五","星期六")
       let arrMonth = new Array("1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月")
-
-      console.log(date)
       let newDate = new Date(date)
-      console.log(newDate)
       let weekday = arrWeek[newDate.getDay()]
       let month = arrMonth[newDate.getMonth()]
       let day = newDate.getDate()
       let strDate = month + day + '日' + weekday
-      console.log(strDate)
       return strDate
     }
   }

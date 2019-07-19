@@ -114,11 +114,6 @@ export default {
     eventSubmit () {
       let url = this.$host + '/calendar/'
       let username = 'admin'
-      let param = new URLSearchParams()
-      param.append('author', 'admin')
-      param.append('event_title', this.eventData.eventTitle)
-      param.append('start_date', this.eventData.startDate)
-      param.append('str_date', this.eventData.strDate)
       let postData = {
         author: 'admin',
         event_title: this.eventData.eventTitle,
@@ -147,7 +142,6 @@ export default {
 
 
 <style lang="css">
-
 .editors-form {
   min-height: 100vh;
   display: flex;

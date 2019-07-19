@@ -45,6 +45,7 @@ import Alert from '@/components/main_pages/Alert.vue'
 import Spare1 from '@/components/main_pages/Spare1.vue'
 import Spare2 from '@/components/main_pages/Spare2.vue'
 import LaunchEvent from '@/components/edit_pages/LaunchEvent.vue'
+import LaunchIdea from '@/components/edit_pages/LaunchIdea.vue'
 
 Vue.use(Router)
 Vue.component('Header', Header)
@@ -55,6 +56,7 @@ Vue.component('Alert', Alert)
 Vue.component('Spare1', Spare1)
 Vue.component('Spare2', Spare2)
 Vue.component('LaunchEvent', LaunchEvent)
+Vue.component('LaunchIdea', LaunchIdea)
 
 Vue.component('Navbar', Navbar)
 Vue.component('About', About)
@@ -100,6 +102,11 @@ export default new Router({
       path: '/editors/launch-event',
       name: 'LaunchEvent',
       component: LaunchEvent
+    },
+    {
+      path: '/editors/launch-idea',
+      name: 'LaunchIdea',
+      component: LaunchIdea
     },
     {
       path: '/tovo',
