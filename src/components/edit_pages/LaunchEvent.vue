@@ -100,7 +100,6 @@ export default {
   methods: {
     detailConfirm () {
       this.eventData.detail.push(this.eventDetail)
-      console.log(this.eventData)
       let detailId = this.eventDetail.detailId + 1
       this.eventDetail = {
         detailId: detailId,
@@ -121,7 +120,6 @@ export default {
         str_date: this.eventData.strDate,
         detail: this.eventData.detail
       }
-      console.log(postData)
       this.$ajax.post(url, postData, {
         responseType: 'json'
       }).then(response => {

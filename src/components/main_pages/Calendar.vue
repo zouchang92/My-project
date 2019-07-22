@@ -77,7 +77,6 @@ export default {
     },
 
     getMonday(date) {
-      console.log(date);
       let now = date;
       let weekday = now.getDay();
       now.setDate(now.getDate() - weekday + 1);

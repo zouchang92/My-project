@@ -68,7 +68,6 @@ export default {
       let nickname = this.selected.nickname
       let username = this.selected.username
       let pub_date = formatDate(new Date(this.time), 'yyyy-MM-dd')
-      console.log(pub_date)
       let timestamp = Date.parse(new Date(this.time))
       let postData = {
         username: username,
@@ -82,8 +81,7 @@ export default {
         responseType: 'json'
       }).then(response => {
         window.alert('发布成功')
-        console.log(response)
-        // window.location.reload()
+        window.location.reload()
       }).catch(error => {
         if (error.response.status == 400) {
           console.log(error.response.data)

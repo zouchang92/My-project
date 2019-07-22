@@ -10,6 +10,7 @@
               <b-button v-b-toggle="`recordpop-${index}`" :id="item.pub_date">
                 <p class="record-date-time">{{ item.pub_date | formatPubDate }}</p>
               </b-button>
+              <!-- 置顶区 -->
               <div class="record-title-top">
                 <div class="record-top-content">
                   <p style="margin:0px:color:#000">标题</p>
@@ -19,14 +20,10 @@
               <!-- <div class="pules"></div> -->
 
               <!-- 聊天框下拉 -->
-
               <b-collapse :id="`recordpop-${index}`" accordion="my-accordion">
-                <!-- <i class="iconfont icon-iconfont15 record-top"></i>
-                <div class="record-line"></div> -->
                 <div class="record-title" v-for="(itm, idx) in item.idea_list" :key="idx">
                   <span class="record-time-a">{{ itm.timestamp | formatClock }}</span>
                   <div class="record-cicle-a"></div>
-                  <!-- 聊天框内容 -->
                   <div class="record-content left" :id="`recordpop-${index}-${idx}`">
                     <img class="admin-img" src="../../assets/images/background/avatar_01.jpg" alt />
                     <p>{{ itm.nickname }}</p>
@@ -64,74 +61,23 @@ export default {
   name: "record",
   data() {
     return {
+      perPage: 3,
+      currentPage: 1,
       polling: null,
       startDate: "",
-      chats: [
-        {
-          agg_date: "2019-7-17",
-          chats_list: [
-            { author: "admin", content: "内容内容内容111" },
-            { author: "admin", content: "内容内容内容222" },
-            { author: "admin", content: "内容内容内容333" }
-          ]
-        },
-        {
-          agg_date: "2019-7-18",
-          chats_list: [
-            { author: "admin", content: "内容内容内容111" },
-            { author: "admin", content: "内容内容内容222" },
-            { author: "admin", content: "内容内容内容333" }
-          ]
-        },
-        {
-          agg_date: "2019-7-19",
-          chats_list: [
-            { author: "admin", content: "内容内容内容111" },
-            { author: "admin", content: "内容内容内容222" },
-            { author: "admin", content: "内容内容内容333" }
-          ]
-        },
-        {
-          agg_date: "2019-7-20",
-          chats_list: [
-            { author: "admin", content: "内容内容内容111" },
-            { author: "admin", content: "内容内容内容222" },
-            { author: "admin", content: "内容内容内容333" }
-          ]
-        },
-        {
-          agg_date: "2019-7-21",
-          chats_list: [
-            { author: "admin", content: "内容内容内容111" },
-            { author: "admin", content: "内容内容内容222" },
-            { author: "admin", content: "内容内容内容333" }
-          ]
-        },
-        {
-          agg_date: "2019-7-22",
-          chats_list: [
-            { author: "admin", content: "内容内容内容111" },
-            { author: "admin", content: "内容内容内容222" },
-            { author: "admin", content: "内容内容内容333" }
-          ]
-        },
-        {
-          agg_date: "2019-7-23",
-          chats_list: [
-            { author: "admin", content: "内容内容内容111" },
-            { author: "admin", content: "内容内容内容222" },
-            { author: "admin", content: "内容内容内容333" }
-          ]
-        }
-      ]
+      chats: []
     };
   },
   created() {
     this.renderIdeas();
     this.pollData();
   },
+  mounted() {
+  },
   beforeDestroy() {
     clearInterval(this.polling);
+  },
+  computed: {
   },
   methods: {
     pollData() {
@@ -151,10 +97,8 @@ export default {
       endDate.setDate(endDate.getDate() - 6);
       let start = formatDate(startDate, "yyyy-MM-dd");
       let end = formatDate(endDate, "yyyy-MM-dd");
-      console.log(start, end);
       // 重新声明以便翻页时调用
       this.startDate = startDate;
-      console.log(this.startDate);
 
       // 发起请求, 渲染页面数据
       let url = this.$host + "/idea/";
@@ -167,7 +111,6 @@ export default {
         })
         .then(res => {
           this.chats = res.data.data;
-          console.log(this.chats);
         });
     },
     nextPage() {
@@ -261,7 +204,7 @@ export default {
   height: 76px;
 }
 .record-time-a {
-  top: -63px;
+  top: 3px;
   left: -32px;
   color: #aaa;
   font-size: 11px;
@@ -275,7 +218,7 @@ export default {
   border: 2px solid #ccc;
   position: relative;
   left: 20px;
-  top: -76px;
+  top: -10px;
   border-radius: 50%;
   -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
@@ -308,7 +251,7 @@ export default {
   border-radius: 10px;
   font-family: sans-serif;
   left: 55px;
-  top: -131px;
+  top: -61px;
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
 }
 .record-content::after {
@@ -403,6 +346,10 @@ export default {
   position: absolute;
   left: 7px;
   top: 0px;
+}
+.wrapper {
+  height: 500px;
+  width: 1140px;
 }
 /* @keyframes warn {
    0% {
