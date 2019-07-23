@@ -5,25 +5,22 @@
     <div class="container">
       <div class="row">
         <div class="record-time">
-          <ul class="record-date">
-            <!-- 头部日期 -->
-            <li class="record-cicle" v-for="(item, index) in chats" :key="index">
+          <div class="record-date" v-for="(item, index) in chats" :key="index">
+            <div class="record-cicle">
               <b-button v-b-toggle="`recordpop-${index}`" :id="item.pub_date">
-                <p>{{ item.pub_date | formatPubDate }}</p>
+                <p class="record-date-time">{{ item.pub_date | formatPubDate }}</p>
               </b-button>
-              <!-- 直线 -->
-              <div class="record-cross-line"></div>
-              <!-- 聊天下拉框 -->
-              <b-collapse
-                :id="`recordpop-${index}`"
-                visible
-                accordion="my-accordion"
-                role="tabpanel"
-              >
-              <!-- 上下箭头 -->
-                <div class="icon-arrow">
-                  <i class="iconfont icon-iconfont15 record-top-arrow"></i>
+              <!-- 置顶区 -->
+              <div class="record-title-top">
+                <div class="record-top-content">
+                  <p style="margin:0px:color:#000">标题</p>
+                  <span>内容内容</span>
                 </div>
+              </div>
+              <!-- <div class="pules"></div> -->
+
+              <!-- 聊天框下拉 -->
+              <b-collapse :id="`recordpop-${index}`" accordion="my-accordion">
                 <div class="record-title" v-for="(itm, idx) in item.idea_list" :key="idx">
                   <span class="record-time-a">{{ itm.timestamp | formatClock }}</span>
                   <div class="record-cicle-a"></div>
@@ -41,22 +38,16 @@
                       {{ itm.content }}
                     </b-popover>
                   </div>
+                  <div class="record-text">
+                    <div class="record-text-header"></div>
+                  </div>
                 </div>
               </b-collapse>
-            </li>
-          </ul>
+            </div>
+          </div>
           <div class="record-arrow">
             <i class="iconfont icon-icon-test record-right" @click="nextPage()"></i>
             <i class="iconfont icon-icon-test-copy record-left" @click="prePage()"></i>
-          </div>
-          <!-- 置顶区 -->
-          <div style="float:left" v-for="(n,i) in 7" :key="i">
-            <div class="record-title-top">
-              <div class="record-top-content">
-                <p class="top-title" style="margin:0px:color:#000">标题</p>
-                <span class="top-content">内容内容</span>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -81,11 +72,13 @@ export default {
     this.renderIdeas();
     this.pollData();
   },
-  mounted() {},
+  mounted() {
+  },
   beforeDestroy() {
     clearInterval(this.polling);
   },
-  computed: {},
+  computed: {
+  },
   methods: {
     pollData() {
       this.polling = setInterval(() => {
@@ -152,6 +145,16 @@ export default {
 .record-time {
   height: 940px;
 }
+.record-date {
+  /* border: 1px solid #212222;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  text-align: center; */
+  position: relative;
+  display: inline;
+  margin-left: 167px;
+}
 .record-date-time {
   position: absolute;
   top: 10px;
@@ -166,36 +169,43 @@ export default {
   top: -104px;
   left: 24px;
 }
-.record-cross-line {
-  position: relative;
-  left: 4px;
-  top: -51px;
+.record-cicle {
+  width: 50px;
+  height: 50px;
+  /* border: 1px solid #212222; */
+  position: absolute;
+  left: -151px;
+  top: 37px;
+  border-radius: 50%;
+  background-color: #ccc;
+  -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
 }
-.record-cross-line::after,
-.record-cross-line::before {
+.record-cicle::after,
+.record-cicle::before {
   content: "";
   position: absolute;
 }
-.record-cross-line::before {
-  width: 90px;
+.record-cicle::before {
+  width: 80px;
   height: 2px;
   background: #c19b73;
-  left: 58px;
+  left: 55px;
   top: 24px;
 }
-.record-cross-line::after {
-  width: 75px;
+.record-cicle::after {
+  width: 52px;
   height: 2px;
   background: #c19b73;
-  left: -86px;
+  left: -57px;
   top: 24px;
 }
 .record-title {
   height: 76px;
 }
 .record-time-a {
-  top: 105px;
-  left: -24px;
+  top: 3px;
+  left: -32px;
   color: #aaa;
   font-size: 11px;
   font-weight: 100;
@@ -207,8 +217,8 @@ export default {
   height: 10px;
   border: 2px solid #ccc;
   position: relative;
-  left: 24px;
-  top: 91px;
+  left: 20px;
+  top: -10px;
   border-radius: 50%;
   -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
@@ -220,11 +230,10 @@ export default {
 }
 .record-cicle-a::after {
   width: 2px;
-  height: 69px;
+  height: 25px;
   border: 1px solid #bbb;
   left: 2px;
-  top: -70px;
-  border-style: dashed;
+  top: -27px;
 }
 .record-cicle-a::before {
   width: 2px;
@@ -232,7 +241,6 @@ export default {
   border: 1px solid #bbb;
   left: 2px;
   top: 8px;
-  border-style: dashed;
 }
 .record-content {
   position: relative;
@@ -243,7 +251,7 @@ export default {
   border-radius: 10px;
   font-family: sans-serif;
   left: 55px;
-  top: 39px;
+  top: -61px;
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
 }
 .record-content::after {
@@ -268,6 +276,11 @@ export default {
 .record-content record-popover {
   width: 520px !important;
 }
+.record-cicle button {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
 .record-top {
   position: absolute;
   top: 119px;
@@ -285,7 +298,7 @@ export default {
 .record-right {
   position: absolute;
   top: 28px;
-  left: 1129px;
+  left: 1154px;
   opacity: 0.2;
 }
 .record-left {
@@ -298,28 +311,28 @@ export default {
 .record-left:hover {
   opacity: 1;
 }
+.record-date:nth-child(2n + 1) .record-cicle .btn {
+  background: #ccc;
+}
 .record-title-top {
   position: relative;
   opacity: 0.5;
-  width: 139px;
-  height: 57px;
-  margin-left: 17px;
+  margin: 20px auto;
+  width: 117px;
+  height: 70px;
   border-radius: 10px;
   font-family: sans-serif;
-  left: -17px;
-  top: -137px;
+  left: 47px;
+  top: -134px;
   -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
 }
 .record-title-top::after {
   content: "";
-  position: relative;
-  left: 66px;
-  top: -3px;
-  border: 1px solid #000;
-  border-style: dashed;
+  position: absolute;
+  width: 0;
+  height: 0;
 }
-
 .record-date:nth-child(2n) .record-cicle .record-title-top {
   background: transparent;
   left: 47px;
@@ -338,51 +351,47 @@ export default {
   height: 500px;
   width: 1140px;
 }
-.record-date .record-cicle {
-  float: left;
-  margin: 27px 106px 0px 0px;
-  height: 50px;
-  width: 50px;
-}
+/* @keyframes warn {
+   0% {
+    transform: scale(0);
+    opacity: 0;
+  }
 
-.record-cicle button {
-  width: 58px;
-  height: 55px;
-  border-radius: 50%;
-  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
-}
-.record-cicle button p {
-  position: relative;
-  top: 7px;
-  left: -5px;
-  color: #fff;
-}
-.record-date li:nth-child(2n) button {
-  background: #ccc;
-}
-.record-date .record-cicle::before {
-  content: "";
-  width: 20px;
-  height: 3px;
-  background: #000;
-}
-.top-title {
-  position: relative;
-  top: 0px;
-  left: 10px;
-}
-.top-content {
-  position: relative;
-  top: -13px;
-  left: 10px;
-}
-.record-top-arrow{
-    position: relative;
-    top: 27px;
-    left: 21px;
+  25% {
+    transform: scale(0);
+    opacity: 0.1;
+  }
+
+  50% {
+    transform: scale(0.1);
+    opacity: 0.3;
+  } 
+
+  75% {
+    transform: scale(0.5);
     opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
 }
-.record-top-arrow:hover{
-  opacity: 1;
-}
+.pules {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  left: -10px;
+  top: -10px;
+  border: 10px solid #fff;
+  border-radius: 50%;
+  z-index: 1;
+  opacity: 0;
+  -webkit-animation: warn 3s ease-out;
+  -moz-animation: warn 3s ease-out;
+  animation: warn 3s ease-out;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+} */
 </style>
