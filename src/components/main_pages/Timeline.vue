@@ -139,5 +139,8 @@ export default {
 .timeline-content-date:nth-child(2n + 1) .timeline-content-datails {
   background: #000;
 }
+.timeline-date .btn{
+  background:#ccc
+}
 </style>
 
