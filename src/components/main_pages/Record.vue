@@ -8,7 +8,11 @@
           <ul class="record-date">
             <!-- 头部日期 -->
             <li class="record-cicle" v-for="(item, index) in chats" :key="index">
-              <b-button v-b-toggle="`recordpop-${index}`" :id="item.pub_date">
+              <b-button
+                v-b-toggle="`recordpop-${index}`"
+                :id="item.pub_date"
+                @click="btnClick(item.pub_date)"
+              >
                 <p>{{ item.pub_date | formatPubDate }}</p>
               </b-button>
               <!-- 直线 -->
@@ -20,12 +24,15 @@
                 accordion="my-accordion"
                 role="tabpanel"
               >
-              <!-- 上下箭头 -->
+                <!-- 上下箭头 -->
                 <div class="icon-arrow">
-                  <i class="iconfont icon-iconfont15 record-top-arrow"></i>
-                  <i class="iconfont icon-iconfont15-button record-buttom-arrow"></i>
+                  <i class="iconfont icon-iconfont15 record-top-arrow" @click="loadPrev()"></i>
+                  <i
+                    class="iconfont icon-iconfont15-button record-buttom-arrow"
+                    @click="loadNext()"
+                  ></i>
                 </div>
-                <div class="record-title" v-for="(itm, idx) in item.idea_list" :key="idx">
+                <div class="record-title" v-for="(itm, idx) in dailyChats" :key="idx">
                   <span class="record-time-a">{{ itm.timestamp | formatClock }}</span>
                   <div class="record-cicle-a"></div>
                   <div class="record-content left" :id="`recordpop-${index}-${idx}`">
@@ -43,7 +50,7 @@
                     </b-popover>
                   </div>
                 </div>
-                                  <div class="record-timeline"></div>
+                <div class="record-timeline"></div>
               </b-collapse>
             </li>
           </ul>
@@ -76,7 +83,11 @@ export default {
       currentPage: 1,
       polling: null,
       startDate: "",
-      chats: []
+      chats: [],
+      dailyChats: [],
+      curDate: formatDate(new Date(), "yyyy-MM-dd"),
+      skip: 0,
+      noMoreData: false,
     };
   },
   created() {
@@ -91,9 +102,54 @@ export default {
   methods: {
     pollData() {
       this.polling = setInterval(() => {
-        this.renderIdeas();
+        this.loadIdeas(this.curDate);
       }, 5000);
     },
+    // 加载指定日期的内容
+    loadIdeas(date) {
+      console.log(date);
+      this.curDate = date;
+
+      let url = this.$host + "/idea-detail/";
+      this.$ajax
+        .get(url, {
+          params: {
+            pub_date: date,
+            skip: this.skip
+          }
+        })
+        .then(res => {
+          console.log(res.data, res.data.data.length);
+          this.dailyChats = res.data.data;
+          if (res.data.data.length != 10) {
+            this.noMoreData = true
+          }
+          console.log(this.noMoreData)
+        });
+    },
+    // 点击日期按钮
+    btnClick(date) {
+      this.noMoreData = false;
+      this.skip = 0;
+      this.loadIdeas(date)
+    },
+    // 上箭头翻页
+    loadPrev() {
+      if (this.skip != 0) {
+        this.skip -= 10;
+        this.loadIdeas(this.curDate);
+      }
+    },
+
+    // 下箭头翻页
+    loadNext() {
+      console.log(this.noMoreData)
+      if (this.noMoreData == false) {
+        this.skip += 10;
+        this.loadIdeas(this.curDate);
+      }
+    },
+    // 加载一周的内容
     renderIdeas() {
       let startDate = this.startDate;
       if (!startDate) {
@@ -104,13 +160,13 @@ export default {
 
       let endDate = new Date(startDate);
       endDate.setDate(endDate.getDate() - 6);
-      let start = formatDate(startDate, "yyyy-MM-dd");
-      let end = formatDate(endDate, "yyyy-MM-dd");
+      let start = formatDate(startDate, "yyyy-MM-dd")
+      let end = formatDate(endDate, "yyyy-MM-dd")
       // 重新声明以便翻页时调用
       this.startDate = startDate;
 
       // 发起请求, 渲染页面数据
-      let url = this.$host + "/idea/";
+      let url = this.$host + "/idea/"
       this.$ajax
         .get(url, {
           params: {
@@ -120,19 +176,24 @@ export default {
         })
         .then(res => {
           this.chats = res.data.data;
+          console.log(res.data.data);
         });
     },
+    // 右箭头翻页
     nextPage() {
       let startDate = this.startDate;
       startDate.setDate(startDate.getDate() - 7);
       this.startDate = startDate;
       this.renderIdeas();
+      this.dailyChats = []
     },
+    // 左箭头翻页
     prePage() {
       let startDate = this.startDate;
       startDate.setDate(startDate.getDate() + 7);
       this.startDate = startDate;
       this.renderIdeas();
+      this.dailyChats = []
     }
   },
   filters: {
@@ -372,31 +433,32 @@ export default {
   top: -13px;
   left: 10px;
 }
-.record-top-arrow{
-    position: relative;
-    top: 27px;
-    left: 21px;
-    opacity: 0.5;
+.record-top-arrow {
+  position: relative;
+  top: 27px;
+  left: 21px;
+  opacity: 0.5;
 }
-.record-top-arrow:hover,.record-buttom-arrow:hover{
+.record-top-arrow:hover,
+.record-buttom-arrow:hover {
   opacity: 1;
 }
-.record-buttom-arrow{
-    position: relative;
-    top: 852px;
-    left: 1px;
-    opacity: 0.5;
+.record-buttom-arrow {
+  position: relative;
+  top: 852px;
+  left: 1px;
+  opacity: 0.5;
 }
-.record-timeline{
-    height: 809px;
-    position: absolute;
-    top: 48px;
-    left: 28px;
-    z-index: 0;
-    border: 1px solid #ccc;
-    border-style: dashed;
+.record-timeline {
+  height: 809px;
+  position: absolute;
+  top: 48px;
+  left: 28px;
+  z-index: 0;
+  border: 1px solid #ccc;
+  border-style: dashed;
 }
-.collapse{
+.collapse {
   position: relative;
 }
 </style>
