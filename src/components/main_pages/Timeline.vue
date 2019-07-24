@@ -6,32 +6,33 @@
       <div class="row">
         <!-- 横向事件轴 -->
         <div class="timeline-date">
-          <b-button class="timeline-time" v-b-toggle.collapse-1-inner v-for="(n,i) in 7" :key="i">
+          <div class="timeline-arrow">
+            <i class="iconfont icon-iconfont2-left-copy timeline-right"></i>
+            <i class="iconfont icon-iconfont2-right timeline-left"></i>
+          </div>
+          <b-button class="timeline-time" v-b-toggle.collapse-1-inner v-for="(n,i) in 9" :key="i" v-if="i >= start_date && i <= end_date">
             <span class="timeline-day">7月1日</span>
           </b-button>
           <!-- 事件轴内容 -->
           <b-collapse id="collapse-1-inner" accordion="my-accordion">
             <div class="timeline-content">
-              <div class="timeline-content-date" v-for="(item,i) in list" :key="i">
-                <div class="timeline-content-time">{{item.agg_date}}</div>
-                <div class="timeline-content-details" v-for="(n,a) in 8" :key="a">
-                  <span class="timeline-content-title">标题</span>
-                  <p class="timeline-content-event">内容</p>
-                  <p class="content-time">16:00</p>
-                </div>
-                <b-pagination
-                  v-model="currentPage"
-                  :total-rows="rows"
-                  :per-page="perPage"
-                  aria-controls="my-table"
-                ></b-pagination>
-              </div>
+              <ul class="timeline-content-date">
+                <li v-for="(item,i) in list" :key="i" >
+                  <div class="timeline-content-time">{{item.agg_date}}</div>
+                  <div class="timeline-content-details" v-for="(itm,a) in item.chart_list" :key="a" v-if="a >= start && a <= end">
+                    <span class="timeline-content-title">{{itm.title}}</span>
+                    <p class="timeline-content-event">{{itm.content}}</p>
+                    <p class="content-time">{{itm.time}}</p>
+                  </div>
+                  <!-- 上下翻页 -->
+                  <div class="timeline-arr">
+                    <span class="top-arrow" @click="TopArrow">上一页</span>
+                    <span class="buttom-arrow" @click="ButtomArrow">下一页</span>
+                  </div>
+                </li>
+              </ul>
             </div>
           </b-collapse>
-        </div>
-        <div class="timeline-arrow">
-          <i class="iconfont icon-iconfont2-left-copy timeline-right"></i>
-          <i class="iconfont icon-iconfont2-right timeline-left"></i>
         </div>
       </div>
     </div>
@@ -49,19 +50,44 @@ export default {
         {
           agg_date: "2019-07-01",
           chart_list: [
-            { title: "admin", content: "内容内容内容111" },
-            { title: "admin", content: "内容内容内容222" },
-            { title: "admin", content: "内容内容内容333" }
+            { title: "admin", content: "内容内容内容111", time: "16:00" },
+            { title: "admin", content: "内容内容内容222", time: "16:20" },
+            { title: "admin", content: "内容内容内容333", time: "16:40" },
+            { title: "admin", content: "内容内容内容333", time: "16:41" },
+            { title: "admin", content: "内容内容内容333", time: "16:44" },
+            { title: "admin", content: "内容内容内容333", time: "16:45" },
+            { title: "admin", content: "内容内容内容333", time: "16:46" },
+            { title: "admin", content: "内容内容内容333", time: "16:48" },
+            { title: "admin", content: "内容内容内容333", time: "16:49" },
+            { title: "admin", content: "内容内容内容333", time: "16:51" },
+            { title: "admin", content: "内容内容内容333", time: "16:53" }
           ]
         }
-      ]
+      ],
+      start: 0,
+      end: 9,
+      start_date:0,
+      end_date:6
     };
+  },
+  methods: {
+    TopArrow: function() {
+      console.log(666);
+    },
+    ButtomArrow: function() {
+      var all = this.chart_list.length;
+      console.log(all)
+      if (this.end == all) {
+        return;
+      } else if (this.end + 5 >= all) {
+        this.start = all - 5;
+        this.end = all;
+      } else {
+        this.start += 5;
+        this.end += 5;
+      }
+    }
   }
-  // computed: {
-  //   rows() {
-  //     return this.items.length;
-  //   }
-  // }
 };
 </script>
 
@@ -93,15 +119,18 @@ export default {
 /* .timeline-arrow {
   position: relative;
 } */
-.timeline-right {
+.timeline-arrow {
   position: relative;
-  top: -593px;
-  left: -46px;
+}
+.timeline-right {
+  position: absolute;
+  top: 3px;
+  left: -30px;
 }
 .timeline-left {
-  position: relative;
-  top: -593px;
-  right: -1120px;
+  position: absolute;
+  top: 3px;
+  left: 1135px;
 }
 .timeline-content {
   width: 294px;
@@ -136,11 +165,21 @@ export default {
   font-size: 13px;
   color: #ccc;
 }
+.timeline-content-date{
+  padding:0px
+}
 .timeline-content-date:nth-child(2n + 1) .timeline-content-datails {
   background: #000;
 }
-.timeline-date .btn{
-  background:#ccc
+.timeline-date .btn {
+  background: #ccc;
+}
+.timeline-arr {
+  text-align: center;
+  color: #ccc;
+}
+.timeline-arr span {
+  margin: 0px 54px 0px 47px;
 }
 </style>
 

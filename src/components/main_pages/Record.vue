@@ -212,8 +212,6 @@ export default {
 <style scoped>
 #record {
   background: url(../../assets/images/background/bg_02.jpg);
-}
-.record-time {
   height: 940px;
 }
 .record-date-time {
@@ -258,7 +256,7 @@ export default {
   height: 76px;
 }
 .record-time-a {
-  top: 105px;
+  top: 25px;
   left: -24px;
   color: #aaa;
   font-size: 11px;
@@ -272,7 +270,7 @@ export default {
   border: 2px solid #ccc;
   position: relative;
   left: 24px;
-  top: 91px;
+  top: 12px;
   border-radius: 50%;
   -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
@@ -307,7 +305,7 @@ export default {
   border-radius: 10px;
   font-family: sans-serif;
   left: 55px;
-  top: 39px;
+  top: -39px;
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
 }
 .record-content::after {
@@ -348,13 +346,13 @@ export default {
 }
 .record-right {
   position: absolute;
-  top: 28px;
+  top: 80px;
   left: 1129px;
   opacity: 0.2;
 }
 .record-left {
   position: absolute;
-  top: 28px;
+  top: 80px;
   left: -68px;
   opacity: 0.2;
 }
@@ -371,7 +369,7 @@ export default {
   border-radius: 10px;
   font-family: sans-serif;
   left: -17px;
-  top: -137px;
+  top: -77px;
   -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
 }
@@ -401,6 +399,7 @@ export default {
   width: 50px;
   position: relative;
   left: 39px;
+  top:52px
 }
 
 .record-cicle button {
@@ -436,7 +435,7 @@ export default {
 }
 .record-top-arrow {
   position: relative;
-  top: 27px;
+  top: 10px;
   left: 21px;
   opacity: 0.5;
 }
@@ -446,18 +445,18 @@ export default {
 }
 .record-buttom-arrow {
   position: relative;
-  top: 852px;
+  top: 624px;
   left: 1px;
   opacity: 0.5;
 }
 .record-timeline {
-  height: 809px;
-  position: absolute;
-  top: 48px;
-  left: 28px;
-  z-index: 0;
-  border: 1px solid #ccc;
-  border-style: dashed;
+    height: 596px;
+    position: absolute;
+    top: 31px;
+    left: 28px;
+    z-index: 0;
+    border: 1px solid #ccc;
+    border-style: dashed;
 }
 .collapse {
   position: relative;
