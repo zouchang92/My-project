@@ -43,6 +43,7 @@
                     </b-popover>
                   </div>
                 </div>
+                                  <div class="record-timeline"></div>
               </b-collapse>
             </li>
           </ul>
@@ -214,7 +215,7 @@ export default {
   -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
 }
-.record-cicle-a::after,
+/* .record-cicle-a::after,
 .record-cicle-a::before {
   content: "";
   position: absolute;
@@ -234,7 +235,7 @@ export default {
   left: 2px;
   top: 8px;
   border-style: dashed;
-}
+} */
 .record-content {
   position: relative;
   background-color: #fff;
@@ -385,5 +386,17 @@ export default {
     top: 852px;
     left: 1px;
     opacity: 0.5;
+}
+.record-timeline{
+    height: 809px;
+    position: absolute;
+    top: 48px;
+    left: 28px;
+    z-index: 0;
+    border: 1px solid #ccc;
+    border-style: dashed;
+}
+.collapse{
+  position: relative;
 }
 </style>
