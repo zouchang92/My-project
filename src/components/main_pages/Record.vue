@@ -23,6 +23,7 @@
               <!-- 上下箭头 -->
                 <div class="icon-arrow">
                   <i class="iconfont icon-iconfont15 record-top-arrow"></i>
+                  <i class="iconfont icon-iconfont15-button record-buttom-arrow"></i>
                 </div>
                 <div class="record-title" v-for="(itm, idx) in item.idea_list" :key="idx">
                   <span class="record-time-a">{{ itm.timestamp | formatClock }}</span>
@@ -311,14 +312,6 @@ export default {
   -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
 }
-.record-title-top::after {
-  content: "";
-  position: relative;
-  left: 66px;
-  top: -3px;
-  border: 1px solid #000;
-  border-style: dashed;
-}
 
 .record-date:nth-child(2n) .record-cicle .record-title-top {
   background: transparent;
@@ -343,6 +336,8 @@ export default {
   margin: 27px 106px 0px 0px;
   height: 50px;
   width: 50px;
+  position: relative;
+  left: 39px;
 }
 
 .record-cicle button {
@@ -382,7 +377,13 @@ export default {
     left: 21px;
     opacity: 0.5;
 }
-.record-top-arrow:hover{
+.record-top-arrow:hover,.record-buttom-arrow:hover{
   opacity: 1;
+}
+.record-buttom-arrow{
+    position: relative;
+    top: 852px;
+    left: 1px;
+    opacity: 0.5;
 }
 </style>
