@@ -20,9 +20,7 @@
               <!-- 聊天下拉框 -->
               <b-collapse
                 :id="`recordpop-${index}`"
-                visible
                 accordion="my-accordion"
-                role="tabpanel"
               >
                 <!-- 上下箭头 -->
                 <div class="icon-arrow">
@@ -88,6 +86,7 @@ export default {
       curDate: formatDate(new Date(), "yyyy-MM-dd"),
       skip: 0,
       noMoreData: false,
+      showCollapse: true,
     };
   },
   created() {
@@ -129,15 +128,17 @@ export default {
     },
     // 点击日期按钮
     btnClick(date) {
-      this.noMoreData = false;
+      this.showCollapse = !this.showCollapse
+      this.noMoreData = false
       this.skip = 0;
       this.loadIdeas(date)
     },
     // 上箭头翻页
     loadPrev() {
+      this.noMoreData = false
       if (this.skip != 0) {
         this.skip -= 10;
-        this.loadIdeas(this.curDate);
+        this.loadIdeas(this.curDate)
       }
     },
 
