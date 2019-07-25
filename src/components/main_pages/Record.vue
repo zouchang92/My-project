@@ -106,7 +106,6 @@ export default {
     },
     // 加载指定日期的内容
     loadIdeas(date) {
-      console.log(date);
       this.curDate = date;
 
       let url = this.$host + "/idea-detail/";
@@ -118,12 +117,10 @@ export default {
           }
         })
         .then(res => {
-          console.log(res.data, res.data.data.length);
           this.dailyChats = res.data.data;
-          if (res.data.data.length != 10) {
+          if (res.data.data.length != 8) {
             this.noMoreData = true
           }
-          console.log(this.noMoreData)
         });
     },
     // 点击日期按钮
@@ -137,16 +134,15 @@ export default {
     loadPrev() {
       this.noMoreData = false
       if (this.skip != 0) {
-        this.skip -= 10;
+        this.skip -= 8;
         this.loadIdeas(this.curDate)
       }
     },
 
     // 下箭头翻页
     loadNext() {
-      console.log(this.noMoreData)
       if (this.noMoreData == false) {
-        this.skip += 10;
+        this.skip += 8;
         this.loadIdeas(this.curDate);
       }
     },
@@ -156,7 +152,6 @@ export default {
       if (!startDate) {
         // 初次加载没有startDate, 加载当前日期及前七天
         startDate = new Date();
-        console.log("第一次加载页面");
       }
 
       let endDate = new Date(startDate);
@@ -177,7 +172,6 @@ export default {
         })
         .then(res => {
           this.chats = res.data.data;
-          console.log(res.data.data);
         });
     },
     // 右箭头翻页
