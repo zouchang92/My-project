@@ -7,22 +7,29 @@
         <!-- 横向事件轴 -->
         <div class="timeline-date">
           <div class="timeline-arrow">
-            <i class="iconfont icon-iconfont2-left-copy timeline-right"></i>
-            <i class="iconfont icon-iconfont2-right timeline-left"></i>
+            <i class="iconfont icon-iconfont2-left-copy timeline-right" @click="prePage()"></i>
+            <i class="iconfont icon-iconfont2-right timeline-left" @click="nextPage()"></i>
           </div>
-          <b-button class="timeline-time" v-b-toggle.collapse-1-inner v-for="(n,i) in 9" :key="i" v-if="i >= start_date && i <= end_date">
-            <span class="timeline-day">7月1日</span>
+          <b-button
+            class="timeline-time"
+            @click="click(item.pub_date)"
+            v-for="(item,index) in chats"
+            :key="index"
+            :id="item.pub_date"
+            ref="id"
+          >
+            <span class="timeline-day">{{ item.pub_date}}</span>
           </b-button>
           <!-- 事件轴内容 -->
-          <b-collapse id="collapse-1-inner" accordion="my-accordion">
-            <div class="timeline-content">
+          <transition name="slide-fade">
+            <div v-if="isShow" class="timeline-content">
               <ul class="timeline-content-date">
-                <li v-for="(item,i) in list" :key="i" >
-                  <div class="timeline-content-time">{{item.agg_date}}</div>
-                  <div class="timeline-content-details" v-for="(itm,a) in item.chart_list" :key="a" v-if="a >= start && a <= end">
-                    <span class="timeline-content-title">{{itm.title}}</span>
-                    <p class="timeline-content-event">{{itm.content}}</p>
-                    <p class="content-time">{{itm.time}}</p>
+                <li>
+                  <div class="timeline-content-time">{{message}}</div>
+                  <div class="timeline-content-details" v-for="(itm,idx) in dailyChats" :key="idx">
+                    <span class="timeline-content-title">{{ itm.nickname }}</span>
+                    <p class="timeline-content-event">{{ itm.content }}</p>
+                    <p class="content-time">{{ itm.timestamp | formatClock }}</p>
                   </div>
                   <!-- 上下翻页 -->
                   <div class="timeline-arr">
@@ -32,7 +39,7 @@
                 </li>
               </ul>
             </div>
-          </b-collapse>
+          </transition>
         </div>
       </div>
     </div>
@@ -40,52 +47,129 @@
   <!-- Feature Section End -->
 </template>
 <script>
+import { isString } from "util";
+import { formatDate } from "@/common/date.js";
 export default {
   name: "timeline",
-  perPage: 3,
-  currentPage: 1,
   data() {
     return {
-      list: [
-        {
-          agg_date: "2019-07-01",
-          chart_list: [
-            { title: "admin", content: "内容内容内容111", time: "16:00" },
-            { title: "admin", content: "内容内容内容222", time: "16:20" },
-            { title: "admin", content: "内容内容内容333", time: "16:40" },
-            { title: "admin", content: "内容内容内容333", time: "16:41" },
-            { title: "admin", content: "内容内容内容333", time: "16:44" },
-            { title: "admin", content: "内容内容内容333", time: "16:45" },
-            { title: "admin", content: "内容内容内容333", time: "16:46" },
-            { title: "admin", content: "内容内容内容333", time: "16:48" },
-            { title: "admin", content: "内容内容内容333", time: "16:49" },
-            { title: "admin", content: "内容内容内容333", time: "16:51" },
-            { title: "admin", content: "内容内容内容333", time: "16:53" }
-          ]
-        }
-      ],
       start: 0,
       end: 9,
-      start_date:0,
-      end_date:6
+      start_date: 0,
+      end_date: 6,
+      isShow: false,
+      skip: 0,
+      chats: [],
+      curDate: formatDate(new Date(), "yyyy-MM-dd"),
+      dailyChats: [],
+      noMoreData: false,
+      message:[],
     };
   },
+  created() {
+    this.renderIdeas();
+    this.loadIdeas()
+  },
   methods: {
-    TopArrow: function() {
-      console.log(666);
+    // 加载指定日期的内容
+    loadIdeas(date) {
+      this.curDate = date;
+
+      let url = this.$host + "/idea-detail/";
+      this.$ajax
+        .get(url, {
+          params: {
+            pub_date: date,
+            skip: this.skip
+          }
+        })
+        .then(res => {
+          this.dailyChats = res.data.data;
+          if (res.data.data.length != 8) {
+            this.noMoreData = true;
+          }
+          console.log(this.dailyChats);
+        });
     },
-    ButtomArrow: function() {
-      var all = this.chart_list.length;
-      console.log(all)
-      if (this.end == all) {
-        return;
-      } else if (this.end + 5 >= all) {
-        this.start = all - 5;
-        this.end = all;
-      } else {
-        this.start += 5;
-        this.end += 5;
+    // 加载一周的内容
+    renderIdeas() {
+      let startDate = this.startDate;
+      if (!startDate) {
+        // 初次加载没有startDate, 加载当前日期及前七天
+        startDate = new Date();
       }
+
+      let endDate = new Date(startDate);
+      endDate.setDate(endDate.getDate() - 6);
+      let start = formatDate(startDate, "yyyy-MM-dd");
+      let end = formatDate(endDate, "yyyy-MM-dd");
+      // 重新声明以便翻页时调用
+      this.startDate = startDate;
+
+      // 发起请求, 渲染页面数据
+      let url = this.$host + "/idea/";
+      this.$ajax
+        .get(url, {
+          params: {
+            start_date: start,
+            end_date: end
+          }
+        })
+        .then(res => {
+          this.chats = res.data.data;
+          console.log(this.chats);
+        });
+    },
+    TopArrow() {
+      this.noMoreData = false;
+      if (this.skip != 0) {
+        this.skip -= 8;
+        this.loadIdeas(this.curDate);
+      }else{
+        alert('没有内容了')
+      }
+    },
+    ButtomArrow() {
+      if (this.noMoreData == false) {
+        this.skip += 8;
+        this.loadIdeas(this.curDate);
+      }else{
+        alert('没有内容了')
+      }
+    },
+    click(date) {
+      this.isShow = !this.isShow;
+      this.noMoreData = false;
+      this.skip = 0;
+      this.loadIdeas(date);
+      console.log(this.$refs.id)
+      this.$refs.id.innerHTML = this.message
+    },
+    // 右箭头翻页
+    nextPage() {
+      let startDate = this.startDate;
+      startDate.setDate(startDate.getDate() - 7);
+      this.startDate = startDate;
+      this.renderIdeas();
+      this.dailyChats = [];
+    },
+    // 左箭头翻页
+    prePage() {
+      let startDate = this.startDate;
+      startDate.setDate(startDate.getDate() + 7);
+      this.startDate = startDate;
+      this.renderIdeas();
+      this.dailyChats = [];
+    }
+  },
+  filters: {
+    formatPubDate(time) {
+      var date = new Date(time);
+      return formatDate(date, "MM/dd");
+    },
+    formatClock(timestamp) {
+      var date = new Date(timestamp);
+      return formatDate(date, "hh:mm");
     }
   }
 };
@@ -134,11 +218,11 @@ export default {
 }
 .timeline-content {
   width: 294px;
-  height: 600px;
+  height: 703px;
   position: relative;
   top: 96px;
   left: 43px;
-  background: #fff;
+  background: azure;
 }
 .timeline-content-time {
   position: relative;
@@ -165,8 +249,8 @@ export default {
   font-size: 13px;
   color: #ccc;
 }
-.timeline-content-date{
-  padding:0px
+.timeline-content-date {
+  padding: 0px;
 }
 .timeline-content-date:nth-child(2n + 1) .timeline-content-datails {
   background: #000;
@@ -180,6 +264,32 @@ export default {
 }
 .timeline-arr span {
   margin: 0px 54px 0px 47px;
+}
+.slide-fade-enter-active {
+  transition: all 0.3s ease;
+}
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active for below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
+}
+.timeline-accordion {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+  transform: translateX(10px);
+  opacity: 0;
+}
+.buttom-arrow:hover,
+.top-arrow:hover {
+  color: #000;
+}
+.timeline-content-event {
+  width: 200px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 </style>
 

@@ -18,10 +18,7 @@
               <!-- 直线 -->
               <div class="record-cross-line"></div>
               <!-- 聊天下拉框 -->
-              <b-collapse
-                :id="`recordpop-${index}`"
-                accordion="my-accordion"
-              >
+              <b-collapse :id="`recordpop-${index}`" accordion="my-accordion">
                 <!-- 上下箭头 -->
                 <div class="icon-arrow">
                   <i class="iconfont icon-iconfont15 record-top-arrow" @click="loadPrev()"></i>
@@ -35,8 +32,8 @@
                   <div class="record-cicle-a"></div>
                   <div class="record-content left" :id="`recordpop-${index}-${idx}`">
                     <img class="admin-img" src="../../assets/images/background/avatar_01.jpg" alt />
-                    <p>{{ itm.nickname }}</p>
-                    <p>{{ itm.content }}</p>
+                    <p class="record-nickname">{{ itm.nickname }}</p>
+                    <p class="record-nickname-content">{{ itm.content }}</p>
                     <b-popover
                       class="record-popover"
                       :target="`recordpop-${index}-${idx}`"
@@ -60,8 +57,8 @@
           <div style="float:left" v-for="(n,i) in 7" :key="i">
             <div class="record-title-top">
               <div class="record-top-content">
-                <p class="top-title" style="margin:0px:color:#000">标题</p>
-                <span class="top-content">内容内容</span>
+                <p class="top-title" style="margin:0px:color:#000">标题标题标题标题标题标题</p>
+                <span class="top-content">内容内容内容内容内容内容内容内容</span>
               </div>
             </div>
           </div>
@@ -86,7 +83,7 @@ export default {
       curDate: formatDate(new Date(), "yyyy-MM-dd"),
       skip: 0,
       noMoreData: false,
-      showCollapse: true,
+      showCollapse: true
     };
   },
   created() {
@@ -119,23 +116,23 @@ export default {
         .then(res => {
           this.dailyChats = res.data.data;
           if (res.data.data.length != 8) {
-            this.noMoreData = true
+            this.noMoreData = true;
           }
         });
     },
     // 点击日期按钮
     btnClick(date) {
-      this.showCollapse = !this.showCollapse
-      this.noMoreData = false
+      this.showCollapse = !this.showCollapse;
+      this.noMoreData = false;
       this.skip = 0;
-      this.loadIdeas(date)
+      this.loadIdeas(date);
     },
     // 上箭头翻页
     loadPrev() {
-      this.noMoreData = false
+      this.noMoreData = false;
       if (this.skip != 0) {
         this.skip -= 8;
-        this.loadIdeas(this.curDate)
+        this.loadIdeas(this.curDate);
       }
     },
 
@@ -156,13 +153,13 @@ export default {
 
       let endDate = new Date(startDate);
       endDate.setDate(endDate.getDate() - 6);
-      let start = formatDate(startDate, "yyyy-MM-dd")
-      let end = formatDate(endDate, "yyyy-MM-dd")
+      let start = formatDate(startDate, "yyyy-MM-dd");
+      let end = formatDate(endDate, "yyyy-MM-dd");
       // 重新声明以便翻页时调用
       this.startDate = startDate;
 
       // 发起请求, 渲染页面数据
-      let url = this.$host + "/idea/"
+      let url = this.$host + "/idea/";
       this.$ajax
         .get(url, {
           params: {
@@ -180,7 +177,7 @@ export default {
       startDate.setDate(startDate.getDate() - 7);
       this.startDate = startDate;
       this.renderIdeas();
-      this.dailyChats = []
+      this.dailyChats = [];
     },
     // 左箭头翻页
     prePage() {
@@ -188,7 +185,7 @@ export default {
       startDate.setDate(startDate.getDate() + 7);
       this.startDate = startDate;
       this.renderIdeas();
-      this.dailyChats = []
+      this.dailyChats = [];
     }
   },
   filters: {
@@ -318,8 +315,11 @@ export default {
 }
 .record-content p {
   margin: 0px;
-  color: #000;
   margin-left: 66px;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .record-content record-popover {
   width: 520px !important;
@@ -393,7 +393,7 @@ export default {
   width: 50px;
   position: relative;
   left: 39px;
-  top:52px
+  top: 52px;
 }
 
 .record-cicle button {
@@ -418,14 +418,21 @@ export default {
   background: #000;
 }
 .top-title {
+  display: block;
+  height: 22px;
   position: relative;
   top: 0px;
-  left: 10px;
+  left: 7px;
+  overflow: hidden;
+  color:#000
 }
 .top-content {
-  position: relative;
-  top: -13px;
-  left: 10px;
+    height: 22px;
+    overflow: hidden;
+    position: relative;
+    top: -13px;
+    left: 6px;
+    display: block;
 }
 .record-top-arrow {
   position: relative;
@@ -444,15 +451,23 @@ export default {
   opacity: 0.5;
 }
 .record-timeline {
-    height: 596px;
-    position: absolute;
-    top: 31px;
-    left: 28px;
-    z-index: 0;
-    border: 1px solid #ccc;
-    border-style: dashed;
+  height: 596px;
+  position: absolute;
+  top: 31px;
+  left: 28px;
+  z-index: 0;
+  border: 1px solid #ccc;
+  border-style: dashed;
 }
 .collapse {
   position: relative;
+}
+.record-nickname{
+  color:#000
+}
+.record-nickname-content {
+  display: block;
+  overflow: hidden;
+  height: 22px;
 }
 </style>
