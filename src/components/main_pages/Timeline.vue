@@ -11,18 +11,20 @@
             <i class="iconfont icon-iconfont2-right timeline-left" @click="nextPage()"></i>
           </div>
           <b-button
+            v-for="(item,index) in buttons"
             class="timeline-time"
-            @click="click(item.pub_date)"
-            v-for="(item,index) in chats"
+            @click="btnClick(index)"
             :key="index"
-            :id="item.pub_date"
-            ref="id"
+            :id="`btn-${index}`"
+            :pressed.sync="item.state"
+            ref="btn"
           >
-            <span class="timeline-day">{{ item.pub_date}}</span>
+            <span class="timeline-day">{{ item.date}}</span>
           </b-button>
           <!-- 事件轴内容 -->
-          <transition name="slide-fade">
-            <div v-if="isShow" class="timeline-content">
+          
+            <div v-if="buttons[clicked].state" class="timeline-content">
+              <transition name="slide-fade">
               <ul class="timeline-content-date">
                 <li>
                   <div class="timeline-content-time">{{message}}</div>
@@ -38,8 +40,9 @@
                   </div>
                 </li>
               </ul>
+             </transition>
+
             </div>
-          </transition>
         </div>
       </div>
     </div>
@@ -59,16 +62,25 @@ export default {
       end_date: 6,
       isShow: false,
       skip: 0,
-      chats: [],
       curDate: formatDate(new Date(), "yyyy-MM-dd"),
       dailyChats: [],
       noMoreData: false,
       message:'',
+      btnState: [false, false, false, false, false, false, false],
+      clicked: 0,
+      buttons: [
+        {'date': '2019-09-06', 'state': false},
+        {'date': '2019-09-06', 'state': false},
+        {'date': '2019-09-06', 'state': false},
+        {'date': '2019-09-06', 'state': false},
+        {'date': '2019-09-06', 'state': false},
+        {'date': '2019-09-06', 'state': false},
+        {'date': '2019-09-06', 'state': false},
+      ]
     };
   },
   created() {
-    this.renderIdeas();
-    this.loadIdeas()
+    // this.loadIdeas()
   },
   methods: {
     // 加载指定日期的内容
@@ -92,34 +104,8 @@ export default {
         });
     },
     // 加载一周的内容
-    renderIdeas() {
-      let startDate = this.startDate;
-      if (!startDate) {
-        // 初次加载没有startDate, 加载当前日期及前七天
-        startDate = new Date();
-      }
 
-      let endDate = new Date(startDate);
-      endDate.setDate(endDate.getDate() - 6);
-      let start = formatDate(startDate, "yyyy-MM-dd");
-      let end = formatDate(endDate, "yyyy-MM-dd");
-      // 重新声明以便翻页时调用
-      this.startDate = startDate;
 
-      // 发起请求, 渲染页面数据
-      let url = this.$host + "/idea/";
-      this.$ajax
-        .get(url, {
-          params: {
-            start_date: start,
-            end_date: end
-          }
-        })
-        .then(res => {
-          this.chats = res.data.data;
-          console.log(this.chats);
-        });
-    },
     TopArrow() {
       this.noMoreData = false;
       if (this.skip != 0) {
@@ -138,12 +124,24 @@ export default {
       }
     },
     click(date) {
-      this.isShow = !this.isShow;
+     
       this.noMoreData = false;
       this.skip = 0;
       this.loadIdeas(date);
-      
     },
+
+    // 日期按钮点击方法
+    btnClick(index) {
+      this.clicked = index;
+      for (var i=0;i<7; i++) {
+        console.log(i)
+        if (i != index) {
+          this.buttons[i].state = false
+        }
+      }
+      this.isShow = !this.isShow;
+    },
+
     // 右箭头翻页
     nextPage() {
       let startDate = this.startDate;
@@ -195,6 +193,10 @@ export default {
   margin-left: 10px;
   transform: skew(38deg, 0deg);
 }
+.timeline-date .active {
+  color: red !important;
+}
+
 .timeline-day {
   z-index: 1;
   transform: skewX(-38deg);
