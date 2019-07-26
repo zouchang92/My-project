@@ -9,23 +9,23 @@
               <li v-for="(item, index) in calData" :key="index">
                 <div class="crow">
                   <div class="row-left">
-                    <div class="row-date">{{ item.agg_date | formatWeekDate }}</div>
+                    <div class="row-date" :class="{'row-date-red': item.agg_date==today}" :id="item.agg_date"><p>{{ item.agg_date | formatDateDate }}</p></div>
+                    <div class="row-week" :class="{'row-week-red': item.agg_date==today}" :id="item.agg_date"><p>{{ item.agg_date | formatDateWeek }}</p></div>
                   </div>
                   <div class="row-right">
-                    <div
-                      class="row-content"
-                      v-for="(itm, idx) in item.event_list"
-                      :key="idx"
-                      :id="`popover-${index}-${idx}`"
-                    >
-                      {{ itm.event_title }}
-                      <p>{{ itm.str_date }}</p>
-                      <b-popover :target="`popover-${index}-${idx}`" triggers="hover focus">
-                        <template slot="title">{{ itm.event_title }}</template>
-                        <h5>事件更新</h5>
+                    <div v-for="(itm, idx) in item.event_list" :key="idx">
+                      <b-button class="row-content" :id="`popover-${index}-${idx}`">
+                        <p>{{ itm.str_date }}</p>
+                        <span>{{ itm.event_title }}</span>
+                      </b-button>
+                      <b-popover :target="`popover-${index}-${idx}`" triggers="hover">
+                        <template slot="title" class="pop-header">{{ itm.event_title }}</template>
                         <div v-for="(ditm, didx) in itm.detail" :key="didx">
+                          <h3>{{ ditm.update_date }}</h3>
                           <p>{{ ditm.content }}</p>
-                          <strong>{{ ditm.update_date }}</strong>
+                          <h4>标的:</h4>
+                          <p>{{ ditm.targets }}</p>
+                          <!-- <strong>{{ ditm.update_date }}</strong> -->
                         </div>
                       </b-popover>
                     </div>
@@ -43,6 +43,7 @@
 <script>
 import BScroll from "better-scroll";
 import { getNow } from "@better-scroll/shared-utils";
+import { formatDate } from "@/common/date.js";
 
 export default {
   name: "Calendar",
@@ -61,9 +62,15 @@ export default {
       pulldownMsg: "下拉刷新",
       pullupMsg: "加载更多",
       alertHook: "none",
-      startDate: new Date()
+      startDate: new Date(),
+      today: formatDate(new Date(), 'yyyy-MM-dd')
     };
   },
+  // computed: {
+  //   today: function () {
+  //     let this_day = 
+  //   }
+  // },
 
   methods: {
     timeFormat(date) {
@@ -136,16 +143,21 @@ export default {
   },
 
   filters: {
-    formatWeekDate(date) {
+    formatDateDate(date) {
       if (!date) return ''
-      let arrWeek = new Array("星期日","星期一","星期二","星期三","星期四","星期五","星期六")
       let arrMonth = new Array("1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月")
       let newDate = new Date(date)
-      let weekday = arrWeek[newDate.getDay()]
       let month = arrMonth[newDate.getMonth()]
       let day = newDate.getDate()
-      let strDate = month + day + '日' + weekday
+      let strDate = month + day + '日'
       return strDate
+    },
+    formatDateWeek(date) {
+      if (!date) return ''
+      let arrWeek = new Array("星期日","星期一","星期二","星期三","星期四","星期五","星期六")
+      let newDate = new Date(date)
+      let weekday = arrWeek[newDate.getDay()]
+      return weekday
     }
   }
 };
@@ -192,9 +204,45 @@ export default {
 }
 .row-date {
   color: white;
+  height: 48px;
   display: block;
   position: relative;
   margin: 5px;
+}
+.row-date p {
+  font-size: 15px;
+  color: #f0f0f0
+}
+.row-date-red {
+  height: 48px;
+  display: block;
+  position: relative;
+  margin: 5px;
+}
+.row-date-red p {
+  font-size: 15px;
+  color: #c6001c
+}
+.row-week {
+  color: white;
+  height: 48px;
+  display: block;
+  position: relative;
+  margin: 5px;
+}
+.row-week p {
+  font-size: 12px;
+  color: #f0f0f0;
+}
+.row-week-red {
+  height: 48px;
+  display: block;
+  position: relative;
+  margin: 5px;
+}
+.row-week-red p {
+  font-size: 12px;
+  color: #c6001c;
 }
 .row-right {
   height: 110px;
@@ -210,5 +258,28 @@ export default {
   margin: 10px 15px;
   float: left;
   background: #f0efe8;
+}
+.row-content:hover {
+  background-color: #d3d3d3;
+}
+.row-content span {
+  position: relative;
+  left: -8px;
+  top: -30px;
+  font-size: 14px;
+  display: block;
+  color: #000000;
+  max-height: 50px;
+  display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: pre-wrap;
+  text-overflow: ellipsis;
+}
+.row-content p {
+  position: relative;
+  left: -22px;
+  top: -15px;
 }
 </style>

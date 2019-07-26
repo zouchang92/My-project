@@ -15,14 +15,14 @@
                 </div>
               </div>
             </div>
-            <div class="form-group mt-2">
+            <!-- <div class="form-group mt-2">
               <h6 class="mt-0 mb-3">输入时间</h6>
               <div class="form-row">
                 <div class="col-12">
                   <b-form-input type="datetime-local" v-model="time" required></b-form-input>
                 </div>
               </div>
-            </div>
+            </div> -->
             <div class="form-group mt-2">
               <h6 class="mt-0 mb-3">请输入内容 :</h6>
               <div class="form-row">
@@ -67,8 +67,8 @@ export default {
       let url = this.$host + '/idea/'
       let nickname = this.selected.nickname
       let username = this.selected.username
-      let pub_date = formatDate(new Date(this.time), 'yyyy-MM-dd')
-      let timestamp = Date.parse(new Date(this.time))
+      let pub_date = formatDate(new Date(), 'yyyy-MM-dd')
+      let timestamp = Date.parse(new Date())
       let postData = {
         username: username,
         nickname: nickname,

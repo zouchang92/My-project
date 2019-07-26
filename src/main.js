@@ -15,6 +15,7 @@ import './assets/css/font-awesome.min.css'
 import './assets/index.scss'
 import './assets/plus.css'
 import './assets/iconfont/iconfont.css'
+import './assets/custom.scss'
 
 // Global axios
 axios.defaults.withCredentials = true
