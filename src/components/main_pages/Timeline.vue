@@ -63,7 +63,7 @@ export default {
       curDate: formatDate(new Date(), "yyyy-MM-dd"),
       dailyChats: [],
       noMoreData: false,
-      message:[],
+      message:'',
     };
   },
   created() {
@@ -142,8 +142,7 @@ export default {
       this.noMoreData = false;
       this.skip = 0;
       this.loadIdeas(date);
-      console.log(this.$refs.id)
-      this.$refs.id.innerHTML = this.message
+      
     },
     // 右箭头翻页
     nextPage() {
