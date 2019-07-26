@@ -14,7 +14,7 @@
                   </div>
                   <div class="row-right">
                     <div v-for="(itm, idx) in item.event_list" :key="idx">
-                      <b-button class="row-content" :id="`popover-${index}-${idx}`">
+                      <b-button :style="{'background':'rgb('+Math.floor(Math.random()*50+180)+','+Math.floor(Math.random()*50+220)+','+Math.floor(Math.random()*50+220)+')'}" class="row-content" :id="`popover-${index}-${idx}`">
                         <p>{{ itm.str_date }}</p>
                         <span>{{ itm.event_title }}</span>
                       </b-button>
@@ -66,12 +66,18 @@ export default {
       today: formatDate(new Date(), 'yyyy-MM-dd')
     };
   },
-  // computed: {
-  //   today: function () {
-  //     let this_day = 
-  //   }
-  // },
-
+  computed: {
+    // today: function () {
+    //   let this_day = 
+    // }
+    RandomColor(index) {
+				let r, g, b;
+				r = Math.floor(Math.random() * 256);
+				g = Math.floor(Math.random() * 256);
+				b = Math.floor(Math.random() * 256);
+				return "rgb(" +r + ',' +g+ ',' +b+ ")";
+			}
+  },
   methods: {
     timeFormat(date) {
       if (!date || typeof date === "string") {
@@ -250,14 +256,14 @@ export default {
   float: right;
 }
 .row-content {
-  height: 90px;
-  width: 120px;
-  border: 1px solid #eee;
-  border-radius: 4px;
-  box-shadow: 0 3px 12px #000000;
-  margin: 10px 15px;
-  float: left;
-  background: #f0efe8;
+    height: 104px;
+    width: 105px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 3px 12px #000000;
+    box-shadow: 0 3px 12px #000000;
+    margin: -4px 15px;
+    float: left;
 }
 .row-content:hover {
   background-color: #d3d3d3;
@@ -278,8 +284,9 @@ export default {
   text-overflow: ellipsis;
 }
 .row-content p {
+  display: block;
   position: relative;
-  left: -22px;
-  top: -15px;
+  left: -1px;
+  top: 69px;
 }
 </style>
