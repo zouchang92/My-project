@@ -284,9 +284,10 @@ export default {
   text-overflow: ellipsis;
 }
 .row-content p {
-  display: block;
-  position: relative;
-  left: -1px;
-  top: 69px;
+    display: block;
+    position: relative;
+    left: -1px;
+    top: 66px;
+    font-size: 13px;
 }
 </style>
