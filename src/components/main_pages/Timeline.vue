@@ -22,9 +22,8 @@
             <span class="timeline-day">{{ item.date}}</span>
           </b-button>
           <!-- 事件轴内容 -->
-          
-            <div v-if="buttons[clicked].state" class="timeline-content">
-              <transition name="slide-fade">
+          <transition name="slide-fade" v-for="(item, index) in buttons" :key="index">
+            <div v-if="true" class="timeline-content">
               <ul class="timeline-content-date">
                 <li>
                   <div class="timeline-content-time">2019年7月1日</div>
@@ -40,9 +39,8 @@
                   </div>
                 </li>
               </ul>
-             </transition>
-
             </div>
+          </transition>
         </div>
       </div>
     </div>
