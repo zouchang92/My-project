@@ -82,27 +82,18 @@ export default {
   },
   methods: {
     // 加载指定日期的内容
-    loadIdeas(date) {
-      this.curDate = date;
-
-      let url = this.$host + "/idea-detail/";
+    loadEvents(date) {
+      let url = this.$host + "/timeline-detail/";
       this.$ajax
         .get(url, {
           params: {
-            pub_date: date,
-            skip: this.skip
+            start_date: date,
           }
         })
         .then(res => {
-          this.dailyChats = res.data.data;
-          if (res.data.data.length != 8) {
-            this.noMoreData = true;
-          }
-          console.log(this.dailyChats);
+          console.log(res)
         });
     },
-    // 加载一周的内容
-
 
     TopArrow() {
       this.noMoreData = false;
