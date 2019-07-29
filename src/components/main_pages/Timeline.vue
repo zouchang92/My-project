@@ -27,7 +27,7 @@
               <transition name="slide-fade">
               <ul class="timeline-content-date">
                 <li>
-                  <div class="timeline-content-time">{{message}}</div>
+                  <div class="timeline-content-time">2019年7月1日</div>
                   <div class="timeline-content-details" v-for="(itm,idx) in dailyChats" :key="idx">
                     <span class="timeline-content-title">{{ itm.nickname }}</span>
                     <p class="timeline-content-event">{{ itm.content }}</p>
