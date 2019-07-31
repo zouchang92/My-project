@@ -7,62 +7,40 @@
         <!-- 横向事件轴 -->
         <div class="timeline-date">
           <div class="timeline-arrow">
-            <i class="iconfont icon-icon-test-copy timeline-right" @click="prePage()"></i>
-            <i class="iconfont icon-icon-test timeline-left" @click="nextPage()"></i>
+            <i class="iconfont icon-iconfont2-left-copy timeline-right" @click="prePage()"></i>
+            <i class="iconfont icon-iconfont2-right timeline-left" @click="nextPage()"></i>
           </div>
-          <ul>
-            <li>
-              <b-button
-                class="timeline-time"
-                v-for="(item,index) in buttons"
-                :key="index"
-                @click="btnClick(item,index)"
-                :id="`btn-${index}`"
-                :pressed.sync="item.state"
-              >
-                <span ref="btn" class="timeline-day">{{ item.date }}</span>
-              </b-button>
-              <!-- 事件轴内容 -->
-              <div v-if="buttons[clicked].state" class="timeline-content">
-                <ul class="timeline-content-date">
-                  <div class="timeline-content-time">{{ list.agg_date }}</div>
-                  <li>
-                    <div
-                      class="timeline-content-details"
-                      v-for="(itm,idx) in list.event_list"
-                      :key="idx"
-                      id="popover-button-variant"
-                    >
-                      <span class="timeline-content-title">{{itm.event_title}}</span>
-                      <p class="timeline-content-event">今天</p>
-                      <p class="content-time">
-                        <i class="iconfont icon-iconfontyoujiantou-copy"></i>
-                      </p>
-                      <b-popover
-                      style="max-width:600px"
-                        target="popover-button-variant"
-                        triggers="click focus"
-                        placement="rightbottom"
-                      >
-                        <template slot="title">{{ itm.event_title }}</template>
-                        <div v-for="(ait,aix) in itm.detail" :key="aix">
-                          <h3>{{ ait.event_title}}</h3>
-                          <p>{{ ait.content}}</p>
-                          <h4 style="color:red">标的:</h4>
-                          <p style="font-size:14px;color:#ccc">{{ ait.targets }}</p>
-                        </div>
-                      </b-popover>
-                    </div>
-                    <!-- 上下翻页 -->
-                    <div class="timeline-arr">
-                      <span class="top-arrow" @click="TopArrow">上一页</span>
-                      <span class="buttom-arrow" @click="ButtomArrow">下一页</span>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </li>
-          </ul>
+          <b-button
+            v-for="(item,index) in buttons"
+            class="timeline-time"
+            @click="btnClick(index)"
+            :key="index"
+            :id="`btn-${index}`"
+            :pressed.sync="item.state"
+            ref="btn"
+          >
+            <span class="timeline-day">{{ item.date}}</span>
+          </b-button>
+          <!-- 事件轴内容 -->
+          <transition name="slide-fade" v-for="(item, index) in buttons" :key="index">
+            <div v-if="true" class="timeline-content">
+              <ul class="timeline-content-date">
+                <li>
+                  <div class="timeline-content-time">2019年7月1日</div>
+                  <div class="timeline-content-details" v-for="(itm,idx) in dailyChats" :key="idx">
+                    <span class="timeline-content-title">{{ itm.nickname }}</span>
+                    <p class="timeline-content-event">{{ itm.content }}</p>
+                    <p class="content-time">{{ itm.timestamp | formatClock }}</p>
+                  </div>
+                  <!-- 上下翻页 -->
+                  <div class="timeline-arr">
+                    <span class="top-arrow" @click="TopArrow">上一页</span>
+                    <span class="buttom-arrow" @click="ButtomArrow">下一页</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </transition>
         </div>
       </div>
     </div>
@@ -85,18 +63,17 @@ export default {
       curDate: formatDate(new Date(), "yyyy-MM-dd"),
       dailyChats: [],
       noMoreData: false,
-      message: "",
-      list: "",
+      message:'',
       btnState: [false, false, false, false, false, false, false],
       clicked: 0,
       buttons: [
-        { date: "2019-07-28", state: false },
-        { date: "2019-07-27", state: false },
-        { date: "2019-07-26", state: false },
-        { date: "2019-07-25", state: false },
-        { date: "2019-07-24", state: false },
-        { date: "2019-07-23", state: false },
-        { date: "2019-07-22", state: false }
+        {'date': '2019-09-06', 'state': false},
+        {'date': '2019-09-06', 'state': false},
+        {'date': '2019-09-06', 'state': false},
+        {'date': '2019-09-06', 'state': false},
+        {'date': '2019-09-06', 'state': false},
+        {'date': '2019-09-06', 'state': false},
+        {'date': '2019-09-06', 'state': false},
       ]
     };
   },
@@ -110,12 +87,11 @@ export default {
       this.$ajax
         .get(url, {
           params: {
-            start_date: date
+            start_date: date,
           }
         })
         .then(res => {
-          this.list = res.data.data;
-          console.log(this.list);
+          console.log(res)
         });
     },
 
@@ -124,38 +100,37 @@ export default {
       if (this.skip != 0) {
         this.skip -= 8;
         this.loadIdeas(this.curDate);
-      } else {
-        alert("没有内容了");
+      }else{
+        alert('没有内容了')
       }
     },
     ButtomArrow() {
       if (this.noMoreData == false) {
         this.skip += 8;
         this.loadIdeas(this.curDate);
-      } else {
-        alert("没有内容了");
+      }else{
+        alert('没有内容了')
       }
     },
     click(date) {
+     
       this.noMoreData = false;
       this.skip = 0;
       this.loadIdeas(date);
     },
 
     // 日期按钮点击方法
-    btnClick(item, index) {
+    btnClick(index) {
       this.clicked = index;
-      for (var i = 0; i < 7; i++) {
-        // console.log(i);
+      for (var i=0;i<7; i++) {
+        console.log(i)
         if (i != index) {
-          this.buttons[i].state = false;
+          this.buttons[i].state = false
         }
       }
       this.isShow = !this.isShow;
-      console.log(item.date);
-      let date = item.date;
-      this.loadEvents(date);
     },
+
     // 右箭头翻页
     nextPage() {
       let startDate = this.startDate;
@@ -223,8 +198,8 @@ export default {
 }
 .timeline-right {
   position: absolute;
-  top: 6px;
-  left: -52px;
+  top: 3px;
+  left: -30px;
 }
 .timeline-left {
   position: absolute;
@@ -255,15 +230,14 @@ export default {
 }
 .timeline-content-details {
   height: 61px;
+  margin: 0px 17px;
 }
 .content-time {
   position: relative;
   top: -55px;
-  left: 244px;
+  left: 214px;
   font-size: 13px;
-}
-.content-time .iconfont {
-  font-size: 24px;
+  color: #ccc;
 }
 .timeline-content-date {
   padding: 0px;
@@ -306,17 +280,6 @@ export default {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-}
-.timeline-content-title,
-.timeline-content-event {
-  margin-left: 20px;
-}
-
-.popover-header{
-  margin-top: 0px !important
-}
-.popover{
-  max-width: 600px !important;
 }
 </style>
 
