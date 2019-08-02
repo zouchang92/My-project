@@ -31,7 +31,7 @@
                       class="timeline-content-details"
                       v-for="(itm,idx) in list.event_list"
                       :key="idx"
-                      id="popover-button-variant"
+                      :id="`timeline-${idx}`"
                     >
                       <span class="timeline-content-title">{{itm.event_title}}</span>
                       <p class="timeline-content-event">今天</p>
@@ -39,10 +39,10 @@
                         <i class="iconfont icon-iconfontyoujiantou-copy"></i>
                       </p>
                       <b-popover
-                      style="max-width:600px"
-                        target="popover-button-variant"
-                        triggers="click focus"
+                        style="max-width:600px"
+                        :target="`timeline-${idx}`"
                         placement="rightbottom"
+                        triggers="click blur"
                       >
                         <template slot="title">{{ itm.event_title }}</template>
                         <div v-for="(ait,aix) in itm.detail" :key="aix">
@@ -78,30 +78,32 @@ export default {
     return {
       start: 0,
       end: 9,
-      start_date: 0,
-      end_date: 6,
+      start_date: '',
+      end_date: '',
       isShow: false,
       skip: 0,
       curDate: formatDate(new Date(), "yyyy-MM-dd"),
-      dailyChats: [],
       noMoreData: false,
       message: "",
       list: "",
       btnState: [false, false, false, false, false, false, false],
       clicked: 0,
       buttons: [
+        { date: "2019-08-01", state: false },
+        { date: "2019-07-29", state: false },
         { date: "2019-07-28", state: false },
         { date: "2019-07-27", state: false },
         { date: "2019-07-26", state: false },
         { date: "2019-07-25", state: false },
-        { date: "2019-07-24", state: false },
-        { date: "2019-07-23", state: false },
-        { date: "2019-07-22", state: false }
+        { date: "2019-07-24", state: false }
       ]
     };
   },
   created() {
-    // this.loadIdeas()
+    
+  },
+  mounted() {
+    
   },
   methods: {
     // 加载指定日期的内容
@@ -171,7 +173,7 @@ export default {
       this.startDate = startDate;
       this.renderIdeas();
       this.dailyChats = [];
-    }
+    },
   },
   filters: {
     formatPubDate(time) {
@@ -312,10 +314,10 @@ export default {
   margin-left: 20px;
 }
 
-.popover-header{
-  margin-top: 0px !important
+.popover-header {
+  margin-top: 0px !important;
 }
-.popover{
+.popover {
   max-width: 600px !important;
 }
 </style>
