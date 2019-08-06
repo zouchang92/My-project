@@ -155,7 +155,7 @@ export default {
       let da = days.firstElementChild.innerHTML
       console.log(da)
       let startDate = new Date(da);
-      startDate.setDate(startDate.getDate() - 7);
+      startDate.setDate(startDate.getDate() - 6);
       let Date2 = new Date(startDate.getTime() - 24 * 60 * 60 * 1000); 
       let Date3 = new Date(startDate.getTime() - 48 * 60 * 60 * 1000); 
       let Date4 = new Date(startDate.getTime() - 72 * 60 * 60 * 1000); 
@@ -169,7 +169,7 @@ export default {
       let e = formatDate(Date5, "yyyy-MM-dd");
       let f = formatDate(Date6, "yyyy-MM-dd");
       let g = formatDate(Date7, "yyyy-MM-dd");
-      // console.log(a,b,c,d,e,f,g)
+      console.log(a,b,c,d,e,f,g)
       this.buttons = [
         { date: a, state: false },
         { date: b, state: false },
@@ -200,7 +200,7 @@ export default {
       let e = formatDate(Date5, "yyyy-MM-dd");
       let f = formatDate(Date6, "yyyy-MM-dd");
       let g = formatDate(Date7, "yyyy-MM-dd");
-      // console.log(a,b,c,d,e,f,g)
+      console.log(a,b,c,d,e,f,g)
       this.buttons = [
         { date: g, state: false },
         { date: f, state: false },
