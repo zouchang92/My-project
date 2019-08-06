@@ -78,33 +78,24 @@ export default {
     return {
       start: 0,
       end: 9,
-      start_date: '',
-      end_date: '',
+      start_date: "",
+      end_date: "",
       isShow: false,
       skip: 0,
       curDate: formatDate(new Date(), "yyyy-MM-dd"),
       noMoreData: false,
       message: "",
       list: "",
+      chats:'',
       btnState: [false, false, false, false, false, false, false],
       clicked: 0,
-      buttons: [
-        { date: "2019-08-01", state: false },
-        { date: "2019-07-29", state: false },
-        { date: "2019-07-28", state: false },
-        { date: "2019-07-27", state: false },
-        { date: "2019-07-26", state: false },
-        { date: "2019-07-25", state: false },
-        { date: "2019-07-24", state: false }
-      ]
+      buttons: []
     };
   },
   created() {
-    
+    this.getEvryDay();
   },
-  mounted() {
-    
-  },
+  mounted() {},
   methods: {
     // 加载指定日期的内容
     loadEvents(date) {
@@ -133,7 +124,7 @@ export default {
     ButtomArrow() {
       if (this.noMoreData == false) {
         this.skip += 8;
-        this.loadIdeas(this.curDate);
+        this.list(this.curDate);
       } else {
         alert("没有内容了");
       }
@@ -160,20 +151,98 @@ export default {
     },
     // 右箭头翻页
     nextPage() {
-      let startDate = this.startDate;
+      let days = document.getElementById('btn-1')
+      let da = days.firstElementChild.innerHTML
+      console.log(da)
+      let startDate = new Date(da);
       startDate.setDate(startDate.getDate() - 7);
-      this.startDate = startDate;
-      this.renderIdeas();
-      this.dailyChats = [];
+      let Date2 = new Date(startDate.getTime() - 24 * 60 * 60 * 1000); 
+      let Date3 = new Date(startDate.getTime() - 48 * 60 * 60 * 1000); 
+      let Date4 = new Date(startDate.getTime() - 72 * 60 * 60 * 1000); 
+      let Date5 = new Date(startDate.getTime() - 96 * 60 * 60 * 1000); 
+      let Date6 = new Date(startDate.getTime() - 120 * 60 * 60 * 1000); 
+      let Date7 = new Date(startDate.getTime() - 144 * 60 * 60 * 1000);
+      let a = formatDate(startDate, "yyyy-MM-dd");
+      let b = formatDate(Date2, "yyyy-MM-dd");
+      let c = formatDate(Date3, "yyyy-MM-dd");
+      let d = formatDate(Date4, "yyyy-MM-dd");
+      let e = formatDate(Date5, "yyyy-MM-dd");
+      let f = formatDate(Date6, "yyyy-MM-dd");
+      let g = formatDate(Date7, "yyyy-MM-dd");
+      // console.log(a,b,c,d,e,f,g)
+      this.buttons = [
+        { date: a, state: false },
+        { date: b, state: false },
+        { date: c, state: false },
+        { date: d, state: false },
+        { date: e, state: false },
+        { date: f, state: false },
+        { date: g, state: false }
+      ];
     },
     // 左箭头翻页
     prePage() {
-      let startDate = this.startDate;
+      let days = document.getElementById('btn-6')
+      let da = days.firstElementChild.innerHTML
+      console.log(da)
+      let startDate = new Date(da);
       startDate.setDate(startDate.getDate() + 7);
-      this.startDate = startDate;
-      this.renderIdeas();
-      this.dailyChats = [];
+      let Date2 = new Date(startDate.getTime() + 24 * 60 * 60 * 1000); 
+      let Date3 = new Date(startDate.getTime() + 48 * 60 * 60 * 1000); 
+      let Date4 = new Date(startDate.getTime() + 72 * 60 * 60 * 1000); 
+      let Date5 = new Date(startDate.getTime() + 96 * 60 * 60 * 1000); 
+      let Date6 = new Date(startDate.getTime() + 120 * 60 * 60 * 1000); 
+      let Date7 = new Date(startDate.getTime() + 144 * 60 * 60 * 1000);
+      let a = formatDate(startDate, "yyyy-MM-dd");
+      let b = formatDate(Date2, "yyyy-MM-dd");
+      let c = formatDate(Date3, "yyyy-MM-dd");
+      let d = formatDate(Date4, "yyyy-MM-dd");
+      let e = formatDate(Date5, "yyyy-MM-dd");
+      let f = formatDate(Date6, "yyyy-MM-dd");
+      let g = formatDate(Date7, "yyyy-MM-dd");
+      // console.log(a,b,c,d,e,f,g)
+      this.buttons = [
+        { date: g, state: false },
+        { date: f, state: false },
+        { date: e, state: false },
+        { date: d, state: false },
+        { date: c, state: false },
+        { date: b, state: false },
+        { date: a, state: false }
+      ];
     },
+    getEvryDay() {
+      //当天
+      let Date1 = new Date(); 
+      //前一天
+      let Date2 = new Date(Date1.getTime() - 24 * 60 * 60 * 1000); 
+      //前两天
+      let Date3 = new Date(Date1.getTime() - 48 * 60 * 60 * 1000); 
+      //前三天
+      let Date4 = new Date(Date1.getTime() - 72 * 60 * 60 * 1000); 
+      //前四天
+      let Date5 = new Date(Date1.getTime() - 96 * 60 * 60 * 1000); 
+      //前五天
+      let Date6 = new Date(Date1.getTime() - 120 * 60 * 60 * 1000); 
+      //前六天
+      let Date7 = new Date(Date1.getTime() - 144 * 60 * 60 * 1000);
+      let a = formatDate(Date1, "yyyy-MM-dd");
+      let b = formatDate(Date2, "yyyy-MM-dd");
+      let c = formatDate(Date3, "yyyy-MM-dd");
+      let d = formatDate(Date4, "yyyy-MM-dd");
+      let e = formatDate(Date5, "yyyy-MM-dd");
+      let f = formatDate(Date6, "yyyy-MM-dd");
+      let g = formatDate(Date7, "yyyy-MM-dd");
+      this.buttons = [
+        { date: a, state: false },
+        { date: b, state: false },
+        { date: c, state: false },
+        { date: d, state: false },
+        { date: e, state: false },
+        { date: f, state: false },
+        { date: g, state: false }
+      ];
+    }
   },
   filters: {
     formatPubDate(time) {
