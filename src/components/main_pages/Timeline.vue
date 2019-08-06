@@ -86,7 +86,7 @@ export default {
       noMoreData: false,
       message: "",
       list: "",
-      chats:'',
+      chats: "",
       btnState: [false, false, false, false, false, false, false],
       clicked: 0,
       buttons: []
@@ -108,7 +108,10 @@ export default {
         })
         .then(res => {
           this.list = res.data.data;
-          console.log(this.list);
+          if (res.data.data.length != 8) {
+            this.noMoreData = true;
+          }
+          // console.log(this.list);
         });
     },
 
@@ -151,16 +154,16 @@ export default {
     },
     // 右箭头翻页
     nextPage() {
-      let days = document.getElementById('btn-1')
-      let da = days.firstElementChild.innerHTML
-      console.log(da)
+      let days = document.getElementById("btn-1");
+      let da = days.firstElementChild.innerHTML;
+      // console.log(da)
       let startDate = new Date(da);
       startDate.setDate(startDate.getDate() - 6);
-      let Date2 = new Date(startDate.getTime() - 24 * 60 * 60 * 1000); 
-      let Date3 = new Date(startDate.getTime() - 48 * 60 * 60 * 1000); 
-      let Date4 = new Date(startDate.getTime() - 72 * 60 * 60 * 1000); 
-      let Date5 = new Date(startDate.getTime() - 96 * 60 * 60 * 1000); 
-      let Date6 = new Date(startDate.getTime() - 120 * 60 * 60 * 1000); 
+      let Date2 = new Date(startDate.getTime() - 24 * 60 * 60 * 1000);
+      let Date3 = new Date(startDate.getTime() - 48 * 60 * 60 * 1000);
+      let Date4 = new Date(startDate.getTime() - 72 * 60 * 60 * 1000);
+      let Date5 = new Date(startDate.getTime() - 96 * 60 * 60 * 1000);
+      let Date6 = new Date(startDate.getTime() - 120 * 60 * 60 * 1000);
       let Date7 = new Date(startDate.getTime() - 144 * 60 * 60 * 1000);
       let a = formatDate(startDate, "yyyy-MM-dd");
       let b = formatDate(Date2, "yyyy-MM-dd");
@@ -169,7 +172,7 @@ export default {
       let e = formatDate(Date5, "yyyy-MM-dd");
       let f = formatDate(Date6, "yyyy-MM-dd");
       let g = formatDate(Date7, "yyyy-MM-dd");
-      console.log(a,b,c,d,e,f,g)
+      // console.log(a,b,c,d,e,f,g)
       this.buttons = [
         { date: a, state: false },
         { date: b, state: false },
@@ -182,16 +185,16 @@ export default {
     },
     // 左箭头翻页
     prePage() {
-      let days = document.getElementById('btn-6')
-      let da = days.firstElementChild.innerHTML
-      console.log(da)
+      let days = document.getElementById("btn-6");
+      let da = days.firstElementChild.innerHTML;
+      // console.log(da)
       let startDate = new Date(da);
       startDate.setDate(startDate.getDate() + 7);
-      let Date2 = new Date(startDate.getTime() + 24 * 60 * 60 * 1000); 
-      let Date3 = new Date(startDate.getTime() + 48 * 60 * 60 * 1000); 
-      let Date4 = new Date(startDate.getTime() + 72 * 60 * 60 * 1000); 
-      let Date5 = new Date(startDate.getTime() + 96 * 60 * 60 * 1000); 
-      let Date6 = new Date(startDate.getTime() + 120 * 60 * 60 * 1000); 
+      let Date2 = new Date(startDate.getTime() + 24 * 60 * 60 * 1000);
+      let Date3 = new Date(startDate.getTime() + 48 * 60 * 60 * 1000);
+      let Date4 = new Date(startDate.getTime() + 72 * 60 * 60 * 1000);
+      let Date5 = new Date(startDate.getTime() + 96 * 60 * 60 * 1000);
+      let Date6 = new Date(startDate.getTime() + 120 * 60 * 60 * 1000);
       let Date7 = new Date(startDate.getTime() + 144 * 60 * 60 * 1000);
       let a = formatDate(startDate, "yyyy-MM-dd");
       let b = formatDate(Date2, "yyyy-MM-dd");
@@ -200,7 +203,7 @@ export default {
       let e = formatDate(Date5, "yyyy-MM-dd");
       let f = formatDate(Date6, "yyyy-MM-dd");
       let g = formatDate(Date7, "yyyy-MM-dd");
-      console.log(a,b,c,d,e,f,g)
+      // console.log(a,b,c,d,e,f,g)
       this.buttons = [
         { date: g, state: false },
         { date: f, state: false },
@@ -213,17 +216,17 @@ export default {
     },
     getEvryDay() {
       //当天
-      let Date1 = new Date(); 
+      let Date1 = new Date();
       //前一天
-      let Date2 = new Date(Date1.getTime() - 24 * 60 * 60 * 1000); 
+      let Date2 = new Date(Date1.getTime() - 24 * 60 * 60 * 1000);
       //前两天
-      let Date3 = new Date(Date1.getTime() - 48 * 60 * 60 * 1000); 
+      let Date3 = new Date(Date1.getTime() - 48 * 60 * 60 * 1000);
       //前三天
-      let Date4 = new Date(Date1.getTime() - 72 * 60 * 60 * 1000); 
+      let Date4 = new Date(Date1.getTime() - 72 * 60 * 60 * 1000);
       //前四天
-      let Date5 = new Date(Date1.getTime() - 96 * 60 * 60 * 1000); 
+      let Date5 = new Date(Date1.getTime() - 96 * 60 * 60 * 1000);
       //前五天
-      let Date6 = new Date(Date1.getTime() - 120 * 60 * 60 * 1000); 
+      let Date6 = new Date(Date1.getTime() - 120 * 60 * 60 * 1000);
       //前六天
       let Date7 = new Date(Date1.getTime() - 144 * 60 * 60 * 1000);
       let a = formatDate(Date1, "yyyy-MM-dd");
@@ -296,11 +299,17 @@ export default {
   position: absolute;
   top: 6px;
   left: -52px;
+  opacity: 0.3;
 }
 .timeline-left {
   position: absolute;
   top: 3px;
   left: 1135px;
+  opacity: 0.3;
+}
+.timeline-right:hover,
+.timeline-left:hover {
+  opacity: 1;
 }
 .timeline-content {
   width: 294px;
@@ -352,17 +361,7 @@ export default {
 .timeline-arr span {
   margin: 0px 54px 0px 47px;
 }
-.slide-fade-enter-active {
-  transition: all 0.3s ease;
-}
-.slide-fade-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-}
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active for below version 2.1.8 */ {
-  transform: translateX(10px);
-  opacity: 0;
-}
+
 .timeline-accordion {
   transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
   transform: translateX(10px);
