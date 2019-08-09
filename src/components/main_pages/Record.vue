@@ -174,6 +174,8 @@ export default {
     // 右箭头翻页
     nextPage() {
       let startDate = this.startDate;
+      let as = formatDate(startDate,"yyyy-MM-dd")
+      console.log(as)
       startDate.setDate(startDate.getDate() - 7);
       this.startDate = startDate;
       this.renderIdeas();

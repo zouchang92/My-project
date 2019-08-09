@@ -14,10 +14,10 @@
               <h6 class="mt-0 mb-3">Enter Your Mobile Number :</h6>
               <div class="form-row">
                 <div class="col-4">
-                  <input type="text" class="form-control digits mb-1" value="+ 91">
+                  <input type="text" class="form-control digits mb-1" value="+ 86">
                 </div>
                 <div class="col-8">
-                  <input type="tel" class="form-control digits mb-1"  value="000-000-0000">
+                  <input type="tel" class="form-control digits mb-1"  value="000-0000-0000">
                 </div>
                 <div class="col-12 mt-4">
                   <button type="submit" class="btn btn-custom btn-block theme-color">Send</button>

@@ -12,20 +12,20 @@
           <form class="theme-form">
             <div class="form-group">
               <div class="md-fgrup-margin">
-                <input type="text" class="form-control" placeholder="your name" required="required">
+                <input type="text" class="form-control" placeholder="用户名" required="required">
               </div>
             </div>
             <div class="form-group">
-              <input type="number" class="form-control" placeholder="phone" required="required">
+              <input type="number" class="form-control" placeholder="联系方式" required="required">
             </div>
             <div class="form-group">
-              <input type="email" class="form-control" placeholder="email address" required="required">
+              <input type="email" class="form-control" placeholder="邮箱" required="required">
             </div>
             <div class="form-group">
-              <input required="" type="password" class="form-control" placeholder="Password">
+              <input required="" type="password" class="form-control" placeholder="密码">
             </div>
             <div class="form-group">
-            <input :type="showpassword ? 'password' : 'text'" required="required" name="login[conform_password]" class="form-control" placeholder="Conform password">
+            <input :type="showpassword ? 'password' : 'text'" required="required" name="login[conform_password]" class="form-control" placeholder="重新输入密码">
               <div  v-on:click="showpassword = !showpassword" class="show-hide">
                 <span :class="{show:showpassword}"></span>
               </div>
@@ -33,9 +33,9 @@
             <div class="form-group row">
               <div class="custom-control custom-checkbox col-6">
                 <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
-                <label class="custom-control-label" for="customControlAutosizing">Remember me</label>
+                <label class="custom-control-label" for="customControlAutosizing">记住我</label>
               </div>
-              <a :href='"/tovo/forget-Password"' class="text-right col-6 theme-link">lost your password</a>
+              <a :href='"/tovo/forget-Password"' class="text-right col-6 theme-link">忘记密码</a>
             </div>
             <div class="form-button text-center">
               <button type="submit" class="btn btn-custom theme-color">Sign Up</button>

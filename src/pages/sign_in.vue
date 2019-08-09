@@ -7,14 +7,14 @@
       </div>
       <div>
         <h2 class="title text-center"><span> Login</span></h2>
-        <p class="text-center">Welcome to tovo, Please Login with your personal account information.</p>
+        <p class="text-center">Welcome to Plus, Please Login with your personal account information.</p>
         <div class="card">
           <form class="theme-form">
             <div class="form-group">
-              <input type="email" class="form-control" placeholder="email address" required="required">
+              <input type="email" class="form-control" placeholder="请输入用户名" required="required">
             </div>
             <div class="form-group">
-              <input :type="showpassword ? 'password' : 'text'" required="" name="login[password]" class="form-control" placeholder="Password">
+              <input :type="showpassword ? 'password' : 'text'" required="" name="login[password]" class="form-control" placeholder="请输入密码">
               <div  v-on:click="showpassword = !showpassword" class="show-hide">
                 <span :class="{show:showpassword}"></span>
               </div>
@@ -22,12 +22,12 @@
             <div class="form-group row">
               <div class="custom-control custom-checkbox col-6">
                 <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
-                <label class="custom-control-label" for="customControlAutosizing">Remember me</label>
+                <label class="custom-control-label" for="customControlAutosizing">记住我</label>
               </div>
               <a :href='"/tovo/forget-Password"' class="text-right col-6 theme-link">lost your password</a>
             </div>
             <div class="form-button text-center">
-              <button type="submit" class="btn btn-custom btn-lg theme-color">Login</button>
+              <button type="submit" class="btn btn-custom btn-lg theme-color">登录</button>
             </div>
             <div class="or-saparator"><span>or</span></div>
             <h6 class="text-center mt-0 mb-3">Sign in with:</h6>
