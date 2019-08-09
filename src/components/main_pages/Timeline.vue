@@ -132,14 +132,6 @@ export default {
         alert("没有内容了");
       }
     },
-<<<<<<< HEAD
-=======
-    click(date) {
-      this.noMoreData = false;
-      this.skip = 0;
-      this.loadIdeas(date);
-    },
->>>>>>> 98103c284ab210471ae6c773ec7e72d92e0d8a72
 
     // 日期按钮点击方法
     btnClick(item, index) {
