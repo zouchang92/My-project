@@ -10,59 +10,45 @@
             <i class="iconfont icon-icon-test-copy timeline-right" @click="prePage()"></i>
             <i class="iconfont icon-icon-test timeline-left" @click="nextPage()"></i>
           </div>
-          <ul>
-            <li>
-              <b-button
-                class="timeline-time"
-                v-for="(item,index) in buttons"
-                :key="index"
-                @click="btnClick(item,index)"
-                :id="`btn-${index}`"
-                :pressed.sync="item.state"
-              >
-                <span ref="btn" class="timeline-day">{{ item.date }}</span>
-              </b-button>
-              <!-- 事件轴内容 -->
-              <div v-if="buttons[clicked].state" class="timeline-content">
-                <ul class="timeline-content-date">
-                  <div class="timeline-content-time">{{ list.agg_date }}</div>
+
+          <div class="tl-container">
+            <b-button @click="show1 = !show1">111</b-button>
+
+            <transition name="el-zoom-in-top">
+              <div class="tl-box" v-show="show1">
+                <b-card>date</b-card>
+                <ul>
                   <li>
-                    <div
-                      class="timeline-content-details"
-                      v-for="(itm,idx) in list.event_list"
-                      :key="idx"
-                      :id="`timeline-${idx}`"
-                    >
-                      <span class="timeline-content-title">{{itm.event_title}}</span>
-                      <p class="timeline-content-event">今天</p>
-                      <p class="content-time">
-                        <i class="iconfont icon-iconfontyoujiantou-copy"></i>
-                      </p>
-                      <b-popover
-                        style="max-width:600px"
-                        :target="`timeline-${idx}`"
-                        placement="rightbottom"
-                        triggers="click blur"
-                      >
-                        <template slot="title">{{ itm.event_title }}</template>
-                        <div v-for="(ait,aix) in itm.detail" :key="aix">
-                          <h3>{{ ait.event_title}}</h3>
-                          <p>{{ ait.content}}</p>
-                          <h4 style="color:red">标的:</h4>
-                          <p style="font-size:14px;color:#ccc">{{ ait.targets }}</p>
-                        </div>
-                      </b-popover>
-                    </div>
-                    <!-- 上下翻页 -->
-                    <div class="timeline-arr">
-                      <span class="top-arrow" @click="TopArrow">上一页</span>
-                      <span class="buttom-arrow" @click="ButtomArrow">下一页</span>
-                    </div>
+                    <p>title1</p>
+                  </li>
+                  <li>
+                    <p>title1</p>
+                  </li>
+                  <li>
+                    <p>title1</p>
                   </li>
                 </ul>
               </div>
-            </li>
-          </ul>
+            </transition>
+          </div>
+          <div class="tl-container">
+            <b-button>222</b-button>
+          </div>
+          <div class="tl-container">
+            <b-button>333</b-button>
+          </div>
+          <div class="tl-container">
+            <b-button>444</b-button>
+          </div>
+          <div class="tl-container">
+            <b-button>555</b-button>
+          </div>
+          <div class="tl-container">
+            <b-button>666</b-button>
+          </div>
+          <div class="tl-container">
+            <b-button>777</b-button>
+          </div>
         </div>
       </div>
     </div>
@@ -83,13 +69,7 @@ export default {
       isShow: false,
       skip: 0,
       curDate: formatDate(new Date(), "yyyy-MM-dd"),
-      noMoreData: false,
-      message: "",
-      list: "",
-      chats: "",
-      btnState: [false, false, false, false, false, false, false],
-      clicked: 0,
-      buttons: []
+      show1: false
     };
   },
   created() {
@@ -131,29 +111,6 @@ export default {
       } else {
         alert("没有内容了");
       }
-    },
-<<<<<<< HEAD
-=======
-    click(date) {
-      this.noMoreData = false;
-      this.skip = 0;
-      this.loadIdeas(date);
-    },
->>>>>>> 98103c284ab210471ae6c773ec7e72d92e0d8a72
-
-    // 日期按钮点击方法
-    btnClick(item, index) {
-      this.clicked = index;
-      for (var i = 0; i < 7; i++) {
-        // console.log(i);
-        if (i != index) {
-          this.buttons[i].state = false;
-        }
-      }
-      this.isShow = !this.isShow;
-      console.log(item.date);
-      let date = item.date;
-      this.loadEvents(date);
     },
     // 右箭头翻页
     nextPage() {
@@ -314,82 +271,19 @@ export default {
 .timeline-left:hover {
   opacity: 1;
 }
-.timeline-content {
-  width: 294px;
-  height: 703px;
-  position: relative;
-  top: 96px;
-  left: 43px;
-  background: azure;
+.tl-container {
+  height: 700px;
+  width: 150px;
+  background: yellow;
+  margin: 0 5px;
+  float: left;
+  display: block;
 }
-.timeline-content-time {
-  position: relative;
-  top: -19px;
-  left: 35px;
-}
-.timeline-content-time::after {
-  content: "";
-  width: 276px;
-  height: 2px;
-  background: #ccc;
-  position: absolute;
-  top: 65px;
-  left: -27px;
-}
-.timeline-content-details {
-  height: 61px;
-}
-.content-time {
-  position: relative;
-  top: -55px;
-  left: 244px;
-  font-size: 13px;
-}
-.content-time .iconfont {
-  font-size: 24px;
-}
-.timeline-content-date {
-  padding: 0px;
-}
-.timeline-content-date:nth-child(2n + 1) .timeline-content-datails {
-  background: #000;
-}
-.timeline-date .btn {
-  background: #ccc;
-}
-.timeline-arr {
-  text-align: center;
-  color: #ccc;
-}
-.timeline-arr span {
-  margin: 0px 54px 0px 47px;
-}
-
-.timeline-accordion {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-  transform: translateX(10px);
-  opacity: 0;
-}
-.buttom-arrow:hover,
-.top-arrow:hover {
-  color: #000;
-}
-.timeline-content-event {
+.tl-box {
+  margin-top: 15px;
+  background: blue;
   width: 200px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-.timeline-content-title,
-.timeline-content-event {
-  margin-left: 20px;
-}
-
-.popover-header {
-  margin-top: 0px !important;
-}
-.popover {
-  max-width: 600px !important;
+  z-index: 9999;
 }
 </style>
 

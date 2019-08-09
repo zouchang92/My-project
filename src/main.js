@@ -7,6 +7,8 @@ import BootstrapVue from 'bootstrap-vue'
 import vueVimeoPlayer from 'vue-vimeo-player'
 import carousel from 'v-owl-carousel'
 import axios from 'axios'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 
 // css and scss files include
 import 'bootstrap/dist/css/bootstrap.css'
@@ -35,6 +37,7 @@ Vue.prototype.$host = 'http://106.14.4.121:8000'
 // remove below file for change color
 // import './assets/css/color/color-2.css'
 
+Vue.use(ElementUI)
 Vue.use(BootstrapVue)
 Vue.use(vueVimeoPlayer)
 Vue.component('carousel', carousel)
