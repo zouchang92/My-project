@@ -112,12 +112,6 @@ export default {
         alert('没有内容了')
       }
     },
-    click(date) {
-     
-      this.noMoreData = false;
-      this.skip = 0;
-      this.loadIdeas(date);
-    },
 
     // 日期按钮点击方法
     btnClick(index) {
