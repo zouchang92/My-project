@@ -112,6 +112,24 @@ export default {
         alert("没有内容了");
       }
     },
+<<<<<<< HEAD
+=======
+
+    // 日期按钮点击方法
+    btnClick(item, index) {
+      this.clicked = index;
+      for (var i = 0; i < 7; i++) {
+        // console.log(i);
+        if (i != index) {
+          this.buttons[i].state = false;
+        }
+      }
+      this.isShow = !this.isShow;
+      console.log(item.date);
+      let date = item.date;
+      this.loadEvents(date);
+    },
+>>>>>>> 096c7ecd239163c51c6cde7e9ee9a386f0f83282
     // 右箭头翻页
     nextPage() {
       let days = document.getElementById("btn-1");
