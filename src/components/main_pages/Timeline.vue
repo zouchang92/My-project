@@ -313,7 +313,7 @@ export default {
 
 <style lang='css'>
 .timeline {
-  background: url(../../assets/images/background/bg_01.jpg);
+  background: url(../../assets/images/background/bg_02.jpg);
   margin-top: 0;
   align-items: center;
   position: relative;
