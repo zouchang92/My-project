@@ -15,7 +15,7 @@
                   <div class="row-right">
                     <div v-for="(itm, idx) in item.event_list" :key="idx">
                       <b-button :style="{'background':'rgb('+Math.floor(Math.random()*50+180)+','+Math.floor(Math.random()*50+220)+','+Math.floor(Math.random()*50+220)+')'}" class="row-content" :id="`popover-${index}-${idx}`">
-                        <p>{{ itm.str_date }}</p>
+                        <p>{{ itm.start_date }}</p>
                         <span>{{ itm.event_title }}</span>
                       </b-button>
                       <b-popover :target="`popover-${index}-${idx}`" triggers="hover">
@@ -131,6 +131,7 @@ export default {
         })
         .then(res => {
           this.calData = this.calData.concat(res.data.data);
+          console.log(this.calData)
           this.$nextTick(() => {
             if (!this.scroll) {
               this.scroll = new BScroll(this.$refs.wrapper, {});
