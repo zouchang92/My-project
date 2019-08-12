@@ -11,9 +11,9 @@
             <i class="iconfont icon-icon-test timeline-left" @click="nextPage()"></i>
           </div>
 
+          <!-- 第一天 -->
           <div class="tl-container">
-            <b-button @click="show1 = !show1">111</b-button>
-
+            <b-button @click="click1()">{{ weekArr[0] | formatTS }}</b-button>
             <transition name="el-zoom-in-top">
               <div class="tl-box" v-show="show1">
                 <b-card>date</b-card>
@@ -31,23 +31,40 @@
               </div>
             </transition>
           </div>
+          <!-- 第二天 -->
           <div class="tl-container">
-            <b-button>222</b-button>
+            <b-button @click="click2">{{ weekArr[1] | formatTS }}</b-button>
+            <transition name="el-zoom-in-top">
+              <div class="tl-box" v-show="show2">
+                <b-card>date</b-card>
+                <ul>
+                  <li>
+                    <p>title1</p>
+                  </li>
+                  <li>
+                    <p>title1</p>
+                  </li>
+                  <li>
+                    <p>title1</p>
+                  </li>
+                </ul>
+              </div>
+            </transition>
           </div>
           <div class="tl-container">
-            <b-button>333</b-button>
+            <b-button>{{ weekArr[2] | formatTS }}</b-button>
           </div>
           <div class="tl-container">
-            <b-button>444</b-button>
+            <b-button>{{ weekArr[3] | formatTS }}</b-button>
           </div>
           <div class="tl-container">
-            <b-button>555</b-button>
+            <b-button>{{ weekArr[4] | formatTS }}</b-button>
           </div>
           <div class="tl-container">
-            <b-button>666</b-button>
+            <b-button>{{ weekArr[5] | formatTS }}</b-button>
           </div>
           <div class="tl-container">
-            <b-button>777</b-button>
+            <b-button>{{ weekArr[6] | formatTS }}</b-button>
           </div>
         </div>
       </div>
@@ -69,14 +86,44 @@ export default {
       isShow: false,
       skip: 0,
       curDate: formatDate(new Date(), "yyyy-MM-dd"),
-      show1: false
+      show1: false,
+      show2: false,
+      show3: false,
+      show4: false,
+      show5: false,
+      show6: false,
+      show7: false,
+      dateOne: "",
+      weekArr: []
     };
   },
   created() {
-    this.getEvryDay();
+    this.getWeek(new Date().valueOf());
   },
   mounted() {},
   methods: {
+    // 生成一周的日期列表
+    getWeek(date) {
+      let day1 = date;
+      this.dateOne = day1;
+      this.weekArr.push(day1.valueOf());
+      let dayMid = new Date(day1);
+      let day2 = dayMid.setDate(dayMid.getDate() + 1);
+      this.weekArr.push(day2);
+      let day3 = dayMid.setDate(dayMid.getDate() + 1);
+      this.weekArr.push(day3);
+      let day4 = dayMid.setDate(dayMid.getDate() + 1);
+      this.weekArr.push(day4);
+      let day5 = dayMid.setDate(dayMid.getDate() + 1);
+      this.weekArr.push(day5);
+      let day6 = dayMid.setDate(dayMid.getDate() + 1);
+      this.weekArr.push(day6);
+      let day7 = dayMid.setDate(dayMid.getDate() + 1);
+      this.weekArr.push(day7);
+      console.log(this.weekArr);
+      console.log(this.dateOne);
+    },
+
     // 加载指定日期的内容
     loadEvents(date) {
       let url = this.$host + "/timeline-detail/";
@@ -94,145 +141,36 @@ export default {
           // console.log(this.list);
         });
     },
-
-    TopArrow() {
-      this.noMoreData = false;
-      if (this.skip != 0) {
-        this.skip -= 8;
-        this.loadIdeas(this.curDate);
-      } else {
-        alert("没有内容了");
-      }
-    },
-    ButtomArrow() {
-      if (this.noMoreData == false) {
-        this.skip += 8;
-        this.list(this.curDate);
-      } else {
-        alert("没有内容了");
-      }
-    },
-<<<<<<< HEAD
-=======
-
-    // 日期按钮点击方法
-    btnClick(item, index) {
-      this.clicked = index;
-      for (var i = 0; i < 7; i++) {
-        // console.log(i);
-        if (i != index) {
-          this.buttons[i].state = false;
-        }
-      }
-      this.isShow = !this.isShow;
-      console.log(item.date);
-      let date = item.date;
-      this.loadEvents(date);
-    },
->>>>>>> 096c7ecd239163c51c6cde7e9ee9a386f0f83282
     // 右箭头翻页
     nextPage() {
-      let days = document.getElementById("btn-1");
-      let da = days.firstElementChild.innerHTML;
-      // console.log(da)
-      let startDate = new Date(da);
-      startDate.setDate(startDate.getDate() - 6);
-      let Date2 = new Date(startDate.getTime() - 24 * 60 * 60 * 1000);
-      let Date3 = new Date(startDate.getTime() - 48 * 60 * 60 * 1000);
-      let Date4 = new Date(startDate.getTime() - 72 * 60 * 60 * 1000);
-      let Date5 = new Date(startDate.getTime() - 96 * 60 * 60 * 1000);
-      let Date6 = new Date(startDate.getTime() - 120 * 60 * 60 * 1000);
-      let Date7 = new Date(startDate.getTime() - 144 * 60 * 60 * 1000);
-      let a = formatDate(startDate, "yyyy-MM-dd");
-      let b = formatDate(Date2, "yyyy-MM-dd");
-      let c = formatDate(Date3, "yyyy-MM-dd");
-      let d = formatDate(Date4, "yyyy-MM-dd");
-      let e = formatDate(Date5, "yyyy-MM-dd");
-      let f = formatDate(Date6, "yyyy-MM-dd");
-      let g = formatDate(Date7, "yyyy-MM-dd");
-      // console.log(a,b,c,d,e,f,g)
-      this.buttons = [
-        { date: a, state: false },
-        { date: b, state: false },
-        { date: c, state: false },
-        { date: d, state: false },
-        { date: e, state: false },
-        { date: f, state: false },
-        { date: g, state: false }
-      ];
+      this.weekArr = [];
+      let dayMid = new Date(this.dateOne);
+      let day1 = dayMid.setDate(dayMid.getDate() + 7);
+      this.getWeek(day1);
+      this.show1 = this.show2 = this.show3 = this.show4 = this.show5 = this.show6 = this.show7 = false;
     },
     // 左箭头翻页
     prePage() {
-      let days = document.getElementById("btn-6");
-      let da = days.firstElementChild.innerHTML;
-      // console.log(da)
-      let startDate = new Date(da);
-      startDate.setDate(startDate.getDate() + 7);
-      let Date2 = new Date(startDate.getTime() + 24 * 60 * 60 * 1000);
-      let Date3 = new Date(startDate.getTime() + 48 * 60 * 60 * 1000);
-      let Date4 = new Date(startDate.getTime() + 72 * 60 * 60 * 1000);
-      let Date5 = new Date(startDate.getTime() + 96 * 60 * 60 * 1000);
-      let Date6 = new Date(startDate.getTime() + 120 * 60 * 60 * 1000);
-      let Date7 = new Date(startDate.getTime() + 144 * 60 * 60 * 1000);
-      let a = formatDate(startDate, "yyyy-MM-dd");
-      let b = formatDate(Date2, "yyyy-MM-dd");
-      let c = formatDate(Date3, "yyyy-MM-dd");
-      let d = formatDate(Date4, "yyyy-MM-dd");
-      let e = formatDate(Date5, "yyyy-MM-dd");
-      let f = formatDate(Date6, "yyyy-MM-dd");
-      let g = formatDate(Date7, "yyyy-MM-dd");
-      // console.log(a,b,c,d,e,f,g)
-      this.buttons = [
-        { date: g, state: false },
-        { date: f, state: false },
-        { date: e, state: false },
-        { date: d, state: false },
-        { date: c, state: false },
-        { date: b, state: false },
-        { date: a, state: false }
-      ];
+      this.weekArr = [];
+      let dayMid = new Date(this.dateOne);
+      let day1 = dayMid.setDate(dayMid.getDate() - 7);
+      this.getWeek(day1);
+      this.show1 = this.show2 = this.show3 = this.show4 = this.show5 = this.show6 = this.show7 = false;
     },
-    getEvryDay() {
-      //当天
-      let Date1 = new Date();
-      //前一天
-      let Date2 = new Date(Date1.getTime() - 24 * 60 * 60 * 1000);
-      //前两天
-      let Date3 = new Date(Date1.getTime() - 48 * 60 * 60 * 1000);
-      //前三天
-      let Date4 = new Date(Date1.getTime() - 72 * 60 * 60 * 1000);
-      //前四天
-      let Date5 = new Date(Date1.getTime() - 96 * 60 * 60 * 1000);
-      //前五天
-      let Date6 = new Date(Date1.getTime() - 120 * 60 * 60 * 1000);
-      //前六天
-      let Date7 = new Date(Date1.getTime() - 144 * 60 * 60 * 1000);
-      let a = formatDate(Date1, "yyyy-MM-dd");
-      let b = formatDate(Date2, "yyyy-MM-dd");
-      let c = formatDate(Date3, "yyyy-MM-dd");
-      let d = formatDate(Date4, "yyyy-MM-dd");
-      let e = formatDate(Date5, "yyyy-MM-dd");
-      let f = formatDate(Date6, "yyyy-MM-dd");
-      let g = formatDate(Date7, "yyyy-MM-dd");
-      this.buttons = [
-        { date: a, state: false },
-        { date: b, state: false },
-        { date: c, state: false },
-        { date: d, state: false },
-        { date: e, state: false },
-        { date: f, state: false },
-        { date: g, state: false }
-      ];
+    // 日期按钮点击
+    click1() {
+      this.show1 = !this.show1;
+      this.show2 = this.show3 = this.show4 = this.show5 = this.show6 = this.show7 = false;
+    },
+    click2() {
+      this.show2 = !this.show2;
+      this.show1 = this.show3 = this.show4 = this.show5 = this.show6 = this.show7 = false;
     }
   },
   filters: {
-    formatPubDate(time) {
-      var date = new Date(time);
-      return formatDate(date, "MM/dd");
-    },
-    formatClock(timestamp) {
-      var date = new Date(timestamp);
-      return formatDate(date, "hh:mm");
+    formatTS(timestamp) {
+      let date = new Date(timestamp);
+      return formatDate(date, "yyyy-MM-dd");
     }
   }
 };
