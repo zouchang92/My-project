@@ -16,16 +16,19 @@
             <b-button @click="click1()">{{ weekArr[0] | formatTS }}</b-button>
             <transition name="el-zoom-in-top">
               <div class="tl-box" v-show="show1">
-                <b-card>date</b-card>
-                <ul>
-                  <li>
-                    <p>title1</p>
-                  </li>
-                  <li>
-                    <p>title1</p>
-                  </li>
-                  <li>
-                    <p>title1</p>
+                <b-card>{{ dataList.agg_date }}</b-card>
+               <ul>
+                 <li v-for="(item, index) in dataList.event_list">
+                    <b-button :id="`li-1-${index}`">
+                      {{ item.event_title }}
+                    </b-button>
+                    <b-popover :target="`li-1-${index}`" :title='item.event_title' triggers="click" :placement="auto">
+                      <div v-for="(itm, idx) in item.detail">
+                        <h4>{{ itm.update_date }}</h4>
+                        <span>{{ itm.content }}</span>
+                        <p>{{ itm.targets }}</p>
+                      </div>
+                    </b-popover>
                   </li>
                 </ul>
               </div>
@@ -36,35 +39,138 @@
             <b-button @click="click2">{{ weekArr[1] | formatTS }}</b-button>
             <transition name="el-zoom-in-top">
               <div class="tl-box" v-show="show2">
-                <b-card>date</b-card>
+                <b-card>{{ dataList.agg_date }}</b-card>
                 <ul>
-                  <li>
-                    <p>title1</p>
-                  </li>
-                  <li>
-                    <p>title1</p>
-                  </li>
-                  <li>
-                    <p>title1</p>
+                  <li v-for="(item, index) in dataList.event_list">
+                    <b-button :id="`li-2-${index}`">
+                      {{ item.event_title }}
+                    </b-button>
+                    <b-popover :target="`li-2-${index}`" :title='item.event_title' triggers="click" :placement="auto">
+                      <div v-for="(itm, idx) in item.detail">
+                        <h4>{{ itm.update_date }}</h4>
+                        <span>{{ itm.content }}</span>
+                        <p>{{ itm.targets }}</p>
+                      </div>
+                    </b-popover>
                   </li>
                 </ul>
               </div>
             </transition>
           </div>
+          <!-- 第三天 -->
           <div class="tl-container">
-            <b-button>{{ weekArr[2] | formatTS }}</b-button>
+            <b-button @click="click3">{{ weekArr[2] | formatTS }}</b-button>
+            <transition name="el-zoom-in-top">
+              <div class="tl-box" v-show="show3">
+                <b-card>{{ dataList.agg_date }}</b-card>
+                <ul>
+                 <li v-for="(item, index) in dataList.event_list">
+                    <b-button :id="`li-3-${index}`">
+                      {{ item.event_title }}
+                    </b-button>
+                    <b-popover :target="`li-3-${index}`" :title='item.event_title' triggers="click" :placement="auto">
+                      <div v-for="(itm, idx) in item.detail">
+                        <h4>{{ itm.update_date }}</h4>
+                        <span>{{ itm.content }}</span>
+                        <p>{{ itm.targets }}</p>
+                      </div>
+                    </b-popover>
+                  </li>
+                </ul>
+              </div>
+            </transition>
           </div>
+          <!-- 第四天 -->
           <div class="tl-container">
-            <b-button>{{ weekArr[3] | formatTS }}</b-button>
+            <b-button @click="click4">{{ weekArr[3] | formatTS }}</b-button>
+            <transition name="el-zoom-in-top">
+              <div class="tl-box" v-show="show4">
+                <b-card>{{ dataList.agg_date }}</b-card>
+                <ul>
+                  <li v-for="(item, index) in dataList.event_list">
+                    <b-button :id="`li-4-${index}`">
+                      {{ item.event_title }}
+                    </b-button>
+                    <b-popover :target="`li-4-${index}`" :title='item.event_title' triggers="click" :placement="auto">
+                      <div v-for="(itm, idx) in item.detail">
+                        <h4>{{ itm.update_date }}</h4>
+                        <span>{{ itm.content }}</span>
+                        <p>{{ itm.targets }}</p>
+                      </div>
+                    </b-popover>
+                  </li>
+                </ul>
+              </div>
+            </transition>
           </div>
+          <!-- 第五天 -->
           <div class="tl-container">
-            <b-button>{{ weekArr[4] | formatTS }}</b-button>
+            <b-button @click="click5">{{ weekArr[4] | formatTS }}</b-button>
+            <transition name="el-zoom-in-top">
+              <div class="tl-box" v-show="show5">
+                <b-card>{{ dataList.agg_date }}</b-card>
+                <ul>
+                  <li v-for="(item, index) in dataList.event_list">
+                    <b-button :id="`li-5-${index}`">
+                      {{ item.event_title }}
+                    </b-button>
+                    <b-popover :target="`li-5-${index}`" :title='item.event_title' triggers="click" :placement="auto">
+                      <div v-for="(itm, idx) in item.detail">
+                        <h4>{{ itm.update_date }}</h4>
+                        <span>{{ itm.content }}</span>
+                        <p>{{ itm.targets }}</p>
+                      </div>
+                    </b-popover>
+                  </li>
+                </ul>
+              </div>
+            </transition>
           </div>
+          <!-- 第六天 -->
           <div class="tl-container">
-            <b-button>{{ weekArr[5] | formatTS }}</b-button>
+            <b-button @click="click6">{{ weekArr[5] | formatTS }}</b-button>
+            <transition name="el-zoom-in-top">
+              <div class="tl-box" v-show="show6">
+                <b-card>{{ dataList.agg_date }}</b-card>
+                <ul>
+                  <li v-for="(item, index) in dataList.event_list">
+                    <b-button :id="`li-6-${index}`">
+                      {{ item.event_title }}
+                    </b-button>
+                    <b-popover :target="`li-6-${index}`" :title='item.event_title' triggers="click" :placement="auto">
+                      <div v-for="(itm, idx) in item.detail">
+                        <h4>{{ itm.update_date }}</h4>
+                        <span>{{ itm.content }}</span>
+                        <p>{{ itm.targets }}</p>
+                      </div>
+                    </b-popover>
+                  </li>
+                </ul>
+              </div>
+            </transition>
           </div>
+          <!-- 第七天 -->
           <div class="tl-container">
-            <b-button>{{ weekArr[6] | formatTS }}</b-button>
+            <b-button @click="click7">{{ weekArr[6] | formatTS }}</b-button>
+            <transition name="el-zoom-in-top">
+              <div class="tl-box" v-show="show7">
+                <b-card>{{ dataList.agg_date }}</b-card>
+                <ul>
+                  <li v-for="(item, index) in dataList.event_list">
+                    <b-button :id="`li-7-${index}`">
+                      {{ item.event_title }}
+                    </b-button>
+                    <b-popover :target="`li-7-${index}`" :title='item.event_title' triggers="click" :placement="auto">
+                      <div v-for="(itm, idx) in item.detail">
+                        <h4>{{ itm.update_date }}</h4>
+                        <span>{{ itm.content }}</span>
+                        <p>{{ itm.targets }}</p>
+                      </div>
+                    </b-popover>
+                  </li>
+                </ul>
+              </div>
+            </transition>
           </div>
         </div>
       </div>
@@ -94,7 +200,8 @@ export default {
       show6: false,
       show7: false,
       dateOne: "",
-      weekArr: []
+      weekArr: [],
+      dataList: []
     };
   },
   created() {
@@ -120,8 +227,6 @@ export default {
       this.weekArr.push(day6);
       let day7 = dayMid.setDate(dayMid.getDate() + 1);
       this.weekArr.push(day7);
-      console.log(this.weekArr);
-      console.log(this.dateOne);
     },
 
     // 加载指定日期的内容
@@ -134,11 +239,7 @@ export default {
           }
         })
         .then(res => {
-          this.list = res.data.data;
-          if (res.data.data.length != 8) {
-            this.noMoreData = true;
-          }
-          // console.log(this.list);
+          this.dataList = res.data.data;
         });
     },
     // 右箭头翻页
@@ -161,10 +262,44 @@ export default {
     click1() {
       this.show1 = !this.show1;
       this.show2 = this.show3 = this.show4 = this.show5 = this.show6 = this.show7 = false;
+      let date = formatDate(new Date(this.weekArr[0]), "yyyy-MM-dd");
+      this.loadEvents(date);
     },
     click2() {
       this.show2 = !this.show2;
       this.show1 = this.show3 = this.show4 = this.show5 = this.show6 = this.show7 = false;
+      let date = formatDate(new Date(this.weekArr[1]), "yyyy-MM-dd");
+      this.loadEvents(date);
+    },
+    click3() {
+      this.show3 = !this.show3;
+      this.show1 = this.show2 = this.show4 = this.show5 = this.show6 = this.show7 = false;
+      let date = formatDate(new Date(this.weekArr[2]), "yyyy-MM-dd");
+      this.loadEvents(date);
+    },
+    click4() {
+      this.show4 = !this.show4;
+      this.show1 = this.show2 = this.show3 = this.show5 = this.show6 = this.show7 = false;
+      let date = formatDate(new Date(this.weekArr[3]), "yyyy-MM-dd");
+      this.loadEvents(date);
+    },
+    click5() {
+      this.show5 = !this.show5;
+      this.show1 = this.show2 = this.show3 = this.show4 = this.show6 = this.show7 = false;
+      let date = formatDate(new Date(this.weekArr[4]), "yyyy-MM-dd");
+      this.loadEvents(date);
+    },
+    click6() {
+      this.show6 = !this.show6;
+      this.show1 = this.show2 = this.show3 = this.show4 = this.show5 = this.show7 = false;
+      let date = formatDate(new Date(this.weekArr[5]), "yyyy-MM-dd");
+      this.loadEvents(date);
+    },
+    click7() {
+      this.show7 = !this.show7;
+      this.show1 = this.show2 = this.show3 = this.show4 = this.show5 = this.show6 = false;
+      let date = formatDate(new Date(this.weekArr[6]), "yyyy-MM-dd");
+      this.loadEvents(date);
     }
   },
   filters: {
