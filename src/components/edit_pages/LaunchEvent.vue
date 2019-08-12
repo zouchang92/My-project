@@ -32,7 +32,7 @@
             
 
             <div class="form-group rounded p-4 bg-light" v-for="(item, index) in eventData.detail" :key="index">
-              <label class="col-form-label pt-0">更新子事件内容 - 子事件{{ index+1 }}</label>
+              <label class="col-form-label pt-0">子事件{{ index+1 }}</label>
               <i class="iconfont icon-guanbi" style="float:right;" @click="closeDetail(index)"></i>
               <div class="form-row">
                 <h6>更新日期 :</h6>
