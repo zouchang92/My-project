@@ -125,8 +125,8 @@
           <!-- 第四天 -->
           <div class="tl-container">
             <b-button class="timeline-time" @click="click4">
-              <span class="timeline-day"></span>
-              {{ weekArr[3] | formatTS }}
+              <span class="timeline-day">{{ weekArr[3] | formatTS }}</span>
+              
             </b-button>
             <transition name="el-zoom-in-top">
               <div class="tl-box" v-show="show4">
@@ -238,8 +238,8 @@
           <!-- 第七天 -->
           <div class="tl-container">
             <b-button class="timeline-time" @click="click7">
-              <span class="timeline-day"></span>
-              {{ weekArr[6] | formatTS }}
+              <span class="timeline-day">  {{ weekArr[6] | formatTS }}</span>
+            
             </b-button>
             <transition name="el-zoom-in-top">
               <div class="tl-box" v-show="show7">
@@ -444,13 +444,13 @@ export default {
   justify-content: center;
   align-items: center;
   margin-left: 10px;
-  transform: skew(23deg, 0deg);
+  transform: skew(40deg, 0deg);
   background: #ccc;
 }
 .timeline-day {
   z-index: 9999;
   display: block;
-  transform: skewX(-38deg);
+  transform: skewX(-39deg);
 }
 .timeline-arrow {
   position: relative;
