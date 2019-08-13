@@ -8,8 +8,8 @@
           <!-- 横向事件轴 -->
           <div class="timeline-date">
             <div class="timeline-arrow">
-              <i class="iconfont icon-icon-test-copy timeline-right" @click="nextPage()"></i>
-              <i class="iconfont icon-icon-test timeline-left" @click="prePage()"></i>
+              <i class="iconfont icon-icon-test-copy timeline-right" @click="prePage()" ></i>
+              <i class="iconfont icon-icon-test timeline-left" @click="nextPage()"></i>
             </div>
 
             <!-- 第一天 -->
@@ -474,7 +474,7 @@ export default {
 .timeline-left {
   position: absolute;
   top: 3px;
-  left: 1135px;
+  left: 1154px;
   opacity: 0.3;
 }
 .timeline-right:hover,
@@ -497,9 +497,10 @@ export default {
   height: 720px;
 }
 .timeline-content-details {
-  height: 36px;
-  margin: 8px 17px;
-  border-bottom: 1px solid #D5B489;
+    height: 34px;
+    margin: 8px 17px;
+    border-bottom: 1px solid #D5B489;
+    overflow: hidden;
 }
 .timeline-content-details p {
   color: white;
@@ -528,7 +529,7 @@ export default {
   color: #000;
 }
 .timeline-content-details p:hover{
-  color:#000
+  color:#D5B489
 }
 </style>
 
