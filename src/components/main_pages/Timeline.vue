@@ -1,278 +1,278 @@
 <template>
   <!-- Feature Section start -->
   <section id="timeline" class="timeline">
-    <div class="feature-decor"></div>
-    <div class="container">
-      <div class="row">
-        <!-- 横向事件轴 -->
-        <div class="timeline-date">
-          <div class="timeline-arrow">
-            <i class="iconfont icon-icon-test-copy timeline-right" @click="nextPage()"></i>
-            <i class="iconfont icon-icon-test timeline-left" @click="prePage()"></i>
-          </div>
+    <div class="wrap-mask">
+      <div class="feature-decor"></div>
+      <div class="container">
+        <div class="row">
+          <!-- 横向事件轴 -->
+          <div class="timeline-date">
+            <div class="timeline-arrow">
+              <i class="iconfont icon-icon-test-copy timeline-right" @click="nextPage()"></i>
+              <i class="iconfont icon-icon-test timeline-left" @click="prePage()"></i>
+            </div>
 
-          <!-- 第一天 -->
-          <div class="tl-container">
-            <b-button class="timeline-time" @click="click1()">
-              <span class="timeline-day">{{ weekArr[0] | formatTS }}</span>
-            </b-button>
-            <transition name="el-zoom-in-top">
-              <div class="tl-box" v-show="show1">
-                <p class="timeline-card">{{ dataList.agg_date }}</p>
-                <ul>
-                  <li
-                    class="timeline-content-details"
-                    v-for="(item, index) in dataList.event_list"
-                    :key="index"
-                  >
-                    <p class="timeline-content-event" :id="`li-1-${index}`">{{ item.event_title }}</p>
-                    <b-popover
-                      :target="`li-1-${index}`"
-                      :title="item.event_title"
-                      triggers="click"
-                      placement="auto"
+            <!-- 第一天 -->
+            <div class="tl-container">
+              <b-button class="timeline-time" @click="click1()">
+                <span class="timeline-day">{{ weekArr[0] | formatTS }}</span>
+              </b-button>
+              <transition name="el-zoom-in-top">
+                <div class="tl-box" v-show="show1">
+                  <p class="timeline-card">{{ dataList.agg_date }}</p>
+                  <ul>
+                    <li
+                      class="timeline-content-details"
+                      v-for="(item, index) in dataList.event_list"
+                      :key="index"
                     >
-                      <div v-for="(itm, idx) in item.detail" :key="idx">
-                        <h4>{{ itm.update_date }}</h4>
-                        <span>{{ itm.content }}</span>
-                        <p>{{ itm.targets }}</p>
-                      </div>
-                    </b-popover>
-                  </li>
+                      <p class="timeline-content-event" :id="`li-1-${index}`">{{ item.event_title }}</p>
+                      <b-popover
+                        :target="`li-1-${index}`"
+                        :title="item.event_title"
+                        triggers="click"
+                        placement="auto"
+                      >
+                        <div v-for="(itm, idx) in item.detail" :key="idx">
+                          <h4>{{ itm.update_date }}</h4>
+                          <span>{{ itm.content }}</span>
+                          <p>{{ itm.targets }}</p>
+                        </div>
+                      </b-popover>
+                    </li>
+                    <!-- 上下翻页 -->
+                    <div class="timeline-arr">
+                      <span class="top-arrow" @click="TopArrow">上一页</span>
+                      <span class="buttom-arrow" @click="ButtomArrow">下一页</span>
+                    </div>
+                  </ul>
+                </div>
+              </transition>
+            </div>
+            <!-- 第二天 -->
+            <div class="tl-container">
+              <b-button class="timeline-time" @click="click2">
+                <span class="timeline-day">{{ weekArr[1] | formatTS }}</span>
+              </b-button>
+              <transition name="el-zoom-in-top">
+                <div class="tl-box" v-show="show2">
+                  <p class="timeline-card">{{ dataList.agg_date }}</p>
+                  <ul>
+                    <li
+                      class="timeline-content-details"
+                      v-for="(item, index) in dataList.event_list"
+                      :key="index"
+                    >
+                      <p class="timeline-content-event" :id="`li-2-${index}`">{{ item.event_title }}</p>
+                      <b-popover
+                        :target="`li-2-${index}`"
+                        :title="item.event_title"
+                        triggers="click"
+                        placement="auto"
+                      >
+                        <div v-for="(itm, idx) in item.detail" :Key="idx">
+                          <h4>{{ itm.update_date }}</h4>
+                          <span>{{ itm.content }}</span>
+                          <p>{{ itm.targets }}</p>
+                        </div>
+                      </b-popover>
+                    </li>
+                    <!-- 上下翻页 -->
+                    <div class="timeline-arr">
+                      <span class="top-arrow" @click="TopArrow">上一页</span>
+                      <span class="buttom-arrow" @click="ButtomArrow">下一页</span>
+                    </div>
+                  </ul>
+                </div>
+              </transition>
+            </div>
+            <!-- 第三天 -->
+            <div class="tl-container">
+              <b-button class="timeline-time" @click="click3">
+                <span class="timeline-day">{{ weekArr[2] | formatTS }}</span>
+              </b-button>
+              <transition name="el-zoom-in-top">
+                <div class="tl-box" v-show="show3">
+                  <p class="timeline-card">{{ dataList.agg_date }}</p>
+                  <ul>
+                    <li
+                      class="timeline-content-details"
+                      v-for="(item, index) in dataList.event_list"
+                      :key="index"
+                    >
+                      <p class="timeline-content-event" :id="`li-3-${index}`">{{ item.event_title }}</p>
+                      <b-popover
+                        :target="`li-3-${index}`"
+                        :title="item.event_title"
+                        triggers="click"
+                        placement="auto"
+                      >
+                        <div v-for="(itm, idx) in item.detail" :key="idx">
+                          <h4>{{ itm.update_date }}</h4>
+                          <span>{{ itm.content }}</span>
+                          <p>{{ itm.targets }}</p>
+                        </div>
+                      </b-popover>
+                    </li>
+                    <!-- 上下翻页 -->
+                    <div class="timeline-arr">
+                      <span class="top-arrow" @click="TopArrow">上一页</span>
+                      <span class="buttom-arrow" @click="ButtomArrow">下一页</span>
+                    </div>
+                  </ul>
+                </div>
+              </transition>
+            </div>
+            <!-- 第四天 -->
+            <div class="tl-container">
+              <b-button class="timeline-time" @click="click4">
+                <span class="timeline-day">{{ weekArr[3] | formatTS }}</span>
+              </b-button>
+              <transition name="el-zoom-in-top">
+                <div class="tl-box" v-show="show4">
+                  <p class="timeline-card">{{ dataList.agg_date }}</p>
+                  <ul>
+                    <li
+                      class="timeline-content-details"
+                      v-for="(item, index) in dataList.event_list"
+                      :key="index"
+                    >
+                      <p class="timeline-content-event" :id="`li-4-${index}`">{{ item.event_title }}</p>
+                      <b-popover
+                        :target="`li-4-${index}`"
+                        :title="item.event_title"
+                        triggers="click"
+                        placement="auto"
+                      >
+                        <div v-for="(itm, idx) in item.detail" :key="idx">
+                          <h4>{{ itm.update_date }}</h4>
+                          <span>{{ itm.content }}</span>
+                          <p>{{ itm.targets }}</p>
+                        </div>
+                      </b-popover>
+                    </li>
+                    <!-- 上下翻页 -->
+                    <div class="timeline-arr">
+                      <span class="top-arrow" @click="TopArrow">上一页</span>
+                      <span class="buttom-arrow" @click="ButtomArrow">下一页</span>
+                    </div>
+                  </ul>
+                </div>
+              </transition>
+            </div>
+            <!-- 第五天 -->
+            <div class="tl-container">
+              <b-button class="timeline-time" @click="click5">
+                <span class="timeline-day">{{ weekArr[4] | formatTS }}</span>
+              </b-button>
+              <transition name="el-zoom-in-top">
+                <div class="tl-box" v-show="show5">
+                  <p class="timeline-card">{{ dataList.agg_date }}</p>
+                  <ul>
+                    <li
+                      class="timeline-content-details"
+                      v-for="(item, index) in dataList.event_list"
+                      :key="index"
+                    >
+                      <p class="timeline-content-event" :id="`li-5-${index}`">{{ item.event_title }}</p>
+                      <b-popover
+                        class="timeline-popover"
+                        :target="`li-5-${index}`"
+                        :title="item.event_title"
+                        triggers="click"
+                        placement="auto"
+                      >
+                        <div v-for="(itm, idx) in item.detail" :key="idx">
+                          <h4>{{ itm.update_date }}</h4>
+                          <span>{{ itm.content }}</span>
+                          <p>{{ itm.targets }}</p>
+                        </div>
+                      </b-popover>
+                    </li>
+                  </ul>
                   <!-- 上下翻页 -->
                   <div class="timeline-arr">
                     <span class="top-arrow" @click="TopArrow">上一页</span>
                     <span class="buttom-arrow" @click="ButtomArrow">下一页</span>
                   </div>
-                </ul>
-              </div>
-            </transition>
-          </div>
-          <!-- 第二天 -->
-          <div class="tl-container">
-            <b-button class="timeline-time" @click="click2">
-              <span class="timeline-day">{{ weekArr[1] | formatTS }}</span>
-            </b-button>
-            <transition name="el-zoom-in-top">
-              <div class="tl-box" v-show="show2">
-                <p class="timeline-card">{{ dataList.agg_date }}</p>
-                <ul>
-                  <li
-                    class="timeline-content-details"
-                    v-for="(item, index) in dataList.event_list"
-                    :key="index"
-                  >
-                    <p class="timeline-content-event" :id="`li-2-${index}`">{{ item.event_title }}</p>
-                    <b-popover
-                      :target="`li-2-${index}`"
-                      :title="item.event_title"
-                      triggers="click"
-                      placement="auto"
+                </div>
+              </transition>
+            </div>
+            <!-- 第六天 -->
+            <div class="tl-container">
+              <b-button class="timeline-time" @click="click6">
+                <span class="timeline-day">{{ weekArr[5] | formatTS }}</span>
+              </b-button>
+              <transition name="el-zoom-in-top">
+                <div class="tl-box" v-show="show6">
+                  <p class="timeline-card">{{ dataList.agg_date }}</p>
+                  <ul>
+                    <li
+                      class="timeline-content-details"
+                      v-for="(item, index) in dataList.event_list"
+                      :key="index"
                     >
-                      <div v-for="(itm, idx) in item.detail" :Key="idx">
-                        <h4>{{ itm.update_date }}</h4>
-                        <span>{{ itm.content }}</span>
-                        <p>{{ itm.targets }}</p>
-                      </div>
-                    </b-popover>
-                  </li>
-                  <!-- 上下翻页 -->
-                  <div class="timeline-arr">
-                    <span class="top-arrow" @click="TopArrow">上一页</span>
-                    <span class="buttom-arrow" @click="ButtomArrow">下一页</span>
-                  </div>
-                </ul>
-              </div>
-            </transition>
-          </div>
-          <!-- 第三天 -->
-          <div class="tl-container">
-            <b-button class="timeline-time" @click="click3">
-              <span class="timeline-day">{{ weekArr[2] | formatTS }}</span>
-            </b-button>
-            <transition name="el-zoom-in-top">
-              <div class="tl-box" v-show="show3">
-                <p class="timeline-card">{{ dataList.agg_date }}</p>
-                <ul>
-                  <li
-                    class="timeline-content-details"
-                    v-for="(item, index) in dataList.event_list"
-                    :key="index"
-                  >
-                    <p class="timeline-content-event" :id="`li-3-${index}`">{{ item.event_title }}</p>
-                    <b-popover
-                      :target="`li-3-${index}`"
-                      :title="item.event_title"
-                      triggers="click"
-                      placement="auto"
+                      <p class="timeline-content-event" :id="`li-6-${index}`">{{ item.event_title }}</p>
+                      <b-popover
+                        :target="`li-6-${index}`"
+                        :title="item.event_title"
+                        triggers="click"
+                        placement="auto"
+                      >
+                        <div v-for="(itm, idx) in item.detail" :key="idx">
+                          <h4>{{ itm.update_date }}</h4>
+                          <span>{{ itm.content }}</span>
+                          <p>{{ itm.targets }}</p>
+                        </div>
+                      </b-popover>
+                    </li>
+                    <!-- 上下翻页 -->
+                    <div class="timeline-arr">
+                      <span class="top-arrow" @click="TopArrow">上一页</span>
+                      <span class="buttom-arrow" @click="ButtomArrow">下一页</span>
+                    </div>
+                  </ul>
+                </div>
+              </transition>
+            </div>
+            <!-- 第七天 -->
+            <div class="tl-container">
+              <b-button class="timeline-time" @click="click7">
+                <span class="timeline-day">{{ weekArr[6] | formatTS }}</span>
+              </b-button>
+              <transition name="el-zoom-in-top">
+                <div class="tl-box" v-show="show7">
+                  <p class="timeline-card">{{ dataList.agg_date }}</p>
+                  <ul>
+                    <li
+                      class="timeline-content-details"
+                      v-for="(item, index) in dataList.event_list"
+                      :key="index"
                     >
-                      <div v-for="(itm, idx) in item.detail" :key="idx">
-                        <h4>{{ itm.update_date }}</h4>
-                        <span>{{ itm.content }}</span>
-                        <p>{{ itm.targets }}</p>
-                      </div>
-                    </b-popover>
-                  </li>
-                  <!-- 上下翻页 -->
-                  <div class="timeline-arr">
-                    <span class="top-arrow" @click="TopArrow">上一页</span>
-                    <span class="buttom-arrow" @click="ButtomArrow">下一页</span>
-                  </div>
-                </ul>
-              </div>
-            </transition>
-          </div>
-          <!-- 第四天 -->
-          <div class="tl-container">
-            <b-button class="timeline-time" @click="click4">
-              <span class="timeline-day">{{ weekArr[3] | formatTS }}</span>
-              
-            </b-button>
-            <transition name="el-zoom-in-top">
-              <div class="tl-box" v-show="show4">
-                <p class="timeline-card">{{ dataList.agg_date }}</p>
-                <ul>
-                  <li
-                    class="timeline-content-details"
-                    v-for="(item, index) in dataList.event_list"
-                    :key="index"
-                  >
-                    <p class="timeline-content-event" :id="`li-4-${index}`">{{ item.event_title }}</p>
-                    <b-popover
-                      :target="`li-4-${index}`"
-                      :title="item.event_title"
-                      triggers="click"
-                      placement="auto"
-                    >
-                      <div v-for="(itm, idx) in item.detail" :key="idx">
-                        <h4>{{ itm.update_date }}</h4>
-                        <span>{{ itm.content }}</span>
-                        <p>{{ itm.targets }}</p>
-                      </div>
-                    </b-popover>
-                  </li>
-                  <!-- 上下翻页 -->
-                  <div class="timeline-arr">
-                    <span class="top-arrow" @click="TopArrow">上一页</span>
-                    <span class="buttom-arrow" @click="ButtomArrow">下一页</span>
-                  </div>
-                </ul>
-              </div>
-            </transition>
-          </div>
-          <!-- 第五天 -->
-          <div class="tl-container">
-            <b-button class="timeline-time" @click="click5">
-              <span class="timeline-day">{{ weekArr[4] | formatTS }}</span>
-            </b-button>
-            <transition name="el-zoom-in-top">
-              <div class="tl-box" v-show="show5">
-                <p class="timeline-card">{{ dataList.agg_date }}</p>
-                <ul>
-                  <li
-                    class="timeline-content-details"
-                    v-for="(item, index) in dataList.event_list"
-                    :key="index"
-                  >
-                    <p class="timeline-content-event" :id="`li-5-${index}`">{{ item.event_title }}</p>
-                    <b-popover
-                      class="timeline-popover"
-                      :target="`li-5-${index}`"
-                      :title="item.event_title"
-                      triggers="click"
-                      placement="auto"
-                    >
-                      <div v-for="(itm, idx) in item.detail" :key="idx">
-                        <h4>{{ itm.update_date }}</h4>
-                        <span>{{ itm.content }}</span>
-                        <p>{{ itm.targets }}</p>
-                      </div>
-                    </b-popover>
-                  </li>
-                </ul>
-                 <!-- 上下翻页 -->
-                  <div class="timeline-arr">
-                    <span class="top-arrow" @click="TopArrow">上一页</span>
-                    <span class="buttom-arrow" @click="ButtomArrow">下一页</span>
-                  </div>
-              </div>
-            </transition>
-          </div>
-          <!-- 第六天 -->
-          <div class="tl-container">
-            <b-button class="timeline-time" @click="click6">
-              <span class="timeline-day">{{ weekArr[5] | formatTS }}</span>
-            </b-button>
-            <transition name="el-zoom-in-top">
-              <div class="tl-box" v-show="show6">
-                <p class="timeline-card">{{ dataList.agg_date }}</p>
-                <ul>
-                  <li
-                    class="timeline-content-details"
-                    v-for="(item, index) in dataList.event_list"
-                    :key="index"
-                  >
-                    <p class="timeline-content-event" :id="`li-6-${index}`">{{ item.event_title }}</p>
-                    <b-popover
-                      :target="`li-6-${index}`"
-                      :title="item.event_title"
-                      triggers="click"
-                      placement="auto"
-                    >
-                      <div v-for="(itm, idx) in item.detail" :key="idx">
-                        <h4>{{ itm.update_date }}</h4>
-                        <span>{{ itm.content }}</span>
-                        <p>{{ itm.targets }}</p>
-                      </div>
-                    </b-popover>
-                  </li>
-                  <!-- 上下翻页 -->
-                  <div class="timeline-arr">
-                    <span class="top-arrow" @click="TopArrow">上一页</span>
-                    <span class="buttom-arrow" @click="ButtomArrow">下一页</span>
-                  </div>
-                </ul>
-              </div>
-            </transition>
-          </div>
-          <!-- 第七天 -->
-          <div class="tl-container">
-            <b-button class="timeline-time" @click="click7">
-              <span class="timeline-day">  {{ weekArr[6] | formatTS }}</span>
-            
-            </b-button>
-            <transition name="el-zoom-in-top">
-              <div class="tl-box" v-show="show7">
-                <p class="timeline-card">{{ dataList.agg_date }}</p>
-                <ul>
-                  <li
-                    class="timeline-content-details"
-                    v-for="(item, index) in dataList.event_list"
-                    :key="index"
-                  >
-                    <p class="timeline-content-event" :id="`li-7-${index}`">{{ item.event_title }}</p>
-                    <b-popover
-                      class="timeline-popover"
-                      :target="`li-7-${index}`"
-                      :title="item.event_title"
-                      triggers="click"
-                      placement="auto"
-                    >
-                      <div v-for="(itm, idx) in item.detail" :key="idx">
-                        <h4>{{ itm.update_date }}</h4>
-                        <span>{{ itm.content }}</span>
-                        <p>{{ itm.targets }}</p>
-                      </div>
-                    </b-popover>
-                  </li>
-                  <!-- 上下翻页 -->
-                  <div class="timeline-arr">
-                    <span class="top-arrow" @click="TopArrow">上一页</span>
-                    <span class="buttom-arrow" @click="ButtomArrow">下一页</span>
-                  </div>
-                </ul>
-              </div>
-            </transition>
+                      <p class="timeline-content-event" :id="`li-7-${index}`">{{ item.event_title }}</p>
+                      <b-popover
+                        class="timeline-popover"
+                        :target="`li-7-${index}`"
+                        :title="item.event_title"
+                        triggers="click"
+                        placement="auto"
+                      >
+                        <div v-for="(itm, idx) in item.detail" :key="idx">
+                          <h4>{{ itm.update_date }}</h4>
+                          <span>{{ itm.content }}</span>
+                          <p>{{ itm.targets }}</p>
+                        </div>
+                      </b-popover>
+                    </li>
+                    <!-- 上下翻页 -->
+                    <div class="timeline-arr">
+                      <span class="top-arrow" @click="TopArrow">上一页</span>
+                      <span class="buttom-arrow" @click="ButtomArrow">下一页</span>
+                    </div>
+                  </ul>
+                </div>
+              </transition>
+            </div>
           </div>
         </div>
       </div>
@@ -432,11 +432,20 @@ export default {
 
 <style lang='css'>
 .timeline {
-  background: url(../../assets/images/background/bg_02.jpg);
+  background: url(../../assets/images/background/bg_07.jpg);
   margin-top: 0;
   align-items: center;
   position: relative;
   height: 940px;
+}
+.wrap-mask{
+  background: rgba(10, 10, 10, 0.55);
+  z-index: 999;
+  height: 940px;
+  margin-top: -100px;
+}
+.timeline-date {
+  margin-top: 100px;
 }
 .timeline-time {
   width: 148px;
@@ -445,12 +454,13 @@ export default {
   align-items: center;
   margin-left: 10px;
   transform: skew(40deg, 0deg);
-  background: #ccc;
+  background: #ccc; 
 }
 .timeline-day {
   z-index: 9999;
   display: block;
   transform: skewX(-39deg);
+  color: black;
 }
 .timeline-arrow {
   position: relative;
@@ -481,7 +491,7 @@ export default {
 }
 .tl-box {
   margin-top: 15px;
-  background-color: #fff;
+  background-color:  rgba(10, 10, 10, 0.55);
   width: 250px;
   z-index: 9999;
   height: 720px;
@@ -489,22 +499,27 @@ export default {
 .timeline-content-details {
   height: 36px;
   margin: 8px 17px;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #D5B489;
+}
+.timeline-content-details p {
+  color: white;
 }
 .popover-header {
   margin-top: 0px;
 }
 .timeline-card {
+  font-size: 15px;
+  font-weight: bolder;
   padding: 1.25rem;
-  color: #000;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  color: white;
+  border-bottom: 1px solid #D5B489;
 }
 .timeline-arr {
-    text-align: center;
-    color: #ccc;
-    position: absolute;
-    top: 827px;
-    }
+  text-align: center;
+  color: #ccc;
+  position: absolute;
+  top: 827px;
+}
 .timeline-arr span {
   margin: 0 54px 0 32px;
 }

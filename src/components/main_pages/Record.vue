@@ -204,7 +204,7 @@ export default {
 </script>
 <style scoped>
 #record {
-  background: url(../../assets/images/background/bg_01.jpg);
+  background: url(../../assets/images/background/bg_02.jpg);
   height: 940px;
 }
 .record-date-time {
