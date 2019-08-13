@@ -474,7 +474,7 @@ export default {
 .timeline-left {
   position: absolute;
   top: 3px;
-  left: 1154px;
+  left: 1135px;
   opacity: 0.3;
 }
 .timeline-right:hover,
@@ -526,6 +526,9 @@ export default {
 .top-arrow:hover,
 .buttom-arrow:hover {
   color: #000;
+}
+.timeline-content-details p:hover{
+  color:#000
 }
 </style>
 
