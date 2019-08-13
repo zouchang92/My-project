@@ -7,8 +7,8 @@
         <!-- 横向事件轴 -->
         <div class="timeline-date">
           <div class="timeline-arrow">
-            <i class="iconfont icon-icon-test-copy timeline-right" @click="nextPage()"></i>
-            <i class="iconfont icon-icon-test timeline-left" @click="prePage()"></i>
+            <i class="iconfont icon-icon-test-copy timeline-right" @click="prePage()"></i>
+            <i class="iconfont icon-icon-test timeline-left" @click="nextPage()"></i>
           </div>
 
           <!-- 第一天 -->
@@ -511,6 +511,9 @@ export default {
 .top-arrow:hover,
 .buttom-arrow:hover {
   color: #000;
+}
+.timeline-content-details p:hover{
+  color:#000
 }
 </style>
 
