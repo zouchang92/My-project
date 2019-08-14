@@ -21,7 +21,8 @@
               </div>
             </div>
             <!-- 日期按钮 -->
-            <b-button class="record-cicle" @click="click1()">{{ weekArr[0] | formatPubDate }}</b-button>
+            <b-button class="record-cicle" @click="click1()"><span class="record-cicle-time">{{ weekArr[0] | formatPubDate }}</span></b-button>
+            <div class="record-cross-line"></div>
             <transition name="el-zoom-in-top">
               <div v-show="show1">
                 <!-- 上下箭头 -->
@@ -41,6 +42,7 @@
                     <p class="record-nickname">{{ itm.nickname }}</p>
                     <p class="record-nickname-content">{{ itm.content }}</p>
                   </div>
+                  <div class="record-timeline"></div>
                   <b-popover
                     class="record-popover"
                     :target="`recordpop-1-${idx}`"
@@ -65,7 +67,8 @@
               </div>
             </div>
             <!-- 日期按钮 -->
-            <b-button class="record-cicle" @click="click2()">{{ weekArr[1] | formatPubDate }}</b-button>
+            <b-button class="record-cicle" @click="click2()"><span class='record-cicle-time'>{{ weekArr[1] | formatPubDate }}</span></b-button>
+            <div class="record-cross-line"></div>
             <transition name="el-zoom-in-top">
               <div v-show="show2">
                 <!-- 上下箭头 -->
@@ -85,6 +88,7 @@
                     <p class="record-nickname">{{ itm.nickname }}</p>
                     <p class="record-nickname-content">{{ itm.content }}</p>
                   </div>
+                  <div class="record-timeline"></div>
                   <b-popover
                     class="record-popover"
                     :target="`recordpop-2-${idx}`"
@@ -109,7 +113,8 @@
               </div>
             </div>
             <!-- 日期按钮 -->
-            <b-button class="record-cicle" @click="click3()">{{ weekArr[2] | formatPubDate }}</b-button>
+            <b-button class="record-cicle" @click="click3()"><span class='record-cicle-time'>{{ weekArr[2] | formatPubDate }}</span></b-button>
+            <div class="record-cross-line"></div>
             <transition name="el-zoom-in-top">
               <div v-show="show3">
                 <!-- 上下箭头 -->
@@ -129,6 +134,7 @@
                     <p class="record-nickname">{{ itm.nickname }}</p>
                     <p class="record-nickname-content">{{ itm.content }}</p>
                   </div>
+                  <div class="record-timeline"></div>
                   <b-popover
                     class="record-popover"
                     :target="`recordpop-3-${idx}`"
@@ -153,7 +159,8 @@
               </div>
             </div>
             <!-- 日期按钮 -->
-            <b-button class="record-cicle" @click="click4()">{{ weekArr[3] | formatPubDate }}</b-button>
+            <b-button class="record-cicle" @click="click4()"><span class='record-cicle-time'>{{ weekArr[3] | formatPubDate }}</span></b-button>
+            <div class="record-cross-line"></div>
             <transition name="el-zoom-in-top">
               <div v-show="show4">
                 <!-- 上下箭头 -->
@@ -173,6 +180,7 @@
                     <p class="record-nickname">{{ itm.nickname }}</p>
                     <p class="record-nickname-content">{{ itm.content }}</p>
                   </div>
+                  <div class="record-timeline"></div>
                   <b-popover
                     class="record-popover"
                     :target="`recordpop-4-${idx}`"
@@ -197,7 +205,8 @@
               </div>
             </div>
             <!-- 日期按钮 -->
-            <b-button class="record-cicle" @click="click5()">{{ weekArr[4] | formatPubDate }}</b-button>
+            <b-button class="record-cicle" @click="click5()"><span class='record-cicle-time'>{{ weekArr[4] | formatPubDate }}</span></b-button>
+            <div class="record-cross-line"></div>
             <transition name="el-zoom-in-top">
               <div v-show="show5">
                 <!-- 上下箭头 -->
@@ -217,6 +226,7 @@
                     <p class="record-nickname">{{ itm.nickname }}</p>
                     <p class="record-nickname-content">{{ itm.content }}</p>
                   </div>
+                  <div class="record-timeline"></div>
                   <b-popover
                     class="record-popover"
                     :target="`recordpop-5-${idx}`"
@@ -241,7 +251,8 @@
               </div>
             </div>
             <!-- 日期按钮 -->
-            <b-button class="record-cicle" @click="click6()">{{ weekArr[5] | formatPubDate }}</b-button>
+            <b-button class="record-cicle" @click="click6()"><span class='record-cicle-time'>{{ weekArr[5] | formatPubDate }}</span></b-button>
+            <div class="record-cross-line"></div>
             <transition name="el-zoom-in-top">
               <div v-show="show6">
                 <!-- 上下箭头 -->
@@ -261,6 +272,7 @@
                     <p class="record-nickname">{{ itm.nickname }}</p>
                     <p class="record-nickname-content">{{ itm.content }}</p>
                   </div>
+                  <div class="record-timeline"></div>
                   <b-popover
                     class="record-popover"
                     :target="`recordpop-6-${idx}`"
@@ -285,7 +297,8 @@
               </div>
             </div>
             <!-- 日期按钮 -->
-            <b-button class="record-cicle" @click="click7()">{{ weekArr[6] | formatPubDate }}</b-button>
+            <b-button class="record-cicle" @click="click7()"><span class='record-cicle-time'>{{ weekArr[6] | formatPubDate }}</span></b-button>
+            <div class="record-cross-line"></div>
             <transition name="el-zoom-in-top">
               <div v-show="show7">
                 <!-- 上下箭头 -->
@@ -305,6 +318,7 @@
                     <p class="record-nickname">{{ itm.nickname }}</p>
                     <p class="record-nickname-content">{{ itm.content }}</p>
                   </div>
+                  <div class="record-timeline"></div>
                   <b-popover
                     class="record-popover"
                     :target="`recordpop-7-${idx}`"
@@ -563,12 +577,6 @@ export default {
   height: 940px;
   min-width:1200px
 }
-.record-date-time {
-  position: absolute;
-  top: 10px;
-  left: 5px;
-  color: #fff;
-}
 .record-line {
   width: 1px;
   height: 64px;
@@ -578,9 +586,9 @@ export default {
   left: 24px;
 }
 .record-cross-line {
-  position: relative;
-  left: 4px;
-  top: -51px;
+    position: relative;
+    left: 4px;
+    top: -56px;
 }
 .record-cross-line::after,
 .record-cross-line::before {
@@ -595,11 +603,11 @@ export default {
   top: 24px;
 }
 .record-cross-line::after {
-  width: 75px;
-  height: 2px;
-  background: #c19b73;
-  left: -86px;
-  top: 24px;
+    width: 46px;
+    height: 2px;
+    background: #c19b73;
+    left: -53px;
+    top: 24px;
 }
 .record-title {
   height: 76px;
@@ -624,27 +632,6 @@ export default {
   -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
 }
-/* .record-cicle-a::after,
-.record-cicle-a::before {
-  content: "";
-  position: absolute;
-}
-.record-cicle-a::after {
-  width: 2px;
-  height: 69px;
-  border: 1px solid #bbb;
-  left: 2px;
-  top: -70px;
-  border-style: dashed;
-}
-.record-cicle-a::before {
-  width: 2px;
-  height: 41px;
-  border: 1px solid #bbb;
-  left: 2px;
-  top: 8px;
-  border-style: dashed;
-} */
 .record-content {
   position: relative;
   background-color: #fff;
@@ -698,14 +685,14 @@ export default {
 }
 .record-right {
   position: absolute;
-  top: 80px;
-  left: 1129px;
+  top: 74px;
+  left: 1116px;
   opacity: 0.2;
 }
 .record-left {
   position: absolute;
-  top: 80px;
-  left: -68px;
+  top: 74px;
+  left: -74px;
   opacity: 0.2;
 }
 .record-right:hover,
@@ -720,16 +707,10 @@ export default {
   margin-left: 17px;
   border-radius: 10px;
   font-family: sans-serif;
-  left: -17px;
-  top: -77px;
+  left: -57px;
+  top: -17px;
   -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
-}
-
-.record-date:nth-child(2n) .record-cicle .record-title-top {
-  background: transparent;
-  left: 47px;
-  top: -21px;
 }
 .admin-img {
   width: 55px;
@@ -743,37 +724,6 @@ export default {
 .wrapper {
   height: 500px;
   width: 1140px;
-}
-.record-date .record-cicle {
-  float: left;
-  margin: 27px 106px 0px 0px;
-  height: 50px;
-  width: 50px;
-  position: relative;
-  left: 39px;
-  top: 52px;
-}
-
-.record-cicle button {
-  width: 58px;
-  height: 55px;
-  border-radius: 50%;
-  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
-}
-.record-cicle button p {
-  position: relative;
-  top: 7px;
-  left: -5px;
-  color: #fff;
-}
-.record-date li:nth-child(2n) button {
-  background: #ccc;
-}
-.record-date .record-cicle::before {
-  content: "";
-  width: 20px;
-  height: 3px;
-  background: #000;
 }
 .top-title {
   display: block;
@@ -809,13 +759,14 @@ export default {
   opacity: 0.5;
 }
 .record-timeline {
-  height: 596px;
-  position: absolute;
-  top: 31px;
-  left: 28px;
-  z-index: 0;
-  border: 1px solid #ccc;
-  border-style: dashed;
+    height: 596px;
+    width: 1px;
+    position: relative;
+    top: -116px;
+    left: 28px;
+    z-index: 0;
+    border: 1px solid #ccc;
+    border-style: dashed;
 }
 .collapse {
   position: relative;
@@ -834,5 +785,14 @@ export default {
   width: 160px;
   z-index: 9999;
   height: 720px;
+}
+.record-cicle{
+  height:60px;
+  width:60px;
+  border-radius: 50%
+}
+.record-cicle-time{
+  position: relative;
+  left: -5px
 }
 </style>
