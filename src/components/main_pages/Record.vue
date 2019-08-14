@@ -561,6 +561,7 @@ export default {
 #record {
   background: url(../../assets/images/background/bg_02.jpg);
   height: 940px;
+  min-width:1200px
 }
 .record-date-time {
   position: absolute;
