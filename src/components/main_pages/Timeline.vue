@@ -31,7 +31,6 @@
                         :target="`li-1-${index}`"
                         :title="item.event_title"
                         triggers="click"
-                        placement="auto"
                       >
                         <div v-for="(itm, idx) in item.detail" :key="idx">
                           <h4>{{ itm.update_date }}</h4>
@@ -68,7 +67,6 @@
                         :target="`li-2-${index}`"
                         :title="item.event_title"
                         triggers="click"
-                        placement="auto"
                       >
                         <div v-for="(itm, idx) in item.detail" :Key="idx">
                           <h4>{{ itm.update_date }}</h4>
@@ -105,7 +103,6 @@
                         :target="`li-3-${index}`"
                         :title="item.event_title"
                         triggers="click"
-                        placement="auto"
                       >
                         <div v-for="(itm, idx) in item.detail" :key="idx">
                           <h4>{{ itm.update_date }}</h4>
@@ -142,7 +139,6 @@
                         :target="`li-4-${index}`"
                         :title="item.event_title"
                         triggers="click"
-                        placement="auto"
                       >
                         <div v-for="(itm, idx) in item.detail" :key="idx">
                           <h4>{{ itm.update_date }}</h4>
@@ -180,7 +176,6 @@
                         :target="`li-5-${index}`"
                         :title="item.event_title"
                         triggers="click"
-                        placement="auto"
                       >
                         <div v-for="(itm, idx) in item.detail" :key="idx">
                           <h4>{{ itm.update_date }}</h4>
@@ -217,7 +212,6 @@
                         :target="`li-6-${index}`"
                         :title="item.event_title"
                         triggers="click"
-                        placement="auto"
                       >
                         <div v-for="(itm, idx) in item.detail" :key="idx">
                           <h4>{{ itm.update_date }}</h4>
@@ -255,7 +249,6 @@
                         :target="`li-7-${index}`"
                         :title="item.event_title"
                         triggers="click"
-                        placement="auto"
                       >
                         <div v-for="(itm, idx) in item.detail" :key="idx">
                           <h4>{{ itm.update_date }}</h4>
