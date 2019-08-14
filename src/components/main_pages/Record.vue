@@ -5,20 +5,25 @@
     <div class="container">
       <div class="row">
         <div class="record-time">
-          <ul class="record-date">
-            <!-- 头部日期 -->
-            <li class="record-cicle" v-for="(item, index) in chats" :key="index">
-              <b-button
-                v-b-toggle="`recordpop-${index}`"
-                :id="item.pub_date"
-                @click="btnClick(item.pub_date)"
-              >
-                <p>{{ item.pub_date | formatPubDate }}</p>
-              </b-button>
-              <!-- 直线 -->
-              <div class="record-cross-line"></div>
-              <!-- 聊天下拉框 -->
-              <b-collapse :id="`recordpop-${index}`" accordion="my-accordion">
+          <!-- 左右箭头 -->
+          <div class="record-arrow">
+            <i class="iconfont icon-icon-test record-right" @click="nextPage()"></i>
+            <i class="iconfont icon-icon-test-copy record-left" @click="prePage()"></i>
+          </div>
+
+          <!-- 第一天 -->
+          <div class="rc-box">
+            <!-- 置顶区 -->
+            <div class="record-title-top">
+              <div class="record-top-content">
+                <p class="top-title" style="margin:0px:color:#000">{{ chats[0] | formatAuthor }}</p>
+                <span class="top-content">{{ chats[0] | formatContent }}</span>
+              </div>
+            </div>
+            <!-- 日期按钮 -->
+            <b-button class="record-cicle" @click="click1()">{{ weekArr[0] | formatPubDate }}</b-button>
+            <transition name="el-zoom-in-top">
+              <div v-show="show1">
                 <!-- 上下箭头 -->
                 <div class="icon-arrow">
                   <i class="iconfont icon-iconfont15 record-top-arrow" @click="loadPrev()"></i>
@@ -27,40 +32,291 @@
                     @click="loadNext()"
                   ></i>
                 </div>
+                <!-- 聊天框 -->
                 <div class="record-title" v-for="(itm, idx) in dailyChats" :key="idx">
                   <span class="record-time-a">{{ itm.timestamp | formatClock }}</span>
                   <div class="record-cicle-a"></div>
-                  <div class="record-content left" :id="`recordpop-${index}-${idx}`">
+                  <div class="record-content left" :id="`recordpop-1-${idx}`">
                     <img class="admin-img" src="../../assets/images/background/avatar_01.jpg" alt />
                     <p class="record-nickname">{{ itm.nickname }}</p>
                     <p class="record-nickname-content">{{ itm.content }}</p>
-                    <b-popover
-                      class="record-popover"
-                      :target="`recordpop-${index}-${idx}`"
-                      triggers="hover focus"
-                      placement="rightbottom"
-                    >
-                      <template slot="title">{{ itm.nickname }}</template>
-                      {{ itm.content }}
-                    </b-popover>
                   </div>
+                  <b-popover
+                    class="record-popover"
+                    :target="`recordpop-1-${idx}`"
+                    triggers="click"
+                    placement="rightbottom"
+                  >
+                    <template slot="title">{{ itm.nickname }}</template>
+                    {{ itm.content }}
+                  </b-popover>
                 </div>
-                <div class="record-timeline"></div>
-              </b-collapse>
-            </li>
-          </ul>
-          <div class="record-arrow">
-            <i class="iconfont icon-icon-test record-right" @click="nextPage()"></i>
-            <i class="iconfont icon-icon-test-copy record-left" @click="prePage()"></i>
+              </div>
+            </transition>
           </div>
-          <!-- 置顶区 -->
-          <div style="float:left" v-for="(n,i) in 7" :key="i">
+
+          <!-- 第二天 -->
+          <div class="rc-box">
+            <!-- 置顶区 -->
             <div class="record-title-top">
               <div class="record-top-content">
-                <p class="top-title" style="margin:0px:color:#000">标题标题标题标题标题标题</p>
-                <span class="top-content">内容内容内容内容内容内容内容内容</span>
+                <p class="top-title" style="margin:0px:color:#000">{{ chats[1] | formatAuthor }}</p>
+                <span class="top-content">{{ chats[1] | formatContent }}</span>
               </div>
             </div>
+            <!-- 日期按钮 -->
+            <b-button class="record-cicle" @click="click2()">{{ weekArr[1] | formatPubDate }}</b-button>
+            <transition name="el-zoom-in-top">
+              <div v-show="show2">
+                <!-- 上下箭头 -->
+                <div class="icon-arrow">
+                  <i class="iconfont icon-iconfont15 record-top-arrow" @click="loadPrev()"></i>
+                  <i
+                    class="iconfont icon-iconfont15-button record-buttom-arrow"
+                    @click="loadNext()"
+                  ></i>
+                </div>
+                <!-- 聊天框 -->
+                <div class="record-title" v-for="(itm, idx) in dailyChats" :key="idx">
+                  <span class="record-time-a">{{ itm.timestamp | formatClock }}</span>
+                  <div class="record-cicle-a"></div>
+                  <div class="record-content left" :id="`recordpop-2-${idx}`">
+                    <img class="admin-img" src="../../assets/images/background/avatar_01.jpg" alt />
+                    <p class="record-nickname">{{ itm.nickname }}</p>
+                    <p class="record-nickname-content">{{ itm.content }}</p>
+                  </div>
+                  <b-popover
+                    class="record-popover"
+                    :target="`recordpop-2-${idx}`"
+                    triggers="click"
+                    placement="rightbottom"
+                  >
+                    <template slot="title">{{ itm.nickname }}</template>
+                    {{ itm.content }}
+                  </b-popover>
+                </div>
+              </div>
+            </transition>
+          </div>
+
+          <!-- 第三天 -->
+          <div class="rc-box">
+            <!-- 置顶区 -->
+            <div class="record-title-top">
+              <div class="record-top-content">
+                <p class="top-title" style="margin:0px:color:#000">{{ chats[2] | formatAuthor }}</p>
+                <span class="top-content">{{ chats[2] | formatContent }}</span>
+              </div>
+            </div>
+            <!-- 日期按钮 -->
+            <b-button class="record-cicle" @click="click3()">{{ weekArr[2] | formatPubDate }}</b-button>
+            <transition name="el-zoom-in-top">
+              <div v-show="show3">
+                <!-- 上下箭头 -->
+                <div class="icon-arrow">
+                  <i class="iconfont icon-iconfont15 record-top-arrow" @click="loadPrev()"></i>
+                  <i
+                    class="iconfont icon-iconfont15-button record-buttom-arrow"
+                    @click="loadNext()"
+                  ></i>
+                </div>
+                <!-- 聊天框 -->
+                <div class="record-title" v-for="(itm, idx) in dailyChats" :key="idx">
+                  <span class="record-time-a">{{ itm.timestamp | formatClock }}</span>
+                  <div class="record-cicle-a"></div>
+                  <div class="record-content left" :id="`recordpop-3-${idx}`">
+                    <img class="admin-img" src="../../assets/images/background/avatar_01.jpg" alt />
+                    <p class="record-nickname">{{ itm.nickname }}</p>
+                    <p class="record-nickname-content">{{ itm.content }}</p>
+                  </div>
+                  <b-popover
+                    class="record-popover"
+                    :target="`recordpop-3-${idx}`"
+                    triggers="click"
+                    placement="rightbottom"
+                  >
+                    <template slot="title">{{ itm.nickname }}</template>
+                    {{ itm.content }}
+                  </b-popover>
+                </div>
+              </div>
+            </transition>
+          </div>
+
+          <!-- 第四天 -->
+          <div class="rc-box">
+            <!-- 置顶区 -->
+            <div class="record-title-top">
+              <div class="record-top-content">
+                <p class="top-title" style="margin:0px:color:#000">{{ chats[3] | formatAuthor }}</p>
+                <span class="top-content">{{ chats[3] | formatContent }}</span>
+              </div>
+            </div>
+            <!-- 日期按钮 -->
+            <b-button class="record-cicle" @click="click4()">{{ weekArr[3] | formatPubDate }}</b-button>
+            <transition name="el-zoom-in-top">
+              <div v-show="show4">
+                <!-- 上下箭头 -->
+                <div class="icon-arrow">
+                  <i class="iconfont icon-iconfont15 record-top-arrow" @click="loadPrev()"></i>
+                  <i
+                    class="iconfont icon-iconfont15-button record-buttom-arrow"
+                    @click="loadNext()"
+                  ></i>
+                </div>
+                <!-- 聊天框 -->
+                <div class="record-title" v-for="(itm, idx) in dailyChats" :key="idx">
+                  <span class="record-time-a">{{ itm.timestamp | formatClock }}</span>
+                  <div class="record-cicle-a"></div>
+                  <div class="record-content left" :id="`recordpop-4-${idx}`">
+                    <img class="admin-img" src="../../assets/images/background/avatar_01.jpg" alt />
+                    <p class="record-nickname">{{ itm.nickname }}</p>
+                    <p class="record-nickname-content">{{ itm.content }}</p>
+                  </div>
+                  <b-popover
+                    class="record-popover"
+                    :target="`recordpop-4-${idx}`"
+                    triggers="click"
+                    placement="rightbottom"
+                  >
+                    <template slot="title">{{ itm.nickname }}</template>
+                    {{ itm.content }}
+                  </b-popover>
+                </div>
+              </div>
+            </transition>
+          </div>
+
+          <!-- 第五天 -->
+          <div class="rc-box">
+            <!-- 置顶区 -->
+            <div class="record-title-top">
+              <div class="record-top-content">
+                <p class="top-title" style="margin:0px:color:#000">{{ chats[4] | formatAuthor }}</p>
+                <span class="top-content">{{ chats[4] | formatContent }}</span>
+              </div>
+            </div>
+            <!-- 日期按钮 -->
+            <b-button class="record-cicle" @click="click5()">{{ weekArr[4] | formatPubDate }}</b-button>
+            <transition name="el-zoom-in-top">
+              <div v-show="show5">
+                <!-- 上下箭头 -->
+                <div class="icon-arrow">
+                  <i class="iconfont icon-iconfont15 record-top-arrow" @click="loadPrev()"></i>
+                  <i
+                    class="iconfont icon-iconfont15-button record-buttom-arrow"
+                    @click="loadNext()"
+                  ></i>
+                </div>
+                <!-- 聊天框 -->
+                <div class="record-title" v-for="(itm, idx) in dailyChats" :key="idx">
+                  <span class="record-time-a">{{ itm.timestamp | formatClock }}</span>
+                  <div class="record-cicle-a"></div>
+                  <div class="record-content left" :id="`recordpop-5-${idx}`">
+                    <img class="admin-img" src="../../assets/images/background/avatar_01.jpg" alt />
+                    <p class="record-nickname">{{ itm.nickname }}</p>
+                    <p class="record-nickname-content">{{ itm.content }}</p>
+                  </div>
+                  <b-popover
+                    class="record-popover"
+                    :target="`recordpop-5-${idx}`"
+                    triggers="click"
+                    placement="rightbottom"
+                  >
+                    <template slot="title">{{ itm.nickname }}</template>
+                    {{ itm.content }}
+                  </b-popover>
+                </div>
+              </div>
+            </transition>
+          </div>
+
+          <!-- 第六天 -->
+          <div class="rc-box">
+            <!-- 置顶区 -->
+            <div class="record-title-top">
+              <div class="record-top-content">
+                <p class="top-title" style="margin:0px:color:#000">{{ chats[5] | formatAuthor }}</p>
+                <span class="top-content">{{ chats[5] | formatContent }}</span>
+              </div>
+            </div>
+            <!-- 日期按钮 -->
+            <b-button class="record-cicle" @click="click6()">{{ weekArr[5] | formatPubDate }}</b-button>
+            <transition name="el-zoom-in-top">
+              <div v-show="show6">
+                <!-- 上下箭头 -->
+                <div class="icon-arrow">
+                  <i class="iconfont icon-iconfont15 record-top-arrow" @click="loadPrev()"></i>
+                  <i
+                    class="iconfont icon-iconfont15-button record-buttom-arrow"
+                    @click="loadNext()"
+                  ></i>
+                </div>
+                <!-- 聊天框 -->
+                <div class="record-title" v-for="(itm, idx) in dailyChats" :key="idx">
+                  <span class="record-time-a">{{ itm.timestamp | formatClock }}</span>
+                  <div class="record-cicle-a"></div>
+                  <div class="record-content left" :id="`recordpop-6-${idx}`">
+                    <img class="admin-img" src="../../assets/images/background/avatar_01.jpg" alt />
+                    <p class="record-nickname">{{ itm.nickname }}</p>
+                    <p class="record-nickname-content">{{ itm.content }}</p>
+                  </div>
+                  <b-popover
+                    class="record-popover"
+                    :target="`recordpop-6-${idx}`"
+                    triggers="click"
+                    placement="rightbottom"
+                  >
+                    <template slot="title">{{ itm.nickname }}</template>
+                    {{ itm.content }}
+                  </b-popover>
+                </div>
+              </div>
+            </transition>
+          </div>
+
+          <!-- 第七天 -->
+          <div class="rc-box">
+            <!-- 置顶区 -->
+            <div class="record-title-top">
+              <div class="record-top-content">
+                <p class="top-title" style="margin:0px:color:#000">{{ chats[6] | formatAuthor }}</p>
+                <span class="top-content">{{ chats[6] | formatContent }}</span>
+              </div>
+            </div>
+            <!-- 日期按钮 -->
+            <b-button class="record-cicle" @click="click7()">{{ weekArr[6] | formatPubDate }}</b-button>
+            <transition name="el-zoom-in-top">
+              <div v-show="show7">
+                <!-- 上下箭头 -->
+                <div class="icon-arrow">
+                  <i class="iconfont icon-iconfont15 record-top-arrow" @click="loadPrev()"></i>
+                  <i
+                    class="iconfont icon-iconfont15-button record-buttom-arrow"
+                    @click="loadNext()"
+                  ></i>
+                </div>
+                <!-- 聊天框 -->
+                <div class="record-title" v-for="(itm, idx) in dailyChats" :key="idx">
+                  <span class="record-time-a">{{ itm.timestamp | formatClock }}</span>
+                  <div class="record-cicle-a"></div>
+                  <div class="record-content left" :id="`recordpop-7-${idx}`">
+                    <img class="admin-img" src="../../assets/images/background/avatar_01.jpg" alt />
+                    <p class="record-nickname">{{ itm.nickname }}</p>
+                    <p class="record-nickname-content">{{ itm.content }}</p>
+                  </div>
+                  <b-popover
+                    class="record-popover"
+                    :target="`recordpop-7-${idx}`"
+                    triggers="click"
+                    placement="rightbottom"
+                  >
+                    <template slot="title">{{ itm.nickname }}</template>
+                    {{ itm.content }}
+                  </b-popover>
+                </div>
+              </div>
+            </transition>
           </div>
         </div>
       </div>
@@ -79,20 +335,37 @@ export default {
       polling: null,
       startDate: "",
       chats: [],
-      dailyChats: [],
+      dailyChats: [
+        {
+          timestamp: new Date().valueOf(),
+          nickname: "admin",
+          content: "当前日期没有内容"
+        }
+      ],
       curDate: formatDate(new Date(), "yyyy-MM-dd"),
       skip: 0,
       noMoreData: false,
-      showCollapse: true
+      showCollapse: true,
+
+      show1: true,
+      show2: false,
+      show3: false,
+      show4: false,
+      show5: false,
+      show6: false,
+      show7: false,
+      weekArr: [],
+      dateOne: ""
     };
   },
   created() {
+    this.getWeek(new Date().valueOf());
     this.renderIdeas();
-    this.pollData();
+    // this.pollData();
   },
   mounted() {},
   beforeDestroy() {
-    clearInterval(this.polling);
+    // clearInterval(this.polling);
   },
   computed: {},
   methods: {
@@ -114,11 +387,103 @@ export default {
           }
         })
         .then(res => {
-          this.dailyChats = res.data.data;
-          if (res.data.data.length != 8) {
-            this.noMoreData = true;
+          console.log(res.data.data);
+          if (res.data.data.length == 0) {
+            this.dailyChats = [
+              {
+                timestamp: new Date().valueOf(),
+                nickname: "admin",
+                content: "当前日期没有内容"
+              }
+            ];
+          } else {
+            this.dailyChats = res.data.data;
           }
+
+          // if (res.data.data.length != 8) {
+          //   this.noMoreData = true;
+          // }
         });
+    },
+    // 生成一周的日期列表
+    getWeek(date) {
+      let day1 = date;
+      this.dateOne = day1;
+      this.weekArr.push(day1.valueOf());
+      let dayMid = new Date(day1);
+      let day2 = dayMid.setDate(dayMid.getDate() - 1);
+      this.weekArr.push(day2);
+      let day3 = dayMid.setDate(dayMid.getDate() - 1);
+      this.weekArr.push(day3);
+      let day4 = dayMid.setDate(dayMid.getDate() - 1);
+      this.weekArr.push(day4);
+      let day5 = dayMid.setDate(dayMid.getDate() - 1);
+      this.weekArr.push(day5);
+      let day6 = dayMid.setDate(dayMid.getDate() - 1);
+      this.weekArr.push(day6);
+      let day7 = dayMid.setDate(dayMid.getDate() - 1);
+      this.weekArr.push(day7);
+    },
+    // 右箭头翻页
+    nextPage() {
+      this.weekArr = [];
+      let dayMid = new Date(this.dateOne);
+      let day1 = dayMid.setDate(dayMid.getDate() - 7);
+      this.getWeek(day1);
+      this.show1 = this.show2 = this.show3 = this.show4 = this.show5 = this.show6 = this.show7 = false;
+      this.renderIdeas();
+    },
+    // 左箭头翻页
+    prePage() {
+      this.weekArr = [];
+      let dayMid = new Date(this.dateOne);
+      let day1 = dayMid.setDate(dayMid.getDate() + 7);
+      this.getWeek(day1);
+      this.show1 = this.show2 = this.show3 = this.show4 = this.show5 = this.show6 = this.show7 = false;
+      this.renderIdeas();
+    },
+    // 日期按钮点击
+    click1() {
+      this.show1 = !this.show1;
+      this.show2 = this.show3 = this.show4 = this.show5 = this.show6 = this.show7 = false;
+      let date = formatDate(new Date(this.weekArr[0]), "yyyy-MM-dd");
+      this.loadIdeas(date);
+    },
+    click2() {
+      this.show2 = !this.show2;
+      this.show1 = this.show3 = this.show4 = this.show5 = this.show6 = this.show7 = false;
+      let date = formatDate(new Date(this.weekArr[1]), "yyyy-MM-dd");
+      this.loadIdeas(date);
+    },
+    click3() {
+      this.show3 = !this.show3;
+      this.show1 = this.show2 = this.show4 = this.show5 = this.show6 = this.show7 = false;
+      let date = formatDate(new Date(this.weekArr[2]), "yyyy-MM-dd");
+      this.loadIdeas(date);
+    },
+    click4() {
+      this.show4 = !this.show4;
+      this.show1 = this.show2 = this.show3 = this.show5 = this.show6 = this.show7 = false;
+      let date = formatDate(new Date(this.weekArr[3]), "yyyy-MM-dd");
+      this.loadIdeas(date);
+    },
+    click5() {
+      this.show5 = !this.show5;
+      this.show1 = this.show2 = this.show3 = this.show4 = this.show6 = this.show7 = false;
+      let date = formatDate(new Date(this.weekArr[4]), "yyyy-MM-dd");
+      this.loadIdeas(date);
+    },
+    click6() {
+      this.show6 = !this.show6;
+      this.show1 = this.show2 = this.show3 = this.show4 = this.show5 = this.show7 = false;
+      let date = formatDate(new Date(this.weekArr[5]), "yyyy-MM-dd");
+      this.loadIdeas(date);
+    },
+    click7() {
+      this.show7 = !this.show7;
+      this.show1 = this.show2 = this.show3 = this.show4 = this.show5 = this.show6 = false;
+      let date = formatDate(new Date(this.weekArr[6]), "yyyy-MM-dd");
+      this.loadIdeas(date);
     },
     // 点击日期按钮
     btnClick(date) {
@@ -145,19 +510,8 @@ export default {
     },
     // 加载一周的内容
     renderIdeas() {
-      let startDate = this.startDate;
-      if (!startDate) {
-        // 初次加载没有startDate, 加载当前日期及前七天
-        startDate = new Date();
-      }
-
-      let endDate = new Date(startDate);
-      endDate.setDate(endDate.getDate() - 6);
-      let start = formatDate(startDate, "yyyy-MM-dd");
-      let end = formatDate(endDate, "yyyy-MM-dd");
-      // 重新声明以便翻页时调用
-      this.startDate = startDate;
-
+      let start = formatDate(new Date(this.weekArr[0]), "yyyy-MM-dd");
+      let end = formatDate(new Date(this.weekArr[6]), "yyyy-MM-dd");
       // 发起请求, 渲染页面数据
       let url = this.$host + "/idea/";
       this.$ajax
@@ -169,25 +523,8 @@ export default {
         })
         .then(res => {
           this.chats = res.data.data;
+          console.log(this.chats);
         });
-    },
-    // 右箭头翻页
-    nextPage() {
-      let startDate = this.startDate;
-      let as = formatDate(startDate,"yyyy-MM-dd")
-      console.log(as)
-      startDate.setDate(startDate.getDate() - 7);
-      this.startDate = startDate;
-      this.renderIdeas();
-      this.dailyChats = [];
-    },
-    // 左箭头翻页
-    prePage() {
-      let startDate = this.startDate;
-      startDate.setDate(startDate.getDate() + 7);
-      this.startDate = startDate;
-      this.renderIdeas();
-      this.dailyChats = [];
     }
   },
   filters: {
@@ -198,6 +535,24 @@ export default {
     formatClock(timestamp) {
       var date = new Date(timestamp);
       return formatDate(date, "hh:mm");
+    },
+    formatAuthor(data) {
+      if (!data) {
+        return "";
+      } else if (data.idea_list.length == 0) {
+        return "";
+      } else {
+        return data.idea_list[0].nickname;
+      }
+    },
+    formatContent(data) {
+      if (!data) {
+        return "";
+      } else if (data.idea_list.length == 0) {
+        return "";
+      } else {
+        return data.idea_list[0].content;
+      }
     }
   }
 };
@@ -426,15 +781,15 @@ export default {
   top: 0px;
   left: 7px;
   overflow: hidden;
-  color:#000
+  color: #000;
 }
 .top-content {
-    height: 22px;
-    overflow: hidden;
-    position: relative;
-    top: -13px;
-    left: 6px;
-    display: block;
+  height: 22px;
+  overflow: hidden;
+  position: relative;
+  top: -13px;
+  left: 6px;
+  display: block;
 }
 .record-top-arrow {
   position: relative;
@@ -464,12 +819,19 @@ export default {
 .collapse {
   position: relative;
 }
-.record-nickname{
-  color:#000
+.record-nickname {
+  color: #000;
 }
 .record-nickname-content {
   display: block;
   overflow: hidden;
   height: 22px;
+}
+
+.rc-box {
+  float: left;
+  width: 160px;
+  z-index: 9999;
+  height: 720px;
 }
 </style>

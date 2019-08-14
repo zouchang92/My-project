@@ -5,29 +5,35 @@
     <div class="container">
       <div class="row">
         <div class="record-time">
-          <div class="record-date" v-for="(item, index) in chats" :key="index">
-            <div class="record-cicle">
-              <b-button v-b-toggle="`recordpop-${index}`" :id="item.pub_date">
-                <p class="record-date-time">{{ item.pub_date | formatPubDate }}</p>
+          <ul class="record-date">
+            <!-- 头部日期 -->
+            <li class="record-cicle" v-for="(item, index) in chats" :key="index">
+              <b-button
+                v-b-toggle="`recordpop-${index}`"
+                :id="item.pub_date"
+                @click="btnClick(item.pub_date)"
+              >
+                <p>{{ item.pub_date | formatPubDate }}</p>
               </b-button>
-              <!-- 置顶区 -->
-              <div class="record-title-top">
-                <div class="record-top-content">
-                  <p style="margin:0px:color:#000">标题</p>
-                  <span>内容内容</span>
-                </div>
-              </div>
-              <!-- <div class="pules"></div> -->
-
-              <!-- 聊天框下拉 -->
+              <!-- 直线 -->
+              <div class="record-cross-line"></div>
+              <!-- 聊天下拉框 -->
               <b-collapse :id="`recordpop-${index}`" accordion="my-accordion">
-                <div class="record-title" v-for="(itm, idx) in item.idea_list" :key="idx">
+                <!-- 上下箭头 -->
+                <div class="icon-arrow">
+                  <i class="iconfont icon-iconfont15 record-top-arrow" @click="loadPrev()"></i>
+                  <i
+                    class="iconfont icon-iconfont15-button record-buttom-arrow"
+                    @click="loadNext()"
+                  ></i>
+                </div>
+                <div class="record-title" v-for="(itm, idx) in dailyChats" :key="idx">
                   <span class="record-time-a">{{ itm.timestamp | formatClock }}</span>
                   <div class="record-cicle-a"></div>
                   <div class="record-content left" :id="`recordpop-${index}-${idx}`">
                     <img class="admin-img" src="../../assets/images/background/avatar_01.jpg" alt />
-                    <p>{{ itm.nickname }}</p>
-                    <p>{{ itm.content }}</p>
+                    <p class="record-nickname">{{ itm.nickname }}</p>
+                    <p class="record-nickname-content">{{ itm.content }}</p>
                     <b-popover
                       class="record-popover"
                       :target="`recordpop-${index}-${idx}`"
@@ -38,16 +44,23 @@
                       {{ itm.content }}
                     </b-popover>
                   </div>
-                  <div class="record-text">
-                    <div class="record-text-header"></div>
-                  </div>
                 </div>
+                <div class="record-timeline"></div>
               </b-collapse>
-            </div>
-          </div>
+            </li>
+          </ul>
           <div class="record-arrow">
             <i class="iconfont icon-icon-test record-right" @click="nextPage()"></i>
             <i class="iconfont icon-icon-test-copy record-left" @click="prePage()"></i>
+          </div>
+          <!-- 置顶区 -->
+          <div style="float:left" v-for="(n,i) in 7" :key="i">
+            <div class="record-title-top">
+              <div class="record-top-content">
+                <p class="top-title" style="margin:0px:color:#000">标题标题标题标题标题标题</p>
+                <span class="top-content">内容内容内容内容内容内容内容内容</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -65,32 +78,77 @@ export default {
       currentPage: 1,
       polling: null,
       startDate: "",
-      chats: []
+      chats: [],
+      dailyChats: [],
+      curDate: formatDate(new Date(), "yyyy-MM-dd"),
+      skip: 0,
+      noMoreData: false,
+      showCollapse: true
     };
   },
   created() {
     this.renderIdeas();
     this.pollData();
   },
-  mounted() {
-  },
+  mounted() {},
   beforeDestroy() {
     clearInterval(this.polling);
   },
-  computed: {
-  },
+  computed: {},
   methods: {
     pollData() {
       this.polling = setInterval(() => {
-        this.renderIdeas();
+        this.loadIdeas(this.curDate);
       }, 5000);
     },
+    // 加载指定日期的内容
+    loadIdeas(date) {
+      this.curDate = date;
+
+      let url = this.$host + "/idea-detail/";
+      this.$ajax
+        .get(url, {
+          params: {
+            pub_date: date,
+            skip: this.skip
+          }
+        })
+        .then(res => {
+          this.dailyChats = res.data.data;
+          if (res.data.data.length != 8) {
+            this.noMoreData = true;
+          }
+        });
+    },
+    // 点击日期按钮
+    btnClick(date) {
+      this.showCollapse = !this.showCollapse;
+      this.noMoreData = false;
+      this.skip = 0;
+      this.loadIdeas(date);
+    },
+    // 上箭头翻页
+    loadPrev() {
+      this.noMoreData = false;
+      if (this.skip != 0) {
+        this.skip -= 8;
+        this.loadIdeas(this.curDate);
+      }
+    },
+
+    // 下箭头翻页
+    loadNext() {
+      if (this.noMoreData == false) {
+        this.skip += 8;
+        this.loadIdeas(this.curDate);
+      }
+    },
+    // 加载一周的内容
     renderIdeas() {
       let startDate = this.startDate;
       if (!startDate) {
         // 初次加载没有startDate, 加载当前日期及前七天
         startDate = new Date();
-        console.log("第一次加载页面");
       }
 
       let endDate = new Date(startDate);
@@ -113,17 +171,23 @@ export default {
           this.chats = res.data.data;
         });
     },
+    // 右箭头翻页
     nextPage() {
       let startDate = this.startDate;
+      let as = formatDate(startDate,"yyyy-MM-dd")
+      console.log(as)
       startDate.setDate(startDate.getDate() - 7);
       this.startDate = startDate;
       this.renderIdeas();
+      this.dailyChats = [];
     },
+    // 左箭头翻页
     prePage() {
       let startDate = this.startDate;
       startDate.setDate(startDate.getDate() + 7);
       this.startDate = startDate;
       this.renderIdeas();
+      this.dailyChats = [];
     }
   },
   filters: {
@@ -141,19 +205,7 @@ export default {
 <style scoped>
 #record {
   background: url(../../assets/images/background/bg_02.jpg);
-}
-.record-time {
   height: 940px;
-}
-.record-date {
-  /* border: 1px solid #212222;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  text-align: center; */
-  position: relative;
-  display: inline;
-  margin-left: 167px;
 }
 .record-date-time {
   position: absolute;
@@ -169,43 +221,36 @@ export default {
   top: -104px;
   left: 24px;
 }
-.record-cicle {
-  width: 50px;
-  height: 50px;
-  /* border: 1px solid #212222; */
-  position: absolute;
-  left: -151px;
-  top: 37px;
-  border-radius: 50%;
-  background-color: #ccc;
-  -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
-  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
+.record-cross-line {
+  position: relative;
+  left: 4px;
+  top: -51px;
 }
-.record-cicle::after,
-.record-cicle::before {
+.record-cross-line::after,
+.record-cross-line::before {
   content: "";
   position: absolute;
 }
-.record-cicle::before {
-  width: 80px;
+.record-cross-line::before {
+  width: 90px;
   height: 2px;
   background: #c19b73;
-  left: 55px;
+  left: 58px;
   top: 24px;
 }
-.record-cicle::after {
-  width: 52px;
+.record-cross-line::after {
+  width: 75px;
   height: 2px;
   background: #c19b73;
-  left: -57px;
+  left: -86px;
   top: 24px;
 }
 .record-title {
   height: 76px;
 }
 .record-time-a {
-  top: 3px;
-  left: -32px;
+  top: 25px;
+  left: -24px;
   color: #aaa;
   font-size: 11px;
   font-weight: 100;
@@ -217,23 +262,24 @@ export default {
   height: 10px;
   border: 2px solid #ccc;
   position: relative;
-  left: 20px;
-  top: -10px;
+  left: 24px;
+  top: 12px;
   border-radius: 50%;
   -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
 }
-.record-cicle-a::after,
+/* .record-cicle-a::after,
 .record-cicle-a::before {
   content: "";
   position: absolute;
 }
 .record-cicle-a::after {
   width: 2px;
-  height: 25px;
+  height: 69px;
   border: 1px solid #bbb;
   left: 2px;
-  top: -27px;
+  top: -70px;
+  border-style: dashed;
 }
 .record-cicle-a::before {
   width: 2px;
@@ -241,7 +287,8 @@ export default {
   border: 1px solid #bbb;
   left: 2px;
   top: 8px;
-}
+  border-style: dashed;
+} */
 .record-content {
   position: relative;
   background-color: #fff;
@@ -251,7 +298,7 @@ export default {
   border-radius: 10px;
   font-family: sans-serif;
   left: 55px;
-  top: -61px;
+  top: -39px;
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
 }
 .record-content::after {
@@ -270,16 +317,14 @@ export default {
 }
 .record-content p {
   margin: 0px;
-  color: #000;
   margin-left: 66px;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .record-content record-popover {
   width: 520px !important;
-}
-.record-cicle button {
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
 }
 .record-top {
   position: absolute;
@@ -297,13 +342,13 @@ export default {
 }
 .record-right {
   position: absolute;
-  top: 28px;
-  left: 1154px;
+  top: 80px;
+  left: 1129px;
   opacity: 0.2;
 }
 .record-left {
   position: absolute;
-  top: 28px;
+  top: 80px;
   left: -68px;
   opacity: 0.2;
 }
@@ -311,28 +356,20 @@ export default {
 .record-left:hover {
   opacity: 1;
 }
-.record-date:nth-child(2n + 1) .record-cicle .btn {
-  background: #ccc;
-}
 .record-title-top {
   position: relative;
   opacity: 0.5;
-  margin: 20px auto;
-  width: 117px;
-  height: 70px;
+  width: 139px;
+  height: 57px;
+  margin-left: 17px;
   border-radius: 10px;
   font-family: sans-serif;
-  left: 47px;
-  top: -134px;
+  left: -17px;
+  top: -77px;
   -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
 }
-.record-title-top::after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 0;
-}
+
 .record-date:nth-child(2n) .record-cicle .record-title-top {
   background: transparent;
   left: 47px;
@@ -351,47 +388,88 @@ export default {
   height: 500px;
   width: 1140px;
 }
-/* @keyframes warn {
-   0% {
-    transform: scale(0);
-    opacity: 0;
-  }
-
-  25% {
-    transform: scale(0);
-    opacity: 0.1;
-  }
-
-  50% {
-    transform: scale(0.1);
-    opacity: 0.3;
-  } 
-
-  75% {
-    transform: scale(0.5);
-    opacity: 0.5;
-  }
-
-  100% {
-    transform: scale(1);
-    opacity: 0;
-  }
+.record-date .record-cicle {
+  float: left;
+  margin: 27px 106px 0px 0px;
+  height: 50px;
+  width: 50px;
+  position: relative;
+  left: 39px;
+  top: 52px;
 }
-.pules {
-  position: absolute;
-  width: 70px;
-  height: 70px;
-  left: -10px;
-  top: -10px;
-  border: 10px solid #fff;
+
+.record-cicle button {
+  width: 58px;
+  height: 55px;
   border-radius: 50%;
-  z-index: 1;
-  opacity: 0;
-  -webkit-animation: warn 3s ease-out;
-  -moz-animation: warn 3s ease-out;
-  animation: warn 3s ease-out;
-  -webkit-animation-iteration-count: infinite;
-  -moz-animation-iteration-count: infinite;
-  animation-iteration-count: infinite;
-} */
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
+}
+.record-cicle button p {
+  position: relative;
+  top: 7px;
+  left: -5px;
+  color: #fff;
+}
+.record-date li:nth-child(2n) button {
+  background: #ccc;
+}
+.record-date .record-cicle::before {
+  content: "";
+  width: 20px;
+  height: 3px;
+  background: #000;
+}
+.top-title {
+  display: block;
+  height: 22px;
+  position: relative;
+  top: 0px;
+  left: 7px;
+  overflow: hidden;
+  color:#000
+}
+.top-content {
+    height: 22px;
+    overflow: hidden;
+    position: relative;
+    top: -13px;
+    left: 6px;
+    display: block;
+}
+.record-top-arrow {
+  position: relative;
+  top: 10px;
+  left: 21px;
+  opacity: 0.5;
+}
+.record-top-arrow:hover,
+.record-buttom-arrow:hover {
+  opacity: 1;
+}
+.record-buttom-arrow {
+  position: relative;
+  top: 624px;
+  left: 1px;
+  opacity: 0.5;
+}
+.record-timeline {
+  height: 596px;
+  position: absolute;
+  top: 31px;
+  left: 28px;
+  z-index: 0;
+  border: 1px solid #ccc;
+  border-style: dashed;
+}
+.collapse {
+  position: relative;
+}
+.record-nickname{
+  color:#000
+}
+.record-nickname-content {
+  display: block;
+  overflow: hidden;
+  height: 22px;
+}
 </style>
