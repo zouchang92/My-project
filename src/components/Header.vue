@@ -6,9 +6,9 @@
     <b-collapse class="default-nav"  is-nav id="nav_collapse">
       <b-navbar-nav class="navbar-nav ml-auto" id="mymenu">
           <b-nav-item href="#home">首页</b-nav-item>
-          <b-nav-item href="#record">每日记录</b-nav-item>
-          <b-nav-item href="#calendar">事件日历</b-nav-item>
           <b-nav-item href="#timeline">事件轴</b-nav-item>
+          <b-nav-item href="#calendar">事件日历</b-nav-item>
+          <b-nav-item href="#record">每日记录</b-nav-item>
           <b-nav-item href="#alert">板块预警</b-nav-item>
           <b-nav-item href="#price">备用1</b-nav-item>
           <b-nav-item href="#contact">备用2</b-nav-item>
