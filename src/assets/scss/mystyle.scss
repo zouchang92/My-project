@@ -687,7 +687,7 @@ ul {
     }
     &:hover{
       .nav-link{
-        color: $color_bright_turquoise;
+        color: #ccc;
         transition:all 0.3s ease;
         outline: none !important;
         &:hover{
@@ -733,10 +733,10 @@ ul {
             transition: all 0.3s ease;
             cursor: pointer;
             &.active{
-              color: $color_bright_turquoise !important;
+              color: #ccc !important;
             }
             &:hover {
-              color: $color_bright_turquoise !important;
+              color: #ccc !important;
               transition: all 0.3s ease;
             }
           }
@@ -776,7 +776,7 @@ ul {
       padding: 0;
       .nav-link {
         &.active{
-          color: #18e7d3  ;
+          color: #ccc  ;
           transition: all 0.3s ease-in-out;
         }
       }

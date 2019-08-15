@@ -20,7 +20,7 @@
               <transition name="el-zoom-in-top">
                 <div class="tl-box" v-show="show1">
                   <p class="timeline-card">{{ dataList.agg_date }}</p>
-                  <ul>
+                  <ul class="tl-ul">
                     <li
                       class="timeline-content-details"
                       v-for="(item, index) in dataList.event_list"
@@ -56,7 +56,7 @@
               <transition name="el-zoom-in-top">
                 <div class="tl-box" v-show="show2">
                   <p class="timeline-card">{{ dataList.agg_date }}</p>
-                  <ul>
+                  <ul  class="tl-ul">
                     <li
                       class="timeline-content-details"
                       v-for="(item, index) in dataList.event_list"
@@ -92,7 +92,7 @@
               <transition name="el-zoom-in-top">
                 <div class="tl-box" v-show="show3">
                   <p class="timeline-card">{{ dataList.agg_date }}</p>
-                  <ul>
+                  <ul class="tl-ul">
                     <li
                       class="timeline-content-details"
                       v-for="(item, index) in dataList.event_list"
@@ -128,7 +128,7 @@
               <transition name="el-zoom-in-top">
                 <div class="tl-box" v-show="show4">
                   <p class="timeline-card">{{ dataList.agg_date }}</p>
-                  <ul>
+                  <ul class="tl-ul">
                     <li
                       class="timeline-content-details"
                       v-for="(item, index) in dataList.event_list"
@@ -164,7 +164,7 @@
               <transition name="el-zoom-in-top">
                 <div class="tl-box" v-show="show5">
                   <p class="timeline-card">{{ dataList.agg_date }}</p>
-                  <ul>
+                  <ul class="tl-ul">
                     <li
                       class="timeline-content-details"
                       v-for="(item, index) in dataList.event_list"
@@ -201,7 +201,7 @@
               <transition name="el-zoom-in-top">
                 <div class="tl-box" v-show="show6">
                   <p class="timeline-card">{{ dataList.agg_date }}</p>
-                  <ul>
+                  <ul class="tl-ul">
                     <li
                       class="timeline-content-details"
                       v-for="(item, index) in dataList.event_list"
@@ -237,7 +237,7 @@
               <transition name="el-zoom-in-top">
                 <div class="tl-box" v-show="show7">
                   <p class="timeline-card">{{ dataList.agg_date }}</p>
-                  <ul>
+                  <ul class="tl-ul">
                     <li
                       class="timeline-content-details"
                       v-for="(item, index) in dataList.event_list"
@@ -524,5 +524,9 @@ export default {
 .timeline-content-details p:hover{
   color:#D5B489
 }
+.tl-ul {
+ padding-left: 0px;
+}
+
 </style>
 
