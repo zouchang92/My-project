@@ -591,7 +591,7 @@ export default {
 </script>
 <style scoped>
 #record {
-  background: url(../../assets/images/background/bg_02.jpg);
+  background: url(http://pw989qog6.bkt.clouddn.com/bg_02.jpg);
   height: 940px;
   min-width: 1200px;
 }
