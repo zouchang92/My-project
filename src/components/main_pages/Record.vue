@@ -417,13 +417,7 @@ export default {
         .then(res => {
           console.log(res.data.data);
           if (res.data.data.length == 0) {
-            this.dailyChats = [
-              {
-                timestamp: new Date().valueOf(),
-                nickname: "admin",
-                content: "当前日期没有内容"
-              }
-            ];
+            this.dailyChats = [];
           } else {
             this.dailyChats = res.data.data;
           }
