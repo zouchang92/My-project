@@ -21,7 +21,9 @@
               </div>
             </div>
             <!-- 日期按钮 -->
-            <b-button class="record-cicle" @click="click1()"><span class="record-cicle-time">{{ weekArr[0] | formatPubDate }}</span></b-button>
+            <b-button class="record-cicle" @click="click1()">
+              <span class="record-cicle-time">{{ weekArr[0] | formatPubDate }}</span>
+            </b-button>
             <div class="record-cross-line"></div>
             <transition name="el-zoom-in-top">
               <div v-show="show1">
@@ -67,7 +69,9 @@
               </div>
             </div>
             <!-- 日期按钮 -->
-            <b-button class="record-cicle" @click="click2()"><span class='record-cicle-time'>{{ weekArr[1] | formatPubDate }}</span></b-button>
+            <b-button class="record-cicle record-cicle-color" @click="click2()">
+              <span class="record-cicle-time">{{ weekArr[1] | formatPubDate }}</span>
+            </b-button>
             <div class="record-cross-line"></div>
             <transition name="el-zoom-in-top">
               <div v-show="show2">
@@ -113,7 +117,9 @@
               </div>
             </div>
             <!-- 日期按钮 -->
-            <b-button class="record-cicle" @click="click3()"><span class='record-cicle-time'>{{ weekArr[2] | formatPubDate }}</span></b-button>
+            <b-button class="record-cicle" @click="click3()">
+              <span class="record-cicle-time">{{ weekArr[2] | formatPubDate }}</span>
+            </b-button>
             <div class="record-cross-line"></div>
             <transition name="el-zoom-in-top">
               <div v-show="show3">
@@ -159,7 +165,9 @@
               </div>
             </div>
             <!-- 日期按钮 -->
-            <b-button class="record-cicle" @click="click4()"><span class='record-cicle-time'>{{ weekArr[3] | formatPubDate }}</span></b-button>
+            <b-button class="record-cicle record-cicle-color" @click="click4()">
+              <span class="record-cicle-time">{{ weekArr[3] | formatPubDate }}</span>
+            </b-button>
             <div class="record-cross-line"></div>
             <transition name="el-zoom-in-top">
               <div v-show="show4">
@@ -205,7 +213,9 @@
               </div>
             </div>
             <!-- 日期按钮 -->
-            <b-button class="record-cicle" @click="click5()"><span class='record-cicle-time'>{{ weekArr[4] | formatPubDate }}</span></b-button>
+            <b-button class="record-cicle" @click="click5()">
+              <span class="record-cicle-time">{{ weekArr[4] | formatPubDate }}</span>
+            </b-button>
             <div class="record-cross-line"></div>
             <transition name="el-zoom-in-top">
               <div v-show="show5">
@@ -251,7 +261,9 @@
               </div>
             </div>
             <!-- 日期按钮 -->
-            <b-button class="record-cicle" @click="click6()"><span class='record-cicle-time'>{{ weekArr[5] | formatPubDate }}</span></b-button>
+            <b-button class="record-cicle record-cicle-color" @click="click6()">
+              <span class="record-cicle-time">{{ weekArr[5] | formatPubDate }}</span>
+            </b-button>
             <div class="record-cross-line"></div>
             <transition name="el-zoom-in-top">
               <div v-show="show6">
@@ -297,7 +309,9 @@
               </div>
             </div>
             <!-- 日期按钮 -->
-            <b-button class="record-cicle" @click="click7()"><span class='record-cicle-time'>{{ weekArr[6] | formatPubDate }}</span></b-button>
+            <b-button class="record-cicle" @click="click7()">
+              <span class="record-cicle-time">{{ weekArr[6] | formatPubDate }}</span>
+            </b-button>
             <div class="record-cross-line"></div>
             <transition name="el-zoom-in-top">
               <div v-show="show7">
@@ -575,7 +589,7 @@ export default {
 #record {
   background: url(http://pw989qog6.bkt.clouddn.com/bg_02.jpg);
   height: 940px;
-  min-width:1200px
+  min-width: 1200px;
 }
 .record-line {
   width: 1px;
@@ -586,9 +600,9 @@ export default {
   left: 24px;
 }
 .record-cross-line {
-    position: relative;
-    left: 4px;
-    top: -56px;
+  position: relative;
+  left: 4px;
+  top: -56px;
 }
 .record-cross-line::after,
 .record-cross-line::before {
@@ -603,11 +617,11 @@ export default {
   top: 24px;
 }
 .record-cross-line::after {
-    width: 46px;
-    height: 2px;
-    background: #c19b73;
-    left: -53px;
-    top: 24px;
+  width: 46px;
+  height: 2px;
+  background: #c19b73;
+  left: -53px;
+  top: 24px;
 }
 .record-title {
   height: 76px;
@@ -676,6 +690,12 @@ export default {
 }
 .btn {
   background: #c19b73;
+} 
+.record-cicle-color{
+  background:#ccc
+}
+ .record-cicle:hover{
+  background:#6c757d
 }
 .record-arrow {
   position: relative;
@@ -759,14 +779,14 @@ export default {
   opacity: 0.5;
 }
 .record-timeline {
-    height: 596px;
-    width: 1px;
-    position: relative;
-    top: -116px;
-    left: 28px;
-    z-index: 0;
-    border: 1px solid #ccc;
-    border-style: dashed;
+  height: 596px;
+  width: 1px;
+  position: relative;
+  top: -116px;
+  left: 28px;
+  z-index: 0;
+  border: 1px solid #ccc;
+  border-style: dashed;
 }
 .collapse {
   position: relative;
@@ -786,13 +806,13 @@ export default {
   z-index: 9999;
   height: 720px;
 }
-.record-cicle{
-  height:60px;
-  width:60px;
-  border-radius: 50%
+.record-cicle {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
 }
-.record-cicle-time{
+.record-cicle-time {
   position: relative;
-  left: -5px
+  left: -4px;
 }
 </style>
