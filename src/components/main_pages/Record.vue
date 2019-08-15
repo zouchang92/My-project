@@ -26,7 +26,7 @@
             </b-button>
             <div class="record-cross-line"></div>
             <transition name="el-zoom-in-top">
-              <div v-show="show1">
+              <div class="record-show" v-show="show1">
                 <!-- 上下箭头 -->
                 <div class="icon-arrow">
                   <i class="iconfont icon-iconfont15 record-top-arrow" @click="loadPrev()"></i>
@@ -44,7 +44,7 @@
                     <p class="record-nickname">{{ itm.nickname }}</p>
                     <p class="record-nickname-content">{{ itm.content }}</p>
                   </div>
-                  <div class="record-timeline"></div>
+
                   <b-popover
                     class="record-popover"
                     :target="`recordpop-1-${idx}`"
@@ -55,6 +55,7 @@
                     {{ itm.content }}
                   </b-popover>
                 </div>
+                <div class="record-timeline"></div>
               </div>
             </transition>
           </div>
@@ -74,7 +75,7 @@
             </b-button>
             <div class="record-cross-line"></div>
             <transition name="el-zoom-in-top">
-              <div v-show="show2">
+              <div class="record-show" v-show="show2">
                 <!-- 上下箭头 -->
                 <div class="icon-arrow">
                   <i class="iconfont icon-iconfont15 record-top-arrow" @click="loadPrev()"></i>
@@ -92,7 +93,7 @@
                     <p class="record-nickname">{{ itm.nickname }}</p>
                     <p class="record-nickname-content">{{ itm.content }}</p>
                   </div>
-                  <div class="record-timeline"></div>
+
                   <b-popover
                     class="record-popover"
                     :target="`recordpop-2-${idx}`"
@@ -103,6 +104,7 @@
                     {{ itm.content }}
                   </b-popover>
                 </div>
+                <div class="record-timeline"></div>
               </div>
             </transition>
           </div>
@@ -122,7 +124,7 @@
             </b-button>
             <div class="record-cross-line"></div>
             <transition name="el-zoom-in-top">
-              <div v-show="show3">
+              <div class="record-show" v-show="show3">
                 <!-- 上下箭头 -->
                 <div class="icon-arrow">
                   <i class="iconfont icon-iconfont15 record-top-arrow" @click="loadPrev()"></i>
@@ -140,7 +142,7 @@
                     <p class="record-nickname">{{ itm.nickname }}</p>
                     <p class="record-nickname-content">{{ itm.content }}</p>
                   </div>
-                  <div class="record-timeline"></div>
+
                   <b-popover
                     class="record-popover"
                     :target="`recordpop-3-${idx}`"
@@ -151,6 +153,7 @@
                     {{ itm.content }}
                   </b-popover>
                 </div>
+                <div class="record-timeline"></div>
               </div>
             </transition>
           </div>
@@ -170,7 +173,7 @@
             </b-button>
             <div class="record-cross-line"></div>
             <transition name="el-zoom-in-top">
-              <div v-show="show4">
+              <div class="record-show" v-show="show4">
                 <!-- 上下箭头 -->
                 <div class="icon-arrow">
                   <i class="iconfont icon-iconfont15 record-top-arrow" @click="loadPrev()"></i>
@@ -188,7 +191,7 @@
                     <p class="record-nickname">{{ itm.nickname }}</p>
                     <p class="record-nickname-content">{{ itm.content }}</p>
                   </div>
-                  <div class="record-timeline"></div>
+
                   <b-popover
                     class="record-popover"
                     :target="`recordpop-4-${idx}`"
@@ -199,6 +202,7 @@
                     {{ itm.content }}
                   </b-popover>
                 </div>
+                <div class="record-timeline"></div>
               </div>
             </transition>
           </div>
@@ -218,7 +222,7 @@
             </b-button>
             <div class="record-cross-line"></div>
             <transition name="el-zoom-in-top">
-              <div v-show="show5">
+              <div class="record-show" v-show="show5">
                 <!-- 上下箭头 -->
                 <div class="icon-arrow">
                   <i class="iconfont icon-iconfont15 record-top-arrow" @click="loadPrev()"></i>
@@ -236,7 +240,6 @@
                     <p class="record-nickname">{{ itm.nickname }}</p>
                     <p class="record-nickname-content">{{ itm.content }}</p>
                   </div>
-                  <div class="record-timeline"></div>
                   <b-popover
                     class="record-popover"
                     :target="`recordpop-5-${idx}`"
@@ -247,6 +250,7 @@
                     {{ itm.content }}
                   </b-popover>
                 </div>
+                <div class="record-timeline"></div>
               </div>
             </transition>
           </div>
@@ -266,7 +270,7 @@
             </b-button>
             <div class="record-cross-line"></div>
             <transition name="el-zoom-in-top">
-              <div v-show="show6">
+              <div class="record-show" v-show="show6">
                 <!-- 上下箭头 -->
                 <div class="icon-arrow">
                   <i class="iconfont icon-iconfont15 record-top-arrow" @click="loadPrev()"></i>
@@ -284,7 +288,6 @@
                     <p class="record-nickname">{{ itm.nickname }}</p>
                     <p class="record-nickname-content">{{ itm.content }}</p>
                   </div>
-                  <div class="record-timeline"></div>
                   <b-popover
                     class="record-popover"
                     :target="`recordpop-6-${idx}`"
@@ -295,6 +298,7 @@
                     {{ itm.content }}
                   </b-popover>
                 </div>
+                <div class="record-timeline"></div>
               </div>
             </transition>
           </div>
@@ -314,7 +318,7 @@
             </b-button>
             <div class="record-cross-line"></div>
             <transition name="el-zoom-in-top">
-              <div v-show="show7">
+              <div class="record-show" v-show="show7">
                 <!-- 上下箭头 -->
                 <div class="icon-arrow">
                   <i class="iconfont icon-iconfont15 record-top-arrow" @click="loadPrev()"></i>
@@ -332,7 +336,6 @@
                     <p class="record-nickname">{{ itm.nickname }}</p>
                     <p class="record-nickname-content">{{ itm.content }}</p>
                   </div>
-                  <div class="record-timeline"></div>
                   <b-popover
                     class="record-popover"
                     :target="`recordpop-7-${idx}`"
@@ -343,6 +346,7 @@
                     {{ itm.content }}
                   </b-popover>
                 </div>
+                <div class="record-timeline"></div>
               </div>
             </transition>
           </div>
@@ -364,11 +368,11 @@ export default {
       startDate: "",
       chats: [],
       dailyChats: [
-        {
-          timestamp: new Date().valueOf(),
-          nickname: "admin",
-          content: "当前日期没有内容"
-        }
+          // {
+          //   timestamp: new Date().valueOf(),
+          //   nickname: "admin",
+          //   content: "当前日期没有内容"
+          // }
       ],
       curDate: formatDate(new Date(), "yyyy-MM-dd"),
       skip: 0,
@@ -389,17 +393,17 @@ export default {
   created() {
     this.getWeek(new Date().valueOf());
     this.renderIdeas();
-    // this.pollData();
+    this.pollData();
   },
   mounted() {},
   beforeDestroy() {
-    // clearInterval(this.polling);
+    clearInterval(this.polling);
   },
   computed: {},
   methods: {
     pollData() {
       this.polling = setInterval(() => {
-        this.loadIdeas(this.curDate);
+        this.loadIdeas(this.curDate)
       }, 5000);
     },
     // 加载指定日期的内容
@@ -415,16 +419,13 @@ export default {
           }
         })
         .then(res => {
-          console.log(res.data.data);
-          if (res.data.data.length == 0) {
-            this.dailyChats = [];
-          } else {
-            this.dailyChats = res.data.data;
+          // console.log(res.data.data);
+          this.dailyChats = res.data.data;
+          if (res.data.data.length == 8) {
+            this.noMoreData = false;
+          }else{
+            this.noMoreData = true;
           }
-
-          // if (res.data.data.length != 8) {
-          //   this.noMoreData = true;
-          // }
         });
     },
     // 生成一周的日期列表
@@ -467,18 +468,21 @@ export default {
     // 日期按钮点击
     click1() {
       this.show1 = !this.show1;
+      this.skip = 0;
       this.show2 = this.show3 = this.show4 = this.show5 = this.show6 = this.show7 = false;
       let date = formatDate(new Date(this.weekArr[0]), "yyyy-MM-dd");
       this.loadIdeas(date);
     },
     click2() {
       this.show2 = !this.show2;
+      this.skip = 0;
       this.show1 = this.show3 = this.show4 = this.show5 = this.show6 = this.show7 = false;
       let date = formatDate(new Date(this.weekArr[1]), "yyyy-MM-dd");
       this.loadIdeas(date);
     },
     click3() {
       this.show3 = !this.show3;
+      this.skip = 0;
       this.show1 = this.show2 = this.show4 = this.show5 = this.show6 = this.show7 = false;
       let date = formatDate(new Date(this.weekArr[2]), "yyyy-MM-dd");
       this.loadIdeas(date);
@@ -497,12 +501,14 @@ export default {
     },
     click6() {
       this.show6 = !this.show6;
+      this.skip = 0;
       this.show1 = this.show2 = this.show3 = this.show4 = this.show5 = this.show7 = false;
       let date = formatDate(new Date(this.weekArr[5]), "yyyy-MM-dd");
       this.loadIdeas(date);
     },
     click7() {
       this.show7 = !this.show7;
+      this.skip = 0;
       this.show1 = this.show2 = this.show3 = this.show4 = this.show5 = this.show6 = false;
       let date = formatDate(new Date(this.weekArr[6]), "yyyy-MM-dd");
       this.loadIdeas(date);
@@ -516,9 +522,9 @@ export default {
     },
     // 上箭头翻页
     loadPrev() {
-      this.noMoreData = false;
       if (this.skip != 0) {
         this.skip -= 8;
+        this.noMoreData = false;
         this.loadIdeas(this.curDate);
       }
     },
@@ -545,7 +551,7 @@ export default {
         })
         .then(res => {
           this.chats = res.data.data;
-          console.log(this.chats);
+          // console.log(this.chats);
         });
     }
   },
@@ -684,12 +690,12 @@ export default {
 }
 .btn {
   background: #c19b73;
-} 
-.record-cicle-color{
-  background:#ccc
 }
- .record-cicle:hover{
-  background:#6c757d
+.record-cicle-color {
+  background: #ccc;
+}
+.record-cicle:hover {
+  background: #6c757d;
 }
 .record-arrow {
   position: relative;
@@ -772,11 +778,14 @@ export default {
   left: 1px;
   opacity: 0.5;
 }
+.record-show {
+  position: relative;
+}
 .record-timeline {
   height: 596px;
   width: 1px;
-  position: relative;
-  top: -116px;
+  position: absolute;
+  top: 31px;
   left: 28px;
   z-index: 0;
   border: 1px solid #ccc;
