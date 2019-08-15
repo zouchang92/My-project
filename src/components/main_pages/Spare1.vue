@@ -138,36 +138,4 @@ export default {
   position: relative;
   height: 940px;
 }
-*,
-a,
-input {
-  margin: 0;
-  font-size: 16px;
-}
-ul,
-li {
-  list-style: none;
-  padding: 0;
-}
-.arrows {
-  text-align: center;
-}
-.arrow {
-  display: inline-block;
-  width: 40px;
-  line-height: 40px;
-  background-color: #e0e0e0;
-}
-.outer {
-  height: 120px;
-  overflow: hidden;
-  background-color: gray;
-}
-.item {
-  height: 40px;
-  line-height: 40px;
-  padding-left: 20px;
-  box-sizing: border-box;
-  border-bottom: solid 1px #fff;
-}
 </style>
