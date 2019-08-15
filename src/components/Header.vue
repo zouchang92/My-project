@@ -10,8 +10,8 @@
           <b-nav-item href="#calendar">事件日历</b-nav-item>
           <b-nav-item href="#record">每日记录</b-nav-item>
           <b-nav-item href="#alert">板块预警</b-nav-item>
-          <b-nav-item href="#price">备用1</b-nav-item>
-          <b-nav-item href="#contact">备用2</b-nav-item>
+          <!-- <b-nav-item href="#price">备用1</b-nav-item>
+          <b-nav-item href="#contact">备用2</b-nav-item> -->
 
           <b-nav-item-dropdown right-alignment href="#Other_page" text="其他页面" class="nav-link ">
             <b-dropdown-item class="nav-link" target="_blank" :href='"/editors/launch-idea"'>发表观点</b-dropdown-item>

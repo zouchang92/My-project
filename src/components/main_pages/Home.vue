@@ -49,11 +49,11 @@
     <!-- Alert Section End -->
 
     <!-- Spare1 Section start-->
-    <Spare1 />
+    <!-- <Spare1 /> -->
     <!-- Spare1 Section End -->
 
     <!-- Spare2 Section start-->
-    <Spare2 />
+    <!-- <Spare2 /> -->
     <!-- Spare2 Section End -->
 
     <!-- Price Section start-->

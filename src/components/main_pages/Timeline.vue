@@ -425,7 +425,7 @@ export default {
 
 <style lang='css'>
 .timeline {
-  background: url(../../assets/images/background/bg_07.jpg);
+  background: url(http://pw989qog6.bkt.clouddn.com/bg_07.jpg);
   margin-top: 0;
   align-items: center;
   position: relative;
