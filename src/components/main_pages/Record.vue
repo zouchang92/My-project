@@ -368,11 +368,11 @@ export default {
       startDate: "",
       chats: [],
       dailyChats: [
-        {
-          timestamp: new Date().valueOf(),
-          nickname: "admin",
-          content: "当前日期没有内容"
-        }
+          // {
+          //   timestamp: new Date().valueOf(),
+          //   nickname: "admin",
+          //   content: "当前日期没有内容"
+          // }
       ],
       curDate: formatDate(new Date(), "yyyy-MM-dd"),
       skip: 0,
@@ -393,17 +393,17 @@ export default {
   created() {
     this.getWeek(new Date().valueOf());
     this.renderIdeas();
-    // this.pollData();
+    this.pollData();
   },
   mounted() {},
   beforeDestroy() {
-    // clearInterval(this.polling);
+    clearInterval(this.polling);
   },
   computed: {},
   methods: {
     pollData() {
       this.polling = setInterval(() => {
-        this.loadIdeas(this.curDate);
+        this.loadIdeas(this.curDate)
       }, 5000);
     },
     // 加载指定日期的内容
@@ -419,22 +419,13 @@ export default {
           }
         })
         .then(res => {
-          console.log(res.data.data);
-          if (res.data.data.length == 0) {
-            this.dailyChats = [
-              {
-                timestamp: new Date().valueOf(),
-                nickname: "admin",
-                content: "当前日期没有内容"
-              }
-            ];
-          } else {
-            this.dailyChats = res.data.data;
+          // console.log(res.data.data);
+          this.dailyChats = res.data.data;
+          if (res.data.data.length == 8) {
+            this.noMoreData = false;
+          }else{
+            this.noMoreData = true;
           }
-
-          // if (res.data.data.length != 8) {
-          //   this.noMoreData = true;
-          // }
         });
     },
     // 生成一周的日期列表
@@ -477,18 +468,21 @@ export default {
     // 日期按钮点击
     click1() {
       this.show1 = !this.show1;
+      this.skip = 0;
       this.show2 = this.show3 = this.show4 = this.show5 = this.show6 = this.show7 = false;
       let date = formatDate(new Date(this.weekArr[0]), "yyyy-MM-dd");
       this.loadIdeas(date);
     },
     click2() {
       this.show2 = !this.show2;
+      this.skip = 0;
       this.show1 = this.show3 = this.show4 = this.show5 = this.show6 = this.show7 = false;
       let date = formatDate(new Date(this.weekArr[1]), "yyyy-MM-dd");
       this.loadIdeas(date);
     },
     click3() {
       this.show3 = !this.show3;
+      this.skip = 0;
       this.show1 = this.show2 = this.show4 = this.show5 = this.show6 = this.show7 = false;
       let date = formatDate(new Date(this.weekArr[2]), "yyyy-MM-dd");
       this.loadIdeas(date);
@@ -507,12 +501,14 @@ export default {
     },
     click6() {
       this.show6 = !this.show6;
+      this.skip = 0;
       this.show1 = this.show2 = this.show3 = this.show4 = this.show5 = this.show7 = false;
       let date = formatDate(new Date(this.weekArr[5]), "yyyy-MM-dd");
       this.loadIdeas(date);
     },
     click7() {
       this.show7 = !this.show7;
+      this.skip = 0;
       this.show1 = this.show2 = this.show3 = this.show4 = this.show5 = this.show6 = false;
       let date = formatDate(new Date(this.weekArr[6]), "yyyy-MM-dd");
       this.loadIdeas(date);
@@ -526,9 +522,9 @@ export default {
     },
     // 上箭头翻页
     loadPrev() {
-      this.noMoreData = false;
       if (this.skip != 0) {
         this.skip -= 8;
+        this.noMoreData = false;
         this.loadIdeas(this.curDate);
       }
     },
@@ -555,7 +551,7 @@ export default {
         })
         .then(res => {
           this.chats = res.data.data;
-          console.log(this.chats);
+          // console.log(this.chats);
         });
     }
   },
@@ -782,7 +778,7 @@ export default {
   left: 1px;
   opacity: 0.5;
 }
-.record-show{
+.record-show {
   position: relative;
 }
 .record-timeline {
