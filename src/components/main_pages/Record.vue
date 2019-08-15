@@ -26,7 +26,7 @@
             </b-button>
             <div class="record-cross-line"></div>
             <transition name="el-zoom-in-top">
-              <div v-show="show1">
+              <div class="record-show" v-show="show1">
                 <!-- 上下箭头 -->
                 <div class="icon-arrow">
                   <i class="iconfont icon-iconfont15 record-top-arrow" @click="loadPrev()"></i>
@@ -44,7 +44,7 @@
                     <p class="record-nickname">{{ itm.nickname }}</p>
                     <p class="record-nickname-content">{{ itm.content }}</p>
                   </div>
-                  <div class="record-timeline"></div>
+
                   <b-popover
                     class="record-popover"
                     :target="`recordpop-1-${idx}`"
@@ -55,6 +55,7 @@
                     {{ itm.content }}
                   </b-popover>
                 </div>
+                <div class="record-timeline"></div>
               </div>
             </transition>
           </div>
@@ -74,7 +75,7 @@
             </b-button>
             <div class="record-cross-line"></div>
             <transition name="el-zoom-in-top">
-              <div v-show="show2">
+              <div class="record-show" v-show="show2">
                 <!-- 上下箭头 -->
                 <div class="icon-arrow">
                   <i class="iconfont icon-iconfont15 record-top-arrow" @click="loadPrev()"></i>
@@ -92,7 +93,7 @@
                     <p class="record-nickname">{{ itm.nickname }}</p>
                     <p class="record-nickname-content">{{ itm.content }}</p>
                   </div>
-                  <div class="record-timeline"></div>
+
                   <b-popover
                     class="record-popover"
                     :target="`recordpop-2-${idx}`"
@@ -103,6 +104,7 @@
                     {{ itm.content }}
                   </b-popover>
                 </div>
+                <div class="record-timeline"></div>
               </div>
             </transition>
           </div>
@@ -122,7 +124,7 @@
             </b-button>
             <div class="record-cross-line"></div>
             <transition name="el-zoom-in-top">
-              <div v-show="show3">
+              <div class="record-show" v-show="show3">
                 <!-- 上下箭头 -->
                 <div class="icon-arrow">
                   <i class="iconfont icon-iconfont15 record-top-arrow" @click="loadPrev()"></i>
@@ -140,7 +142,7 @@
                     <p class="record-nickname">{{ itm.nickname }}</p>
                     <p class="record-nickname-content">{{ itm.content }}</p>
                   </div>
-                  <div class="record-timeline"></div>
+
                   <b-popover
                     class="record-popover"
                     :target="`recordpop-3-${idx}`"
@@ -151,6 +153,7 @@
                     {{ itm.content }}
                   </b-popover>
                 </div>
+                <div class="record-timeline"></div>
               </div>
             </transition>
           </div>
@@ -170,7 +173,7 @@
             </b-button>
             <div class="record-cross-line"></div>
             <transition name="el-zoom-in-top">
-              <div v-show="show4">
+              <div class="record-show" v-show="show4">
                 <!-- 上下箭头 -->
                 <div class="icon-arrow">
                   <i class="iconfont icon-iconfont15 record-top-arrow" @click="loadPrev()"></i>
@@ -188,7 +191,7 @@
                     <p class="record-nickname">{{ itm.nickname }}</p>
                     <p class="record-nickname-content">{{ itm.content }}</p>
                   </div>
-                  <div class="record-timeline"></div>
+
                   <b-popover
                     class="record-popover"
                     :target="`recordpop-4-${idx}`"
@@ -199,6 +202,7 @@
                     {{ itm.content }}
                   </b-popover>
                 </div>
+                <div class="record-timeline"></div>
               </div>
             </transition>
           </div>
@@ -218,7 +222,7 @@
             </b-button>
             <div class="record-cross-line"></div>
             <transition name="el-zoom-in-top">
-              <div v-show="show5">
+              <div class="record-show" v-show="show5">
                 <!-- 上下箭头 -->
                 <div class="icon-arrow">
                   <i class="iconfont icon-iconfont15 record-top-arrow" @click="loadPrev()"></i>
@@ -236,7 +240,6 @@
                     <p class="record-nickname">{{ itm.nickname }}</p>
                     <p class="record-nickname-content">{{ itm.content }}</p>
                   </div>
-                  <div class="record-timeline"></div>
                   <b-popover
                     class="record-popover"
                     :target="`recordpop-5-${idx}`"
@@ -247,6 +250,7 @@
                     {{ itm.content }}
                   </b-popover>
                 </div>
+                <div class="record-timeline"></div>
               </div>
             </transition>
           </div>
@@ -266,7 +270,7 @@
             </b-button>
             <div class="record-cross-line"></div>
             <transition name="el-zoom-in-top">
-              <div v-show="show6">
+              <div class="record-show" v-show="show6">
                 <!-- 上下箭头 -->
                 <div class="icon-arrow">
                   <i class="iconfont icon-iconfont15 record-top-arrow" @click="loadPrev()"></i>
@@ -284,7 +288,6 @@
                     <p class="record-nickname">{{ itm.nickname }}</p>
                     <p class="record-nickname-content">{{ itm.content }}</p>
                   </div>
-                  <div class="record-timeline"></div>
                   <b-popover
                     class="record-popover"
                     :target="`recordpop-6-${idx}`"
@@ -295,6 +298,7 @@
                     {{ itm.content }}
                   </b-popover>
                 </div>
+                <div class="record-timeline"></div>
               </div>
             </transition>
           </div>
@@ -314,7 +318,7 @@
             </b-button>
             <div class="record-cross-line"></div>
             <transition name="el-zoom-in-top">
-              <div v-show="show7">
+              <div class="record-show" v-show="show7">
                 <!-- 上下箭头 -->
                 <div class="icon-arrow">
                   <i class="iconfont icon-iconfont15 record-top-arrow" @click="loadPrev()"></i>
@@ -332,7 +336,6 @@
                     <p class="record-nickname">{{ itm.nickname }}</p>
                     <p class="record-nickname-content">{{ itm.content }}</p>
                   </div>
-                  <div class="record-timeline"></div>
                   <b-popover
                     class="record-popover"
                     :target="`recordpop-7-${idx}`"
@@ -343,6 +346,7 @@
                     {{ itm.content }}
                   </b-popover>
                 </div>
+                <div class="record-timeline"></div>
               </div>
             </transition>
           </div>
@@ -690,12 +694,12 @@ export default {
 }
 .btn {
   background: #c19b73;
-} 
-.record-cicle-color{
-  background:#ccc
 }
- .record-cicle:hover{
-  background:#6c757d
+.record-cicle-color {
+  background: #ccc;
+}
+.record-cicle:hover {
+  background: #6c757d;
 }
 .record-arrow {
   position: relative;
@@ -778,11 +782,14 @@ export default {
   left: 1px;
   opacity: 0.5;
 }
+.record-show{
+  position: relative;
+}
 .record-timeline {
   height: 596px;
   width: 1px;
-  position: relative;
-  top: -116px;
+  position: absolute;
+  top: 31px;
   left: 28px;
   z-index: 0;
   border: 1px solid #ccc;
