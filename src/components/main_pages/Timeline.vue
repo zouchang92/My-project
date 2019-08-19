@@ -35,8 +35,8 @@
                       >
                         <div v-for="(itm, idx) in item.detail" :key="idx">
                           <h4>{{ itm.update_date }}</h4>
-                          <div style='word-wrap:break-word; white-space:normal;width:auto;display:block;white-space:pre-wrap;overflow:auto;overflow:hidden'>{{ itm.content }}</div>
-                          <p>{{ itm.targets }}</p>
+                          <span class='timeline-span'>{{ itm.content }}</span>
+                          <p class='timeline-p'>{{ itm.targets }}</p>
                         </div>
                       </b-popover>
                     </li>
@@ -68,11 +68,12 @@
                         :target="`li-2-${index}`"
                         :title="item.event_title"
                         triggers="click"
+                        placement="right"
                       >
                         <div v-for="(itm, idx) in item.detail" :Key="idx">
                           <h4>{{ itm.update_date }}</h4>
-                          <span>{{ itm.content }}</span>
-                          <p>{{ itm.targets }}</p>
+                          <span class='timeline-span'>{{ itm.content }}</span>
+                          <p class='timeline-p'>{{ itm.targets }}</p>
                         </div>
                       </b-popover>
                     </li>
@@ -104,11 +105,12 @@
                         :target="`li-3-${index}`"
                         :title="item.event_title"
                         triggers="click"
+                        placement="right"
                       >
                         <div v-for="(itm, idx) in item.detail" :key="idx">
                           <h4>{{ itm.update_date }}</h4>
-                          <span style='word-break:break-all;'>{{ itm.content }}</span>
-                          <p>{{ itm.targets }}</p>
+                          <span  class='timeline-span'>{{ itm.content }}</span>
+                          <p class='timeline-p'>{{ itm.targets }}</p>
                         </div>
                       </b-popover>
                     </li>
@@ -140,11 +142,12 @@
                         :target="`li-4-${index}`"
                         :title="item.event_title"
                         triggers="click"
+                        placement="right"
                       >
                         <div v-for="(itm, idx) in item.detail" :key="idx">
                           <h4>{{ itm.update_date }}</h4>
-                          <span>{{ itm.content }}</span>
-                          <p>{{ itm.targets }}</p>
+                          <span class='timeline-span'>{{ itm.content }}</span>
+                          <p class='timeline-p'>{{ itm.targets }}</p>
                         </div>
                       </b-popover>
                     </li>
@@ -177,11 +180,12 @@
                         :target="`li-5-${index}`"
                         :title="item.event_title"
                         triggers="click"
+                        placement="right"
                       >
                         <div v-for="(itm, idx) in item.detail" :key="idx">
                           <h4>{{ itm.update_date }}</h4>
-                          <span>{{ itm.content }}</span>
-                          <p>{{ itm.targets }}</p>
+                          <span class='timeline-span'>{{ itm.content }}</span>
+                          <p class='timeline-p'>{{ itm.targets }}</p>
                         </div>
                       </b-popover>
                     </li>
@@ -214,11 +218,12 @@
                         :title="item.event_title"
                         triggers="click"
                         boundary='window'
+                        placement="right"
                       >
                         <div v-for="(itm, idx) in item.detail" :key="idx">
                           <h4>{{ itm.update_date }}</h4>
-                          <span>{{ itm.content }}</span>
-                          <p>{{ itm.targets }}</p>
+                          <span class='timeline-span'>{{ itm.content }}</span>
+                          <p class='timeline-p'>{{ itm.targets }}</p>
                         </div>
                       </b-popover>
                     </li>
@@ -251,11 +256,12 @@
                         :target="`li-7-${index}`"
                         :title="item.event_title"
                         triggers="click"
+                        placement="right"
                       >
                         <div v-for="(itm, idx) in item.detail" :key="idx">
                           <h4>{{ itm.update_date }}</h4>
-                          <span>{{ itm.content }}</span>
-                          <p>{{ itm.targets }}</p>
+                          <span class='timeline-span'>{{ itm.content }}</span>
+                          <p class='timeline-p'>{{ itm.targets }}</p>
                         </div>
                       </b-popover>
                     </li>
@@ -530,8 +536,19 @@ export default {
  padding-left: 0px;
 }
 .popover{
-  max-width:900px;
-  max-height:900px
+  max-width:600px;
+  max-height:800px;
+  overflow: auto
+}
+.timeline-span{
+  word-wrap:break-word; 
+  white-space:normal;
+  width:auto;
+  display:block;
+  white-space:pre-wrap;
+}
+.timeline-p{
+  color:red
 }
 </style>
 
