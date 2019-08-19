@@ -31,10 +31,11 @@
                         :target="`li-1-${index}`"
                         :title="item.event_title"
                         triggers="click"
+                        placement="right"
                       >
                         <div v-for="(itm, idx) in item.detail" :key="idx">
                           <h4>{{ itm.update_date }}</h4>
-                          <span>{{ itm.content }}</span>
+                          <div style='word-wrap:break-word; white-space:normal;width:auto;display:block;white-space:pre-wrap;overflow:auto;overflow:hidden'>{{ itm.content }}</div>
                           <p>{{ itm.targets }}</p>
                         </div>
                       </b-popover>
@@ -106,7 +107,7 @@
                       >
                         <div v-for="(itm, idx) in item.detail" :key="idx">
                           <h4>{{ itm.update_date }}</h4>
-                          <span>{{ itm.content }}</span>
+                          <span style='word-break:break-all;'>{{ itm.content }}</span>
                           <p>{{ itm.targets }}</p>
                         </div>
                       </b-popover>
@@ -212,6 +213,7 @@
                         :target="`li-6-${index}`"
                         :title="item.event_title"
                         triggers="click"
+                        boundary='window'
                       >
                         <div v-for="(itm, idx) in item.detail" :key="idx">
                           <h4>{{ itm.update_date }}</h4>
@@ -527,6 +529,9 @@ export default {
 .tl-ul {
  padding-left: 0px;
 }
-
+.popover{
+  max-width:900px;
+  max-height:900px
+}
 </style>
 
