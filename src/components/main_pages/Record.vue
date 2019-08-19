@@ -379,7 +379,7 @@ export default {
       noMoreData: false,
       showCollapse: true,
 
-      show1: true,
+      show1: false,
       show2: false,
       show3: false,
       show4: false,
@@ -393,17 +393,18 @@ export default {
   created() {
     this.getWeek(new Date().valueOf());
     this.renderIdeas();
-    this.pollData();
+    // this.pollData();
   },
   mounted() {},
   beforeDestroy() {
-    clearInterval(this.polling);
+    // clearInterval(this.polling);
   },
   computed: {},
   methods: {
     pollData() {
       this.polling = setInterval(() => {
-        this.loadIdeas(this.curDate)
+        let date = formatDate(new Date(this.weekArr[0]), "yyyy-MM-dd");
+        this.loadIdeas(date)
       }, 5000);
     },
     // 加载指定日期的内容

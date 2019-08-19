@@ -25,7 +25,6 @@
                           <p>{{ ditm.content }}</p>
                           <h4>标的:</h4>
                           <p>{{ ditm.targets }}</p>
-                          <!-- <strong>{{ ditm.update_date }}</strong> -->
                         </div>
                       </b-popover>
                     </div>

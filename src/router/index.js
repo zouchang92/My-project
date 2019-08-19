@@ -46,6 +46,8 @@ import Spare1 from '@/components/main_pages/Spare1.vue'
 import Spare2 from '@/components/main_pages/Spare2.vue'
 import LaunchEvent from '@/components/edit_pages/LaunchEvent.vue'
 import LaunchIdea from '@/components/edit_pages/LaunchIdea.vue'
+import AdminHome from '@/components/admin_pages/AdminHome'
+import AdminEvent from '@/components/admin_pages/AdminEvent'
 // import Login from '@components/authentication/Login.vue'
 
 Vue.use(Router)
@@ -58,6 +60,8 @@ Vue.component('Spare1', Spare1)
 Vue.component('Spare2', Spare2)
 Vue.component('LaunchEvent', LaunchEvent)
 Vue.component('LaunchIdea', LaunchIdea)
+Vue.component('AdminHome', AdminHome)
+Vue.component('AdminEvent', AdminEvent)
 // Vue.component('Login', Login)
 
 Vue.component('Navbar', Navbar)
@@ -109,6 +113,16 @@ export default new Router({
       path: '/editors/launch-idea',
       name: 'LaunchIdea',
       component: LaunchIdea
+    },
+    {
+      path: '/plus-admin/home',
+      name: 'AdminHome',
+      component: AdminHome,
+    },
+    {
+      path: '/plus-admin/event',
+      name: 'AdminEvent',
+      component: AdminEvent
     },
     // {
     //   path: '/Login',
