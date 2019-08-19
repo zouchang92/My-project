@@ -92,7 +92,7 @@ export default {
 @import "../../assets/css/color/color-4.css";
 
 .myhome {
-  background: url(../../assets/images/background/bg_05.jpg);
+  background: url(../../assets/images/background/bg_08.jpeg);
   margin-top: 0;
   align-items: center;
   position: relative;
