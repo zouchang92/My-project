@@ -356,4 +356,7 @@ export default {
 .el-button{
   padding:0px
 }
+.el-popover__title{
+  font-size: 20px
+}
 </style>
