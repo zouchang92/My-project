@@ -30,7 +30,7 @@
                       <b-popover
                         :target="`li-1-${index}`"
                         :title="item.event_title"
-                        triggers="click"
+                        triggers="click blur"
                         placement="right"
                       >
                         <div v-for="(itm, idx) in item.detail" :key="idx">
@@ -310,7 +310,11 @@ export default {
   created() {
     this.getWeek(new Date().valueOf());
   },
-  mounted() {},
+  mounted() {
+    // this.$root.$on('bv::popover::show', bvEventObj => {
+    //   console.log('bvEventObj:', bvEventObj);
+    // })
+  },
   methods: {
     // 生成一周的日期列表
     getWeek(date) {

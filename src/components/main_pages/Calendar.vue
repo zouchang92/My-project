@@ -35,7 +35,7 @@
                         <p>{{ itm.start_date }}</p>
                         <span>{{ itm.event_title }}</span>
                       </b-button>
-                      <!-- <b-popover :target="`popover-${index}-${idx}`" triggers="hover">
+                      <b-popover :target="`popover-${index}-${idx}`" triggers="hover"  placement="rightbottom" delay={show:100,hide:400}>
                         <template slot="title" class="pop-header">{{ itm.event_title }}</template>
                         <div v-for="(ditm, didx) in itm.detail" :key="didx">
                           <h3>{{ ditm.update_date }}</h3>
@@ -43,19 +43,7 @@
                           <h4>标的:</h4>
                           <p>{{ ditm.targets }}</p>
                         </div>
-                      </b-popover>-->
-                      <el-dialog
-                        title="提示"
-                        :visible.sync="dialogVisible"
-                        width="30%"
-                        :before-close="handleClose"
-                      >
-                        <span>这是一段信息</span>
-                        <span slot="footer" class="dialog-footer">
-                          <el-button @click="dialogVisible = false">取 消</el-button>
-                          <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-                        </span>
-                      </el-dialog>
+                      </b-popover>
                     </div>
                   </div>
                 </div>
@@ -81,7 +69,9 @@ export default {
     this.loadData();
   },
 
-  mounted() {},
+  mounted() {
+    
+  },
 
   data() {
     return {
