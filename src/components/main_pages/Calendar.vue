@@ -26,24 +26,29 @@
                   </div>
                   <div class="row-right">
                     <div v-for="(itm, idx) in item.event_list" :key="idx">
-                      <b-button
+                      <!-- <b-button
                         :style="{'background':'rgb('+Math.floor(Math.random()*50+180)+','+Math.floor(Math.random()*50+220)+','+Math.floor(Math.random()*50+220)+')'}"
                         class="row-content"
-                        :id="`popover-${index}-${idx}`"
-                        @click="conclick(itm)"
                       >
                         <p>{{ itm.start_date }}</p>
                         <span>{{ itm.event_title }}</span>
-                      </b-button>
-                      <b-popover :target="`popover-${index}-${idx}`" triggers="hover"  placement="rightbottom" delay={show:100,hide:400}>
-                        <template slot="title" class="pop-header">{{ itm.event_title }}</template>
+                      </b-button>-->
+                      <el-popover placement="right-start" :title="itm.event_title" width="600" trigger="hover">
                         <div v-for="(ditm, didx) in itm.detail" :key="didx">
                           <h3>{{ ditm.update_date }}</h3>
                           <p>{{ ditm.content }}</p>
                           <h4>标的:</h4>
-                          <p>{{ ditm.targets }}</p>
+                          <p class="Calendar-targets">{{ ditm.targets }}</p>
                         </div>
-                      </b-popover>
+                        <el-button
+                          slot="reference"
+                          class="row-content"
+                          :style="{'background':'rgb('+Math.floor(Math.random()*50+180)+','+Math.floor(Math.random()*50+220)+','+Math.floor(Math.random()*50+220)+')'}"
+                        >
+                          <p>{{ itm.start_date }}</p>
+                          <span>{{ itm.event_title }}</span>
+                        </el-button>
+                      </el-popover>
                     </div>
                   </div>
                 </div>
@@ -86,9 +91,6 @@ export default {
     };
   },
   computed: {
-    // today: function () {
-    //   let this_day =
-    // }
     RandomColor(index) {
       let r, g, b;
       r = Math.floor(Math.random() * 256);
@@ -99,7 +101,6 @@ export default {
   },
   methods: {
     conclick(itm) {
-      this.dialogVisible = true;
       console.log(itm);
     },
     timeFormat(date) {
@@ -322,24 +323,37 @@ export default {
 }
 .row-content span {
   position: relative;
-  left: -8px;
-  top: -30px;
+    left: 0px;
+    top: -72px;
   font-size: 14px;
   display: block;
   color: #000000;
-  max-height: 50px;
+  /* max-height: 50px; */
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   white-space: pre-wrap;
   text-overflow: ellipsis;
+  line-height: 2
 }
 .row-content p {
-  display: block;
-  position: relative;
-  left: -1px;
-  top: 66px;
-  font-size: 13px;
+    display: block;
+    position: relative;
+    left: -1px;
+    top: 108px;
+    font-size: 13px;
+    line-height: 8;
+}
+.el-popover{
+  max-width:600px;
+  max-height:800px;
+  overflow: auto
+}
+.Calendar-targets{
+  color: red
+}
+.el-button{
+  padding:0px
 }
 </style>

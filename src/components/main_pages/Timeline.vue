@@ -309,6 +309,7 @@ export default {
   },
   created() {
     this.getWeek(new Date().valueOf());
+    this.click1();
   },
   mounted() {
     // this.$root.$on('bv::popover::show', bvEventObj => {

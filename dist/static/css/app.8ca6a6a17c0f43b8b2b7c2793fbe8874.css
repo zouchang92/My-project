@@ -14524,7 +14524,7 @@ h1 {
   background: linear-gradient(to bottom, #212222 0, #CFD7DF 99%) !important;
 }
 .myhome {
-  background: url(/static/img/bg_05.270dbe2.jpg);
+  background: url(/static/img/bg_08.8813cb1.jpeg);
   margin-top: 0;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -14877,7 +14877,21 @@ h1 {
 .tl-ul {
  padding-left: 0px;
 }
-
+.popover{
+  max-width:600px;
+  max-height:800px;
+  overflow: auto
+}
+.timeline-span{
+  word-wrap:break-word; 
+  white-space:normal;
+  width:auto;
+  display:block;
+  white-space:pre-wrap;
+}
+.timeline-p{
+  color:red
+}
 
 .calendar {
   background: url(http://pw989qog6.bkt.clouddn.com/bg_03.jpg);
@@ -14932,7 +14946,7 @@ h1 {
 }
 .row-date p {
   font-size: 15px;
-  color: #f0f0f0
+  color: #f0f0f0;
 }
 .row-date-red {
   height: 48px;
@@ -14942,7 +14956,7 @@ h1 {
 }
 .row-date-red p {
   font-size: 15px;
-  color: #c6001c
+  color: #c6001c;
 }
 .row-week {
   color: white;
@@ -14971,14 +14985,14 @@ h1 {
   float: right;
 }
 .row-content {
-    height: 104px;
-    width: 105px;
-    border: 1px solid #eee;
-    border-radius: 4px;
-    -webkit-box-shadow: 0 3px 12px #000000;
-    box-shadow: 0 3px 12px #000000;
-    margin: -4px 15px;
-    float: left;
+  height: 104px;
+  width: 105px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 3px 12px #000000;
+  box-shadow: 0 3px 12px #000000;
+  margin: -4px 15px;
+  float: left;
 }
 .row-content:hover {
   background-color: #d3d3d3;
@@ -14992,18 +15006,18 @@ h1 {
   color: #000000;
   max-height: 50px;
   display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
   white-space: pre-wrap;
   text-overflow: ellipsis;
 }
 .row-content p {
-    display: block;
-    position: relative;
-    left: -1px;
-    top: 66px;
-    font-size: 13px;
+  display: block;
+  position: relative;
+  left: -1px;
+  top: 66px;
+  font-size: 13px;
 }
 
 .alert {
