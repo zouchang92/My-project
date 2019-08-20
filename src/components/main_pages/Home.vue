@@ -93,7 +93,7 @@ export default {
 
 .myhome {
   background: url(http://pw989qog6.bkt.clouddn.com/bg_08.jpeg) no-repeat;
-  background-size: 100%;
+  background-size: 100% 100%;
   margin-top: 0;
   align-items: center;
   position: relative;
