@@ -26,36 +26,29 @@
                   </div>
                   <div class="row-right">
                     <div v-for="(itm, idx) in item.event_list" :key="idx">
-                      <b-button
+                      <!-- <b-button
                         :style="{'background':'rgb('+Math.floor(Math.random()*50+180)+','+Math.floor(Math.random()*50+220)+','+Math.floor(Math.random()*50+220)+')'}"
                         class="row-content"
-                        :id="`popover-${index}-${idx}`"
-                        @click="conclick(itm)"
                       >
                         <p>{{ itm.start_date }}</p>
                         <span>{{ itm.event_title }}</span>
-                      </b-button>
-                      <!-- <b-popover :target="`popover-${index}-${idx}`" triggers="hover">
-                        <template slot="title" class="pop-header">{{ itm.event_title }}</template>
+                      </b-button>-->
+                      <el-popover placement="right-start" :title="itm.event_title" width="200" trigger="hover">
                         <div v-for="(ditm, didx) in itm.detail" :key="didx">
                           <h3>{{ ditm.update_date }}</h3>
                           <p>{{ ditm.content }}</p>
                           <h4>标的:</h4>
                           <p>{{ ditm.targets }}</p>
                         </div>
-                      </b-popover>-->
-                      <el-dialog
-                        title="提示"
-                        :visible.sync="dialogVisible"
-                        width="30%"
-                        :before-close="handleClose"
-                      >
-                        <span>这是一段信息</span>
-                        <span slot="footer" class="dialog-footer">
-                          <el-button @click="dialogVisible = false">取 消</el-button>
-                          <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-                        </span>
-                      </el-dialog>
+                        <el-button
+                          slot="reference"
+                          class="row-content"
+                          :style="{'background':'rgb('+Math.floor(Math.random()*50+180)+','+Math.floor(Math.random()*50+220)+','+Math.floor(Math.random()*50+220)+')'}"
+                        >
+                          <p>{{ itm.start_date }}</p>
+                          <span>{{ itm.event_title }}</span>
+                        </el-button>
+                      </el-popover>
                     </div>
                   </div>
                 </div>
@@ -96,9 +89,6 @@ export default {
     };
   },
   computed: {
-    // today: function () {
-    //   let this_day =
-    // }
     RandomColor(index) {
       let r, g, b;
       r = Math.floor(Math.random() * 256);
@@ -109,7 +99,6 @@ export default {
   },
   methods: {
     conclick(itm) {
-      this.dialogVisible = true;
       console.log(itm);
     },
     timeFormat(date) {
