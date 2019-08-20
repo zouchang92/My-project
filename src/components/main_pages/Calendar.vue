@@ -304,7 +304,7 @@ export default {
   color: #c6001c;
 }
 .row-right {
-  height: 110px;
+  max-height: 300px;
   width: 1050px;
   float: right;
 }
