@@ -46,7 +46,7 @@
                           :style="{'background':'rgb('+Math.floor(Math.random()*50+180)+','+Math.floor(Math.random()*50+220)+','+Math.floor(Math.random()*50+220)+')'}"
                         >
                           <p>{{ itm.start_date }}</p>
-                          <span>{{ itm.event_title }}</span>
+                          <span class="Calendar-span">{{ itm.event_title }}</span>
                         </el-button>
                       </el-popover>
                     </div>
@@ -321,27 +321,11 @@ export default {
 .row-content:hover {
   background-color: #d3d3d3;
 }
-.row-content span {
-  position: relative;
-    left: 0px;
-    top: -72px;
-  font-size: 14px;
-  display: block;
-  color: #000000;
-  /* max-height: 50px; */
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  white-space: pre-wrap;
-  text-overflow: ellipsis;
-  line-height: 2
-}
 .row-content p {
     display: block;
     position: relative;
     left: -1px;
-    top: 108px;
+    top: 40px;
     font-size: 13px;
     line-height: 8;
 }
@@ -358,5 +342,21 @@ export default {
 }
 .el-popover__title{
   font-size: 20px
+}
+.Calendar-span{
+  position: relative;
+    left: 0px;
+    top: -117px;
+    font-size: 14px;
+    display: block;
+    color: #000000;
+    /* max-height: 50px; */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    white-space: pre-wrap;
+    text-overflow: ellipsis;
+    line-height: 2;
 }
 </style>

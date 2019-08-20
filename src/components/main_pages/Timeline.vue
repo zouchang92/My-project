@@ -312,9 +312,6 @@ export default {
     this.click1();
   },
   mounted() {
-    // this.$root.$on('bv::popover::show', bvEventObj => {
-    //   console.log('bvEventObj:', bvEventObj);
-    // })
   },
   methods: {
     // 生成一周的日期列表
