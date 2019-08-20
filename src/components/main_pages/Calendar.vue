@@ -224,7 +224,8 @@ export default {
 
 <style lang='css'>
 .calendar {
-  background: url(http://pw989qog6.bkt.clouddn.com/bg_03.jpg);
+  background: url(http://pw989qog6.bkt.clouddn.com/bg_03.jpg) no-repeat;
+  background-size: 100%;
   margin-top: 0;
   align-items: center;
   position: relative;

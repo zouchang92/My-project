@@ -588,7 +588,8 @@ export default {
 </script>
 <style scoped>
 #record {
-  background: url(http://pw989qog6.bkt.clouddn.com/bg_02.jpg);
+  background: url(http://pw989qog6.bkt.clouddn.com/bg_02.jpg) no-repeat;
+  background-size: 100%;
   height: 940px;
   min-width: 1200px;
 }
