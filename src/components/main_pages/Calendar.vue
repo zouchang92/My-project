@@ -311,11 +311,10 @@ export default {
 .row-content {
   height: 104px;
   width: 105px;
-  border: 1px solid #eee;
-  border-radius: 4px;
-  -webkit-box-shadow: 0 3px 12px #000000;
-  box-shadow: 0 3px 12px #000000;
-  margin: -4px 15px;
+  border: 1px solid #eee  !important;
+  border-radius: 4px  !important;
+  box-shadow: 0 3px 12px #000000  !important;
+  margin: -4px 15px !important;
   float: left;
 }
 .row-content:hover {
@@ -338,7 +337,7 @@ export default {
   color: red
 }
 .el-button{
-  padding:0px
+  padding:0px  !important
 }
 .el-popover__title{
   font-size: 20px
