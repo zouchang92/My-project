@@ -14980,7 +14980,7 @@ h1 {
   color: #c6001c;
 }
 .row-right {
-  height: 110px;
+  max-height: 300px;
   width: 1050px;
   float: right;
 }
@@ -14997,27 +14997,43 @@ h1 {
 .row-content:hover {
   background-color: #d3d3d3;
 }
-.row-content span {
-  position: relative;
-  left: -8px;
-  top: -30px;
-  font-size: 14px;
-  display: block;
-  color: #000000;
-  max-height: 50px;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  white-space: pre-wrap;
-  text-overflow: ellipsis;
-}
 .row-content p {
-  display: block;
+    display: block;
+    position: relative;
+    left: -1px;
+    top: 40px;
+    font-size: 13px;
+    line-height: 8;
+}
+.el-popover{
+  max-width:600px;
+  max-height:800px;
+  overflow: auto
+}
+.Calendar-targets{
+  color: red
+}
+.el-button{
+  padding:0px
+}
+.el-popover__title{
+  font-size: 20px
+}
+.Calendar-span{
   position: relative;
-  left: -1px;
-  top: 66px;
-  font-size: 13px;
+    left: 0px;
+    top: -117px;
+    font-size: 14px;
+    display: block;
+    color: #000000;
+    /* max-height: 50px; */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    white-space: pre-wrap;
+    text-overflow: ellipsis;
+    line-height: 2;
 }
 
 .alert {
