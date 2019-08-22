@@ -336,7 +336,7 @@ export default {
 
     // 加载指定日期的内容
     loadEvents(date) {
-      let url = this.$host + "/timeline-detail/";
+      let url = this.$host + "/api/timeline-detail/";
       this.$ajax
         .get(url, {
           params: {

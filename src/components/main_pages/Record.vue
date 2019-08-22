@@ -37,7 +37,7 @@
                 </div>
                 <!-- 聊天框 -->
                 <div class="record-title" v-for="(itm, idx) in dailyChats" :key="idx">
-                  <span class="record-time-a">{{ itm.timestamp | formatClock }}</span>
+                  <span class="record-time-a">{{ itm.pub_date | formatClock }}</span>
                   <div class="record-cicle-a"></div>
                   <div class="record-content left" :id="`recordpop-1-${idx}`">
                     <img class="admin-img" src="../../assets/images/background/avatar_01.jpg" alt />
@@ -86,7 +86,7 @@
                 </div>
                 <!-- 聊天框 -->
                 <div class="record-title" v-for="(itm, idx) in dailyChats" :key="idx">
-                  <span class="record-time-a">{{ itm.timestamp | formatClock }}</span>
+                  <span class="record-time-a">{{ itm.pub_date | formatClock }}</span>
                   <div class="record-cicle-a"></div>
                   <div class="record-content left" :id="`recordpop-2-${idx}`">
                     <img class="admin-img" src="../../assets/images/background/avatar_01.jpg" alt />
@@ -135,7 +135,7 @@
                 </div>
                 <!-- 聊天框 -->
                 <div class="record-title" v-for="(itm, idx) in dailyChats" :key="idx">
-                  <span class="record-time-a">{{ itm.timestamp | formatClock }}</span>
+                  <span class="record-time-a">{{ itm.pub_date | formatClock }}</span>
                   <div class="record-cicle-a"></div>
                   <div class="record-content left" :id="`recordpop-3-${idx}`">
                     <img class="admin-img" src="../../assets/images/background/avatar_01.jpg" alt />
@@ -184,7 +184,7 @@
                 </div>
                 <!-- 聊天框 -->
                 <div class="record-title" v-for="(itm, idx) in dailyChats" :key="idx">
-                  <span class="record-time-a">{{ itm.timestamp | formatClock }}</span>
+                  <span class="record-time-a">{{ itm.pub_date | formatClock }}</span>
                   <div class="record-cicle-a"></div>
                   <div class="record-content left" :id="`recordpop-4-${idx}`">
                     <img class="admin-img" src="../../assets/images/background/avatar_01.jpg" alt />
@@ -233,7 +233,7 @@
                 </div>
                 <!-- 聊天框 -->
                 <div class="record-title" v-for="(itm, idx) in dailyChats" :key="idx">
-                  <span class="record-time-a">{{ itm.timestamp | formatClock }}</span>
+                  <span class="record-time-a">{{ itm.pub_date | formatClock }}</span>
                   <div class="record-cicle-a"></div>
                   <div class="record-content left" :id="`recordpop-5-${idx}`">
                     <img class="admin-img" src="../../assets/images/background/avatar_01.jpg" alt />
@@ -281,7 +281,7 @@
                 </div>
                 <!-- 聊天框 -->
                 <div class="record-title" v-for="(itm, idx) in dailyChats" :key="idx">
-                  <span class="record-time-a">{{ itm.timestamp | formatClock }}</span>
+                  <span class="record-time-a">{{ itm.pub_date | formatClock }}</span>
                   <div class="record-cicle-a"></div>
                   <div class="record-content left" :id="`recordpop-6-${idx}`">
                     <img class="admin-img" src="../../assets/images/background/avatar_01.jpg" alt />
@@ -329,7 +329,7 @@
                 </div>
                 <!-- 聊天框 -->
                 <div class="record-title" v-for="(itm, idx) in dailyChats" :key="idx">
-                  <span class="record-time-a">{{ itm.timestamp | formatClock }}</span>
+                  <span class="record-time-a">{{ itm.pub_date | formatClock }}</span>
                   <div class="record-cicle-a"></div>
                   <div class="record-content left" :id="`recordpop-7-${idx}`">
                     <img class="admin-img" src="../../assets/images/background/avatar_01.jpg" alt />
@@ -411,7 +411,8 @@ export default {
     loadIdeas(date) {
       this.curDate = date;
 
-      let url = this.$host + "/idea-detail/";
+      // let url = this.$host + "/idea-detail/";
+      let url = this.$host + "/api/idea/"
       this.$ajax
         .get(url, {
           params: {
@@ -420,7 +421,7 @@ export default {
           }
         })
         .then(res => {
-          // console.log(res.data.data);
+          console.log(res.data.data);
           this.dailyChats = res.data.data;
           if (res.data.data.length == 8) {
             this.noMoreData = false;
@@ -514,13 +515,13 @@ export default {
       let date = formatDate(new Date(this.weekArr[6]), "yyyy-MM-dd");
       this.loadIdeas(date);
     },
-    // 点击日期按钮
-    btnClick(date) {
-      this.showCollapse = !this.showCollapse;
-      this.noMoreData = false;
-      this.skip = 0;
-      this.loadIdeas(date);
-    },
+    // // 点击日期按钮
+    // btnClick(date) {
+    //   this.showCollapse = !this.showCollapse;
+    //   this.noMoreData = false;
+    //   this.skip = 0;
+    //   this.loadIdeas(date);
+    // },
     // 上箭头翻页
     loadPrev() {
       if (this.skip != 0) {
@@ -542,7 +543,7 @@ export default {
       let start = formatDate(new Date(this.weekArr[0]), "yyyy-MM-dd");
       let end = formatDate(new Date(this.weekArr[6]), "yyyy-MM-dd");
       // 发起请求, 渲染页面数据
-      let url = this.$host + "/idea/";
+      let url = this.$host + "/api/idea-top/";
       this.$ajax
         .get(url, {
           params: {
@@ -561,9 +562,9 @@ export default {
       var date = new Date(time);
       return formatDate(date, "MM/dd");
     },
-    formatClock(timestamp) {
-      var date = new Date(timestamp);
-      return formatDate(date, "hh:mm");
+    formatClock(date) {
+      let hm = new Date(date);
+      return formatDate(hm, "hh:mm");
     },
     formatAuthor(data) {
       if (!data) {

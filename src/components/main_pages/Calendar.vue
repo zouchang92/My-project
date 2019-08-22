@@ -100,9 +100,6 @@ export default {
     }
   },
   methods: {
-    conclick(itm) {
-      console.log(itm);
-    },
     timeFormat(date) {
       if (!date || typeof date === "string") {
         this.console.error("日期参数异常");
@@ -145,7 +142,7 @@ export default {
       nextDate.setDate(nextDate.getDate() + 1);
       this.startDate = nextDate;
 
-      let url = this.$host + "/calendar/";
+      let url = this.$host + "/api/calendar/";
       this.$ajax
         .get(url, {
           params: {
