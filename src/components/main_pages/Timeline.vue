@@ -42,8 +42,8 @@
                     </li>
                     <!-- 上下翻页 -->
                     <div class="timeline-arr">
-                      <span class="top-arrow" @click="TopArrow">上一页</span>
-                      <span class="buttom-arrow" @click="ButtomArrow">下一页</span>
+                      <span class="top-arrow" @click="InnerPrev">上一页</span>
+                      <span class="buttom-arrow" @click="InnerNext">下一页</span>
                     </div>
                   </ul>
                 </div>
@@ -79,8 +79,8 @@
                     </li>
                     <!-- 上下翻页 -->
                     <div class="timeline-arr">
-                      <span class="top-arrow" @click="TopArrow">上一页</span>
-                      <span class="buttom-arrow" @click="ButtomArrow">下一页</span>
+                      <span class="top-arrow" @click="InnerPrev">上一页</span>
+                      <span class="buttom-arrow" @click="InnerNext">下一页</span>
                     </div>
                   </ul>
                 </div>
@@ -116,8 +116,8 @@
                     </li>
                     <!-- 上下翻页 -->
                     <div class="timeline-arr">
-                      <span class="top-arrow" @click="TopArrow">上一页</span>
-                      <span class="buttom-arrow" @click="ButtomArrow">下一页</span>
+                      <span class="top-arrow" @click="InnerPrev">上一页</span>
+                      <span class="buttom-arrow" @click="InnerNext">下一页</span>
                     </div>
                   </ul>
                 </div>
@@ -153,8 +153,8 @@
                     </li>
                     <!-- 上下翻页 -->
                     <div class="timeline-arr">
-                      <span class="top-arrow" @click="TopArrow">上一页</span>
-                      <span class="buttom-arrow" @click="ButtomArrow">下一页</span>
+                      <span class="top-arrow" @click="InnerPrev">上一页</span>
+                      <span class="buttom-arrow" @click="InnerNext">下一页</span>
                     </div>
                   </ul>
                 </div>
@@ -192,8 +192,8 @@
                   </ul>
                   <!-- 上下翻页 -->
                   <div class="timeline-arr">
-                    <span class="top-arrow" @click="TopArrow">上一页</span>
-                    <span class="buttom-arrow" @click="ButtomArrow">下一页</span>
+                    <span class="top-arrow" @click="InnerPrev">上一页</span>
+                    <span class="buttom-arrow" @click="InnerNext">下一页</span>
                   </div>
                 </div>
               </transition>
@@ -229,8 +229,8 @@
                     </li>
                     <!-- 上下翻页 -->
                     <div class="timeline-arr">
-                      <span class="top-arrow" @click="TopArrow">上一页</span>
-                      <span class="buttom-arrow" @click="ButtomArrow">下一页</span>
+                      <span class="top-arrow" @click="InnerPrev">上一页</span>
+                      <span class="buttom-arrow" @click="InnerNext">下一页</span>
                     </div>
                   </ul>
                 </div>
@@ -267,8 +267,8 @@
                     </li>
                     <!-- 上下翻页 -->
                     <div class="timeline-arr">
-                      <span class="top-arrow" @click="TopArrow">上一页</span>
-                      <span class="buttom-arrow" @click="ButtomArrow">下一页</span>
+                      <span class="top-arrow" @click="InnerPrev">上一页</span>
+                      <span class="buttom-arrow" @click="InnerNext">下一页</span>
                     </div>
                   </ul>
                 </div>
@@ -294,7 +294,7 @@ export default {
       end_date: "",
       isShow: false,
       skip: 0,
-      curDate: formatDate(new Date(), "yyyy-MM-dd"),
+      curDate: '',
       show1: false,
       show2: false,
       show3: false,
@@ -304,7 +304,8 @@ export default {
       show7: false,
       dateOne: "",
       weekArr: [],
-      dataList: []
+      dataList: [],
+      noMoreData: false,
     };
   },
   created() {
@@ -337,14 +338,21 @@ export default {
     // 加载指定日期的内容
     loadEvents(date) {
       let url = this.$host + "/api/timeline-detail/";
+      this.noMoreData = false;
       this.$ajax
         .get(url, {
           params: {
-            start_date: date
+            start_date: date,
+            skip: this.skip
           }
         })
         .then(res => {
-          this.dataList = res.data.data;
+          let data = res.data.data
+          if (data.event_list.length == 0) {
+            this.noMoreData = true
+          } else {
+            this.dataList = res.data.data;
+          }
         });
     },
     // 右箭头翻页
@@ -368,57 +376,73 @@ export default {
       this.show1 = !this.show1;
       this.show2 = this.show3 = this.show4 = this.show5 = this.show6 = this.show7 = false;
       let date = formatDate(new Date(this.weekArr[0]), "yyyy-MM-dd");
+      this.curDate = date;
+      this.skip = 0
       this.loadEvents(date);
     },
     click2() {
       this.show2 = !this.show2;
       this.show1 = this.show3 = this.show4 = this.show5 = this.show6 = this.show7 = false;
       let date = formatDate(new Date(this.weekArr[1]), "yyyy-MM-dd");
+      this.curDate = date;
+      this.skip = 0
       this.loadEvents(date);
     },
     click3() {
       this.show3 = !this.show3;
       this.show1 = this.show2 = this.show4 = this.show5 = this.show6 = this.show7 = false;
       let date = formatDate(new Date(this.weekArr[2]), "yyyy-MM-dd");
+      this.curDate = date;
+      this.skip = 0
       this.loadEvents(date);
     },
     click4() {
       this.show4 = !this.show4;
       this.show1 = this.show2 = this.show3 = this.show5 = this.show6 = this.show7 = false;
       let date = formatDate(new Date(this.weekArr[3]), "yyyy-MM-dd");
+      this.curDate = date;
+      this.skip = 0
       this.loadEvents(date);
     },
     click5() {
       this.show5 = !this.show5;
       this.show1 = this.show2 = this.show3 = this.show4 = this.show6 = this.show7 = false;
       let date = formatDate(new Date(this.weekArr[4]), "yyyy-MM-dd");
+      this.curDate = date;
+      this.skip = 0
       this.loadEvents(date);
     },
     click6() {
       this.show6 = !this.show6;
       this.show1 = this.show2 = this.show3 = this.show4 = this.show5 = this.show7 = false;
       let date = formatDate(new Date(this.weekArr[5]), "yyyy-MM-dd");
+      this.curDate = date;
+      this.skip = 0
       this.loadEvents(date);
     },
     click7() {
       this.show7 = !this.show7;
       this.show1 = this.show2 = this.show3 = this.show4 = this.show5 = this.show6 = false;
       let date = formatDate(new Date(this.weekArr[6]), "yyyy-MM-dd");
+      this.curDate = date;
+      this.skip = 0
       this.loadEvents(date);
     },
-    TopArrow() {
-      this.noMoreData = false;
+
+    // 框体内部 上一页
+    InnerPrev() {
       if (this.skip != 0) {
-        this.skip -= 8;
-        this.loadIdeas(this.curDate);
+        this.skip -= 10;
+        this.loadEvents(this.curDate);
       } else {
         alert("没有内容了");
       }
     },
-    ButtomArrow() {
+    // 框体内部 下一页
+    InnerNext() {
       if (this.noMoreData == false) {
-        this.skip += 8;
-        this.loadIdeas(this.curDate);
+        this.skip += 10;
+        this.loadEvents(this.curDate);
       } else {
         alert("没有内容了");
       }

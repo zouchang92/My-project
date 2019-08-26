@@ -15,14 +15,14 @@
                 </div>
               </div>
             </div>
-            <!-- <div class="form-group mt-2">
+            <div class="form-group mt-2">
               <h6 class="mt-0 mb-3">输入时间</h6>
               <div class="form-row">
                 <div class="col-12">
-                  <b-form-input type="datetime-local" v-model="time" required></b-form-input>
+                  <b-form-input type="datetime-local" v-model="time"></b-form-input>
                 </div>
               </div>
-            </div> -->
+            </div>
             <div class="form-group mt-2">
               <h6 class="mt-0 mb-3">请输入内容 :</h6>
               <div class="form-row">
@@ -64,17 +64,16 @@ export default {
   }),
   methods: {
     ideaSubmit () {
-      let url = this.$host + '/idea/'
+      let url = this.$host + '/api/idea/'
       let nickname = this.selected.nickname
       let username = this.selected.username
-      let pub_date = formatDate(new Date(), 'yyyy-MM-dd')
-      let timestamp = Date.parse(new Date())
+      // let pub_date = formatDate(new Date(), 'yyyy-MM-dd')
+      // let timestamp = Date.parse(new Date())
       let postData = {
         username: username,
         nickname: nickname,
         content: this.ideaContent,
-        pub_date: pub_date,
-        timestamp: timestamp
+        pub_date: this.time,
       }
       console.log(postData)
       this.$ajax.post(url, postData, {
