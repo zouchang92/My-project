@@ -350,9 +350,8 @@ export default {
           let data = res.data.data
           if (data.event_list.length == 0) {
             this.noMoreData = true
-          } else {
-            this.dataList = res.data.data;
-          }
+          } 
+          this.dataList = res.data.data;       
         });
     },
     // 右箭头翻页
