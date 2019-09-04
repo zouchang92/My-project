@@ -38,7 +38,7 @@
                           <h3>{{ ditm.update_date }}</h3>
                           <p>{{ ditm.content }}</p>
                           <h4>标的:</h4>
-                          <p class="Calendar-targets">{{ ditm.targets }}</p>
+                          <p v-for="(tim,index) in itm.detail[didx].targets" :key="index" class="Calendar-targets">{{ tim | formatStock}}</p>
                         </div>
                         <el-button
                           slot="reference"
@@ -214,6 +214,14 @@ export default {
       let newDate = new Date(date);
       let weekday = arrWeek[newDate.getDay()];
       return weekday;
+    },
+    formatStock (stock) {
+      if (!stock) {
+        return ""
+      } else {
+        let str = stock.stock_name + stock.stock_code
+        return str
+      }
     }
   }
 };
@@ -332,7 +340,12 @@ export default {
   overflow: auto
 }
 .Calendar-targets{
-  color: red
+    display: inline-block;
+    font-size: 12px;
+    border: 1px solid #4c5466;
+    line-height: 12px;
+    padding: 4px;
+    margin-left: 10px;
 }
 .el-button{
   padding:0px  !important

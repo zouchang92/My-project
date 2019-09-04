@@ -89,7 +89,9 @@
                   <dd v-for="(itm, idx) in eventData.detail[index].suggestList" :key="idx" @click="clickRes(itm, index)" >{{ itm | formatStock }}</dd>
                 </dl>
                 <div class="mt-4 ml-2">
-                  <b-badge variant="secondary" v-for="(titm, tidx) in eventData.detail[index].targets" :key="tidx">{{ titm | formatStock }}</b-badge>
+                  <p class="Event-p" ref="i" v-for="(titm, tidx) in eventData.detail[index].targets" :key="tidx">{{ titm | formatStock }}
+                    <i class="iconfont icon-shanchu Event-dele" @click="handledelete(index,tidx)"></i>
+                  </p>
                 </div>
               </div>
               <div class="form-row">
@@ -192,7 +194,7 @@ export default {
         })
         .then(response => {
           window.alert("发布成功");
-          // window.location.reload();
+          window.location.reload();
         })
         .catch(error => {
           if (error.response.status == 400) {
@@ -201,6 +203,10 @@ export default {
             console.log(error.response.status);
           }
         });
+    },
+    handledelete(index,tidx){
+      // console.log(this. eventData.detail[index].targets)
+      this.eventData.detail[index].targets.splice(tidx,1)
     }
   },
   filters: {
@@ -294,8 +300,12 @@ export default {
   margin-bottom: 20px;
 }
 .editors-form p {
-  width: 70%;
-  margin: 0 auto 30px;
+    display: inline-block;
+    font-size: 13px;
+    border: 1px solid #4c5466;
+    line-height: 16px;
+    padding: 4px;
+    margin-left: 15px;
 }
 .editors-form .theme-form {
   margin-top: 0;
@@ -315,5 +325,13 @@ export default {
 }
 .btn-custom.theme-color:hover {
   background-position: 100% 0;
+}
+.Event-dele{
+  position: relative;
+    top: -13px;
+    left: 16px;
+}
+.Event-dele:hover{
+  color:red
 }
 </style>

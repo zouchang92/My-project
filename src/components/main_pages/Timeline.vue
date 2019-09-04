@@ -36,7 +36,7 @@
                         <div v-for="(itm, idx) in item.detail" :key="idx">
                           <h4>{{ itm.update_date }}</h4>
                           <span class='timeline-span'>{{ itm.content }}</span>
-                          <p class='timeline-p'>{{ itm.targets }}</p>
+                          <p v-for="(tim,index) in item.detail[idx].targets" :key="index" class='timeline-p'>{{ tim | formatStock }}</p>
                         </div>
                       </b-popover>
                     </li>
@@ -73,7 +73,7 @@
                         <div v-for="(itm, idx) in item.detail" :Key="idx">
                           <h4>{{ itm.update_date }}</h4>
                           <span class='timeline-span'>{{ itm.content }}</span>
-                          <p class='timeline-p'>{{ itm.targets }}</p>
+                          <p v-for="(tim,index) in item.detail[idx].targets" :key="index" class='timeline-p'>{{ tim | formatStock }}</p>
                         </div>
                       </b-popover>
                     </li>
@@ -110,7 +110,7 @@
                         <div v-for="(itm, idx) in item.detail" :key="idx">
                           <h4>{{ itm.update_date }}</h4>
                           <span  class='timeline-span'>{{ itm.content }}</span>
-                          <p class='timeline-p'>{{ itm.targets }}</p>
+                          <p v-for="(tim,index) in item.detail[idx].targets" :key="index" class='timeline-p'>{{ tim | formatStock }}</p>
                         </div>
                       </b-popover>
                     </li>
@@ -147,7 +147,7 @@
                         <div v-for="(itm, idx) in item.detail" :key="idx">
                           <h4>{{ itm.update_date }}</h4>
                           <span class='timeline-span'>{{ itm.content }}</span>
-                          <p class='timeline-p'>{{ itm.targets }}</p>
+                          <p v-for="(tim,index) in item.detail[idx].targets" :key="index" class='timeline-p'>{{ tim | formatStock }}</p>
                         </div>
                       </b-popover>
                     </li>
@@ -185,7 +185,7 @@
                         <div v-for="(itm, idx) in item.detail" :key="idx">
                           <h4>{{ itm.update_date }}</h4>
                           <span class='timeline-span'>{{ itm.content }}</span>
-                          <p class='timeline-p'>{{ itm.targets }}</p>
+                          <p v-for="(tim,index) in item.detail[idx].targets" :key="index" class='timeline-p'>{{ tim | formatStock }}</p>
                         </div>
                       </b-popover>
                     </li>
@@ -223,7 +223,7 @@
                         <div v-for="(itm, idx) in item.detail" :key="idx">
                           <h4>{{ itm.update_date }}</h4>
                           <span class='timeline-span'>{{ itm.content }}</span>
-                          <p class='timeline-p'>{{ itm.targets }}</p>
+                          <p v-for="(tim,index) in item.detail[idx].targets" :key="index" class='timeline-p'>{{ tim | formatStock }}</p>
                         </div>
                       </b-popover>
                     </li>
@@ -261,7 +261,7 @@
                         <div v-for="(itm, idx) in item.detail" :key="idx">
                           <h4>{{ itm.update_date }}</h4>
                           <span class='timeline-span'>{{ itm.content }}</span>
-                          <p class='timeline-p'>{{ itm.targets }}</p>
+                          <p v-for="(tim,index) in item.detail[idx].targets" :key="index" class='timeline-p'>{{ tim | formatStock }}</p>
                         </div>
                       </b-popover>
                     </li>
@@ -451,6 +451,14 @@ export default {
     formatTS(timestamp) {
       let date = new Date(timestamp);
       return formatDate(date, "yyyy-MM-dd");
+    },
+      formatStock (stock) {
+      if (!stock) {
+        return ""
+      } else {
+        let str = stock.stock_name + stock.stock_code
+        return str
+      }
     }
   }
 };
@@ -497,16 +505,19 @@ export default {
   top: 6px;
   left: -52px;
   opacity: 0.3;
+  color:#fff
 }
 .timeline-left {
   position: absolute;
   top: 3px;
-  left: 1135px;
+  left: 1169px;
   opacity: 0.3;
+  color:#fff
 }
 .timeline-right:hover,
 .timeline-left:hover {
   opacity: 1;
+  color:#fff
 }
 .tl-container {
   height: 700px;
@@ -524,13 +535,16 @@ export default {
   height: 720px;
 }
 .timeline-content-details {
-    height: 34px;
+    height: 31px;
     margin: 8px 17px;
     border-bottom: 1px solid #D5B489;
     overflow: hidden;
 }
 .timeline-content-details p {
   color: white;
+  display:block;
+  height: 31px;
+  overflow: hidden;
 }
 .popover-header {
   margin-top: 0px;
@@ -574,7 +588,13 @@ export default {
   white-space:pre-wrap;
 }
 .timeline-p{
-  color:red
+    display: inline-block;
+    font-size: 12px;
+    border: 1px solid #4c5466;
+    line-height: 12px;
+    padding: 4px;
+    margin-top:10px;
+    margin-left: 10px
 }
 </style>
 
