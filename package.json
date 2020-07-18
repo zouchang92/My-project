@@ -19,7 +19,7 @@
     "better-scroll": "^2.0.0-alpha.19",
     "bootstrap-vue": "^2.0.0-rc.11",
     "element-ui": "^2.11.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "or": "^0.2.0",
     "v-owl-carousel": "^1.0.7",
     "vue": "^2.5.17",
